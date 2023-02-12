@@ -1,6 +1,50 @@
 import Link from "next/link";
+import { useState } from "react";
+const axios = require("axios")
+
 
 const LoginSignup = () => {
+    const [name, setName] = useState('')
+    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const handleSignUp =async ()=>{
+        try {
+            // console.log(name,username,email,password);
+            const data={
+                name,
+                username,
+                email,
+                password
+            }
+            const response = await axios.post(
+                "https://makanmitra.dthree.in/api/users/register",
+                data
+              );
+            //   console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    const handleLogIn =async ()=>{
+        try {
+            // console.log(username,password);
+            const data={
+                username,
+                password
+            }
+            const response = await axios.post(
+                "https://makanmitra.dthree.in/api/users/login",
+                data
+              );
+              localStorage.setItem("token",response.data.token.split(" ")[1])
+            //   console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <div className="modal-content">
             <div className="modal-header">
@@ -82,7 +126,7 @@ const LoginSignup = () => {
                                     </div>
                                     {/* End heading */}
 
-                                    <div className="row mt25">
+                                    {/* <div className="row mt25">
                                         <div className="col-lg-12">
                                             <button
                                                 type="submit"
@@ -101,7 +145,7 @@ const LoginSignup = () => {
                                                 Login with Google
                                             </button>
                                         </div>
-                                    </div>
+                                    </div> */}
                                     {/* End .row */}
 
                                     <hr />
@@ -111,7 +155,9 @@ const LoginSignup = () => {
                                             type="text"
                                             className="form-control"
                                             id="inlineFormInputGroupUsername2"
-                                            placeholder="User Name Or Email"
+                                            placeholder="User Name"
+                                            value={username}
+                                            onChange={(e)=>setUsername(e.target.value)}
                                         />
                                         <div className="input-group-prepend">
                                             <div className="input-group-text">
@@ -127,6 +173,8 @@ const LoginSignup = () => {
                                             className="form-control"
                                             id="exampleInputPassword1"
                                             placeholder="Password"
+                                            value={password}
+                                            onChange={(e)=>setPassword(e.target.value)}
                                         />
                                         <div className="input-group-prepend">
                                             <div className="input-group-text">
@@ -162,6 +210,7 @@ const LoginSignup = () => {
                                     <button
                                         type="submit"
                                         className="btn btn-log w-100 btn-thm"
+                                        onClick={handleLogIn}
                                     >
                                         Log In
                                     </button>
@@ -205,7 +254,7 @@ const LoginSignup = () => {
                                 {/* End .heading */}
 
                                 <form action="#">
-                                    <div className="row ">
+                                    {/* <div className="row ">
                                         <div className="col-lg-12">
                                             <button
                                                 type="submit"
@@ -224,7 +273,7 @@ const LoginSignup = () => {
                                                 Login with Google
                                             </button>
                                         </div>
-                                    </div>
+                                    </div> */}
                                     {/* End .row */}
 
                                     <hr />
@@ -234,7 +283,25 @@ const LoginSignup = () => {
                                             type="text"
                                             className="form-control"
                                             id="exampleInputName"
+                                            placeholder="Name"
+                                            name="name"
+                                            value={name}
+                                            onChange={(e)=>setName(e.target.value)}
+                                        />
+                                        <div className="input-group-prepend">
+                                            <div className="input-group-text">
+                                                <i className="flaticon-user"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="form-group input-group mb-3">
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id="exampleInputUserName"
                                             placeholder="User Name"
+                                            value={username}
+                                            onChange={(e)=>setUsername(e.target.value)}
                                         />
                                         <div className="input-group-prepend">
                                             <div className="input-group-text">
@@ -250,6 +317,8 @@ const LoginSignup = () => {
                                             className="form-control"
                                             id="exampleInputEmail2"
                                             placeholder="Email"
+                                            value={email}
+                                            onChange={(e)=>setEmail(e.target.value)}
                                         />
                                         <div className="input-group-prepend">
                                             <div className="input-group-text">
@@ -265,6 +334,8 @@ const LoginSignup = () => {
                                             className="form-control"
                                             id="exampleInputPassword2"
                                             placeholder="Password"
+                                            value={password}
+                                            onChange={(e)=>setPassword(e.target.value)}
                                         />
                                         <div className="input-group-prepend">
                                             <div className="input-group-text">
@@ -274,7 +345,7 @@ const LoginSignup = () => {
                                     </div>
                                     {/* End .row */}
 
-                                    <div className="form-group input-group  mb-3">
+                                    {/* <div className="form-group input-group  mb-3">
                                         <input
                                             type="password"
                                             className="form-control"
@@ -286,10 +357,10 @@ const LoginSignup = () => {
                                                 <i className="flaticon-password"></i>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
                                     {/* End .row */}
 
-                                    <div className="form-group ui_kit_select_search mb-3">
+                                    {/* <div className="form-group ui_kit_select_search mb-3">
                                         <select
                                             className="form-select"
                                             data-live-search="true"
@@ -305,7 +376,7 @@ const LoginSignup = () => {
                                                 Multi User
                                             </option>
                                         </select>
-                                    </div>
+                                    </div> */}
                                     {/* End from-group */}
 
                                     <div className="form-group form-check custom-checkbox mb-3">
@@ -328,6 +399,7 @@ const LoginSignup = () => {
                                     <button
                                         type="submit"
                                         className="btn btn-log w-100 btn-thm"
+                                        onClick={handleSignUp}
                                     >
                                         Sign Up
                                     </button>

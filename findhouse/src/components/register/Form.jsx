@@ -19,6 +19,21 @@ const Form = () => {
           type="text"
           className="form-control"
           required
+          name="name"
+          placeholder="Name"
+        />
+        <div className="input-group-prepend">
+          <div className="input-group-text">
+            <i className="flaticon-user"></i>
+          </div>
+        </div>
+      </div>
+      <div className="form-group input-group ">
+        <input
+          type="text"
+          className="form-control"
+          required
+          name="username"
           placeholder="User Name"
         />
         <div className="input-group-prepend">
@@ -34,6 +49,7 @@ const Form = () => {
           type="email"
           className="form-control"
           required
+          name="email"
           placeholder="Email"
         />
         <div className="input-group-prepend">
@@ -49,6 +65,7 @@ const Form = () => {
           type="password"
           className="form-control"
           required
+          name="password"
           placeholder="Password"
         />
         <div className="input-group-prepend">
@@ -59,7 +76,7 @@ const Form = () => {
       </div>
       {/* End .form-group */}
 
-      <div className="form-group input-group  ">
+      {/* <div className="form-group input-group  ">
         <input
           type="password"
           className="form-control"
@@ -71,7 +88,7 @@ const Form = () => {
             <i className="flaticon-password"></i>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* End .form-group */}
 
       <div className="form-group form-check custom-checkbox mb-3">
@@ -99,7 +116,7 @@ const Form = () => {
       </div>
       {/* devider */}
 
-      <div className="row mt25">
+      {/* <div className="row mt25">
         <div className="col-lg-6">
           <button
             type="submit"
@@ -110,16 +127,16 @@ const Form = () => {
         </div>
         {/* End .col */}
 
-        <div className="col-lg-6">
+        {/* <div className="col-lg-6">
           <button
             type="submit"
             className="btn btn-block color-white bgc-gogle mb0 w-100"
           >
             <i className="fa fa-google float-start mt5"></i> Google
           </button>
-        </div>
+        </div> */}
         {/* End .col */}
-      </div>
+      {/* </div>  */}
       {/* more signin options */}
     </form>
   );
