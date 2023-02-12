@@ -2,7 +2,7 @@ import { Gallery, Item } from "react-photoswipe-gallery";
 import "photoswipe/dist/photoswipe.css";
 import propertiesContent from "../../../data/properties";
 
-const ListingGallery = () => {
+const   ListingGallery = () => {
   return (
     <>
       <Gallery>

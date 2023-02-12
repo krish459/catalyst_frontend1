@@ -1,3 +1,5 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import Pagination from "../../common/blog/Pagination";
 import CopyrightFooter from "../../common/footer/CopyrightFooter";
 import Footer from "../../common/footer/Footer";
@@ -11,7 +13,22 @@ import PopupSignInUp from "../../common/PopupSignInUp";
 import BreadCrumb2 from "./BreadCrumb2";
 import FeaturedItem from "./FeaturedItem";
 
+
 const index = () => {
+  const [profiledata, setProfiledata] = useState();
+  const listproperties=async()=>{
+    const result = await axios.get(
+      "https://makanmitra.dthree.in/api/property/get-properties"
+    );
+    console.log(result.data);
+    setProfiledata(result.data);
+  }
+  useEffect(() => {
+    listproperties();
+  }, []);
+  if (!profiledata) {
+    return <h1>Load..</h1>;
+  }
   return (
     <>
       {/* <!-- Main Header Nav --> */}
@@ -39,7 +56,7 @@ const index = () => {
               {/* End list grid */}
 
               <div className="dn db-991 mt30 mb0">
-                <ShowFilter />
+                <ShowFilter /> 
               </div>
               {/* ENd button for mobile sidebar show  */}
             </div>
@@ -71,7 +88,7 @@ const index = () => {
                 {/* End .offcanvas-heade */}
 
                 <div className="offcanvas-body">
-                  <SidebarListing />
+                  {/* <SidebarListing /> */}
                 </div>
               </div>
               {/* End mobile sidebar listing  */}
@@ -87,7 +104,41 @@ const index = () => {
               {/* End .row */}
 
               <div className="row">
-                <FeaturedItem />
+                {
+                  profiledata.properties.map((data)=>{
+                    return(
+
+                      <FeaturedItem 
+                      key={data._id}
+                      title={data.title}
+                      description={data.description}
+                      images={data.images}
+                      area={data.area}
+                      locality={data.locality}
+                      state={data.state}
+                      rent={data.rent}
+                      buyOrRent={data.buyOrRent}
+                      details={data.details}
+                      bedrooms={data.details[0].bedrooms}
+                      bathroom={data.details[0].bathroom}
+                      propertyType={data.details[0].propertyType}
+                      furnishing={data.details[0].furnishing}
+                      tenants={data.details[0].tenants}
+                      deposit={data.details[0].deposit}
+                      foodPreferance={data.details[0].foodPreferance}
+                      balcony={data.details[0].balcony}
+                      flatFloor={data.details[0].flatFloor}
+                      totalFloors={data.details[0].totalFloors}
+                      availableFrom={data.details[0].availableFrom}
+                      facing={data.details[0].facing}
+                      monthlymaintenance={data.details[0].monthlymaintenance}
+                      waterSupply={data.details[0].waterSupply}
+                      amenities={data.amenities}
+                      createdAt={data.createdAt}
+                      />
+                    )
+                  })
+                }
               </div>
               {/* End .row */}
 
