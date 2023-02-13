@@ -1,4 +1,4 @@
-const PropertyDetails = () => {
+const PropertyDetails = ({rent,area,propertyAge,bedrooms,bathroom,furnishing,propertyType,rentOrBuy}) => {
   return (
     <>
       <div className="col-md-6 col-lg-6 col-xl-4">
@@ -10,17 +10,17 @@ const PropertyDetails = () => {
           </li>
           <li>
             <p>
-              Price : <span>$130,000</span>
+              Price : <span>$ {rent}</span>
             </p>
           </li>
           <li>
             <p>
-              Property Size : <span>1560 Sq Ft</span>
+              Property Size : <span>{area} Sq Ft</span>
             </p>
           </li>
           <li>
             <p>
-              Year Built : <span>2016-01-09</span>
+              Year Built : <span>Before {propertyAge} years </span>
             </p>
           </li>
         </ul>
@@ -31,24 +31,24 @@ const PropertyDetails = () => {
         <ul className="list-inline-item">
           <li>
             <p>
-              Bedrooms : <span>8</span>
+              Bedrooms : <span>{bedrooms}</span>
             </p>
           </li>
           <li>
             <p>
-              Bathrooms : <span>4</span>
+              Bathrooms : <span>{bathroom}</span>
             </p>
           </li>
           <li>
             <p>
-              Garage : <span>2</span>
+              Furnished : <span>{furnishing}</span>
             </p>
           </li>
-          <li>
+          {/* <li>
             <p>
               Garage Size : <span>200 SqFt</span>
             </p>
-          </li>
+          </li> */}
         </ul>
       </div>
       {/* End .col */}
@@ -57,12 +57,12 @@ const PropertyDetails = () => {
         <ul className="list-inline-item">
           <li>
             <p>
-              Property Type : <span>Apartment</span>
+              Property Type : <span>{propertyType}</span>
             </p>
           </li>
           <li>
             <p>
-              Property Status : <span>For Sale</span>
+              Property Status : <span>For {rentOrBuy}</span>
             </p>
           </li>
         </ul>

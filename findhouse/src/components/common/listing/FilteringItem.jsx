@@ -24,7 +24,28 @@ import PricingRangeSlider from "../../common/PricingRangeSlider";
 import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/router";
 
-const FilteringItem = () => {
+const FilteringItem = ({
+  getKeyword,
+  setKeyword,
+  getBedroom,
+  setBedroom,
+  getBathroom,
+  setBathroom,
+  getGarages,
+  setGarages,
+  getBuiltYear,
+  setBuiltYear,
+  getStatus,
+  setStatus,
+  getLocation,
+  setLocation,
+  getPropertiesType,
+  setPropertiesType,
+  getAreaMin,
+  setAreaMin,
+  price,
+  setPrice
+}) => {
   const {
     keyword,
     location,
@@ -39,91 +60,91 @@ const FilteringItem = () => {
   } = useSelector((state) => state.properties);
 
   // input state
-  const [getKeyword, setKeyword] = useState(keyword);
-  const [getLocation, setLocation] = useState(location);
-  const [getStatus, setStatus] = useState(status);
-  const [getPropertiesType, setPropertiesType] = useState(propertyType);
-  const [getBathroom, setBathroom] = useState(bathrooms);
-  const [getBedroom, setBedroom] = useState(bedrooms);
-  const [getGarages, setGarages] = useState(garages);
-  const [getBuiltYear, setBuiltYear] = useState(yearBuilt);
-  const [getAreaMin, setAreaMin] = useState(area.min);
-  const [getAreaMax, setAreaMax] = useState(area.max);
+  // const [getKeyword, setKeyword] = useState(keyword);
+  // const [getLocation, setLocation] = useState(location);
+  // const [getStatus, setStatus] = useState(status);
+  // const [getPropertiesType, setPropertiesType] = useState(propertyType);
+  // const [getBathroom, setBathroom] = useState(bathrooms);
+  // const [getBedroom, setBedroom] = useState(bedrooms);
+  // const [getGarages, setGarages] = useState(garages);
+  // const [getBuiltYear, setBuiltYear] = useState(yearBuilt);
+  // const [getAreaMin, setAreaMin] = useState(area.min);
+  // const [getAreaMax, setAreaMax] = useState(area.max);
 
-  // advanced state
-  const [getAdvanced, setAdvanced] = useState([
-    { id: uuidv4(), name: "Air Conditioning" },
-    { id: uuidv4(), name: "Barbeque" },
-    { id: uuidv4(), name: "Gym" },
-    { id: uuidv4(), name: "Microwave" },
-    { id: uuidv4(), name: "TV Cable" },
-    { id: uuidv4(), name: "Lawn" },
-    { id: uuidv4(), name: "Refrigerator" },
-    { id: uuidv4(), name: "Swimming Pool" },
-    { id: uuidv4(), name: "WiFi" },
-    { id: uuidv4(), name: "Sauna" },
-    { id: uuidv4(), name: "Dryer" },
-    { id: uuidv4(), name: "Washer" },
-    { id: uuidv4(), name: "Laundry" },
-    { id: uuidv4(), name: "Outdoor Shower" },
-    { id: uuidv4(), name: "Window Coverings" },
-  ]);
+  // // advanced state
+  // const [getAdvanced, setAdvanced] = useState([
+  //   { id: uuidv4(), name: "Air Conditioning" },
+  //   { id: uuidv4(), name: "Barbeque" },
+  //   { id: uuidv4(), name: "Gym" },
+  //   { id: uuidv4(), name: "Microwave" },
+  //   { id: uuidv4(), name: "TV Cable" },
+  //   { id: uuidv4(), name: "Lawn" },
+  //   { id: uuidv4(), name: "Refrigerator" },
+  //   { id: uuidv4(), name: "Swimming Pool" },
+  //   { id: uuidv4(), name: "WiFi" },
+  //   { id: uuidv4(), name: "Sauna" },
+  //   { id: uuidv4(), name: "Dryer" },
+  //   { id: uuidv4(), name: "Washer" },
+  //   { id: uuidv4(), name: "Laundry" },
+  //   { id: uuidv4(), name: "Outdoor Shower" },
+  //   { id: uuidv4(), name: "Window Coverings" },
+  // ]);
 
-  const dispath = useDispatch();
+  // const dispath = useDispatch();
 
-  const Router = useRouter();
+  // const Router = useRouter();
 
-  // keyword
-  useEffect(() => {
-    dispath(addKeyword(getKeyword));
-  }, [dispath, addKeyword, getKeyword]);
+  // // keyword
+  // useEffect(() => {
+  //   dispath(addKeyword(getKeyword));
+  // }, [dispath, addKeyword, getKeyword]);
 
-  // location
-  useEffect(() => {
-    dispath(addLocation(getLocation));
-  }, [dispath, addLocation, getLocation]);
+  // // location
+  // useEffect(() => {
+  //   dispath(addLocation(getLocation));
+  // }, [dispath, addLocation, getLocation]);
 
-  // status
-  useEffect(() => {
-    dispath(addStatus(getStatus));
-  }, [dispath, addStatus, getStatus]);
+  // // status
+  // useEffect(() => {
+  //   dispath(addStatus(getStatus));
+  // }, [dispath, addStatus, getStatus]);
 
-  // properties type
-  useEffect(() => {
-    dispath(addPropertyType(getPropertiesType));
-  }, [dispath, addPropertyType, getPropertiesType]);
+  // // properties type
+  // useEffect(() => {
+  //   dispath(addPropertyType(getPropertiesType));
+  // }, [dispath, addPropertyType, getPropertiesType]);
 
-  // bathroom
-  useEffect(() => {
-    dispath(addBathrooms(getBathroom));
-  }, [dispath, addBathrooms, getBathroom]);
+  // // bathroom
+  // useEffect(() => {
+  //   dispath(addBathrooms(getBathroom));
+  // }, [dispath, addBathrooms, getBathroom]);
 
-  // bedroom
-  useEffect(() => {
-    dispath(addBedrooms(getBedroom));
-  }, [dispath, addBedrooms, getBedroom]);
+  // // bedroom
+  // useEffect(() => {
+  //   dispath(addBedrooms(getBedroom));
+  // }, [dispath, addBedrooms, getBedroom]);
 
-  // garages
-  useEffect(() => {
-    dispath(addGarages(getGarages));
-  }, [dispath, addGarages, getGarages]);
+  // // garages
+  // useEffect(() => {
+  //   dispath(addGarages(getGarages));
+  // }, [dispath, addGarages, getGarages]);
 
-  // built years
-  useEffect(() => {
-    dispath(addYearBuilt(getBuiltYear));
-  }, [dispath, addYearBuilt, getBuiltYear]);
+  // // built years
+  // useEffect(() => {
+  //   dispath(addYearBuilt(getBuiltYear));
+  // }, [dispath, addYearBuilt, getBuiltYear]);
 
-  // area min
-  useEffect(() => {
-    dispath(dispath(addAreaMin(getAreaMin)));
-  }, [dispath, addAreaMin, getAreaMin]);
+  // // area min
+  // useEffect(() => {
+  //   dispath(dispath(addAreaMin(getAreaMin)));
+  // }, [dispath, addAreaMin, getAreaMin]);
 
-  // area max
-  useEffect(() => {
-    dispath(dispath(addAreaMax(getAreaMax)));
-  }, [dispath, addAreaMax, getAreaMax]);
+  // // area max
+  // useEffect(() => {
+  //   dispath(dispath(addAreaMax(getAreaMax)));
+  // }, [dispath, addAreaMax, getAreaMax]);
 
-  // clear filter
+  // // clear filter
   const clearHandler = () => {
     clearAllFilters();
   };
@@ -133,48 +154,49 @@ const FilteringItem = () => {
     setLocation("");
     setStatus("");
     setPropertiesType("");
-    dispath(addPrice({ min: 10000, max: 20000 }));
+    // dispath(addPrice({ min: 10000, max: 20000 }));
     setBathroom("");
     setBedroom("");
     setBedroom("");
     setGarages("");
     setBuiltYear("");
     setAreaMin("");
-    setAreaMax("");
-    dispath(resetAmenities());
-    dispath(addStatusType(""));
-    dispath(addFeatured(""));
-    clearAdvanced();
+    setPrice("")
+    // setAreaMax("");
+    // dispath(resetAmenities());
+    // dispath(addStatusType(""));
+    // dispath(addFeatured(""));
+    // clearAdvanced();
   };
 
-  // clear advanced
-  const clearAdvanced = () => {
-    const changed = getAdvanced.map((item) => {
-      item.isChecked = false;
-      return item;
-    });
-    setAdvanced(changed);
-  };
+  // // clear advanced
+  // const clearAdvanced = () => {
+  //   const changed = getAdvanced.map((item) => {
+  //     item.isChecked = false;
+  //     return item;
+  //   });
+  //   setAdvanced(changed);
+  // };
 
-  // add advanced
-  const advancedHandler = (id) => {
-    const data = getAdvanced.map((feature) => {
-      if (feature.id === id) {
-        if (feature.isChecked) {
-          feature.isChecked = false;
-        } else {
-          feature.isChecked = true;
-        }
-      }
-      return feature;
-    });
+  // // add advanced
+  // const advancedHandler = (id) => {
+  //   const data = getAdvanced.map((feature) => {
+  //     if (feature.id === id) {
+  //       if (feature.isChecked) {
+  //         feature.isChecked = false;
+  //       } else {
+  //         feature.isChecked = true;
+  //       }
+  //     }
+  //     return feature;
+  //   });
 
-    setAdvanced(data);
-  };
+  //   setAdvanced(data);
+  // };
 
   return (
     <ul className="sasw_list mb0">
-      <li className="search_area">
+      {/* <li className="search_area">
         <div className="form-group mb-3">
           <input
             type="text"
@@ -187,7 +209,7 @@ const FilteringItem = () => {
             <span className="flaticon-magnifying-glass"></span>
           </label>
         </div>
-      </li>
+      </li> */}
       {/* End li */}
 
       <li className="search_area">
@@ -215,13 +237,13 @@ const FilteringItem = () => {
               className="selectpicker w100 show-tick form-select"
               value={getStatus}
             >
-              <option value="">Status</option>
-              <option value="apartment">Apartment</option>
-              <option value="bungalow">Bungalow</option>
-              <option value="condo">Condo</option>
+              <option value="">Buy or Rent</option>
+              <option value="buy">Buy</option>
+              <option value="rent">Rent</option>
+              {/* <option value="condo">Condo</option>
               <option value="house">House</option>
               <option value="land">Land</option>
-              <option value="single family">Single Family</option>
+              <option value="single family">Single Family</option> */}
             </select>
           </div>
         </div>
@@ -237,8 +259,8 @@ const FilteringItem = () => {
               value={getPropertiesType}
             >
               <option value="">Property Type</option>
-              <option value="apartment">Apartment</option>
-              <option value="bungalow">Bungalow</option>
+              <option value="flat">Flat</option>
+              <option value="mansion">Mansion</option>
               <option value="condo">Condo</option>
               <option value="house">House</option>
               <option value="land">Land</option>
@@ -247,8 +269,26 @@ const FilteringItem = () => {
           </div>
         </div>
       </li>
+      <li>
+        <div className="search_option_two">
+          <div className="candidate_revew_select">
+          <select
+              onChange={(e) => setPrice(e.target.value)}
+              className="selectpicker w100 show-tick form-select"
+              value={price}
+            >
+              <option value="">Price range</option>
+              <option value="10000">10000</option>
+              <option value="15000">15000</option>
+              <option value="20000">20000</option>
+              <option value="25000">25000</option>
+              {/* <option value="single family">Single Family</option> */}
+            </select>
+          </div>
+        </div>
+      </li>
       {/* End li */}
-
+{/* 
       <li>
         <div className="small_dropdown2">
           <div
@@ -264,12 +304,15 @@ const FilteringItem = () => {
             </label>
           </div>
           <div className="dd_content2 style2 dropdown-menu">
-            <div className="pricing_acontent ">
-              <PricingRangeSlider />
-            </div>
-          </div>
+            {/* <div className="pricing_acontent ">
+              <PricingRangeSlider 
+                  price={price}
+                  setPrice={setPrice}/>
+            </div> */}
+             
+          {/* </div>
         </div>
-      </li>
+      </li> */} 
       {/* End li */}
 
       <li>
@@ -322,10 +365,10 @@ const FilteringItem = () => {
               className="selectpicker w100 show-tick form-select"
               value={getGarages}
             >
-              <option value="">Garages</option>
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-              <option value="other">Others</option>
+              <option value="">Furnished</option>
+              <option value="full">Full</option>
+              <option value="partially">Partial</option>
+              <option value="not">Not</option>
             </select>
           </div>
         </div>
@@ -340,15 +383,15 @@ const FilteringItem = () => {
               className="selectpicker w100 show-tick form-select"
               value={getBuiltYear}
             >
-              <option value="">Year built</option>
-              <option value="2013">2013</option>
-              <option value="2014">2014</option>
-              <option value="2015">2015</option>
-              <option value="2016">2016</option>
+              <option value="">Available from Year</option>
               <option value="2017">2017</option>
               <option value="2018">2018</option>
               <option value="2019">2019</option>
               <option value="2020">2020</option>
+              <option value="2021">2021</option>
+              <option value="2022">2022</option>
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
             </select>
           </div>
         </div>
@@ -369,7 +412,7 @@ const FilteringItem = () => {
       </li>
       {/* End li */}
 
-      <li className="max_area list-inline-item">
+      {/* <li className="max_area list-inline-item">
         <div className="form-group mb-4">
           <input
             type="number"
@@ -380,10 +423,10 @@ const FilteringItem = () => {
             onChange={(e) => setAreaMax(e.target.value)}
           />
         </div>
-      </li>
+      </li> */}
       {/* End li */}
 
-      <li>
+      {/* <li>
         <div id="accordion" className="panel-group">
           <div className="panel">
             <div className="panel-heading">
@@ -400,7 +443,7 @@ const FilteringItem = () => {
             </div>
             {/* End .panel-heading */}
 
-            <div id="panelBodyRating" className="panel-collapse collapse">
+            {/* <div id="panelBodyRating" className="panel-collapse collapse">
               <div className="panel-body row">
                 <div className="col-lg-12">
                   <ul className="ui_kit_checkbox selectable-list fn-400">
@@ -430,10 +473,10 @@ const FilteringItem = () => {
                   </ul>
                 </div>
               </div>
-            </div>
+            </div> 
           </div>
         </div>
-      </li>
+      </li>  */}
       {/* End li */}
 
       <li>

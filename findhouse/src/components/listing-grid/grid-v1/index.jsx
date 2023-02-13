@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { addKeyword } from "../../../features/properties/propertiesSlice";
 import Pagination from "../../common/blog/Pagination";
 import CopyrightFooter from "../../common/footer/CopyrightFooter";
 import Footer from "../../common/footer/Footer";
@@ -13,22 +14,50 @@ import PopupSignInUp from "../../common/PopupSignInUp";
 import BreadCrumb2 from "./BreadCrumb2";
 import FeaturedItem from "./FeaturedItem";
 
-
 const index = () => {
+  const [getKeyword, setKeyword] = useState();
+  const [getBedroom, setBedroom] = useState();
+  const [getBathroom, setBathroom] = useState();
+  const [getGarages, setGarages] = useState();
+  const [getBuiltYear, setBuiltYear] = useState();
+  const [getStatus, setStatus] = useState();
+  const [getLocation, setLocation] = useState();
+  const [getPropertiesType, setPropertiesType] = useState();
+  const [getAreaMin, setAreaMin] = useState();
+  const [price, setPrice] = useState();
+  // console.log(getKeyword);
   const [profiledata, setProfiledata] = useState();
-  const listproperties=async()=>{
+  const listproperties = async () => {
     const result = await axios.get(
-      "https://makanmitra.dthree.in/api/property/get-properties"
+      `https://makanmitra.dthree.in/api/property/get-properties?bedrooms=${getBedroom}&bathroom=${getBathroom}&furnishing=${getGarages}&availableFromYear=${getBuiltYear}&buyOrRent=${getStatus}&locality=${getLocation}&propertyType=${getPropertiesType}&minarea=${getAreaMin}&price=${price}`
     );
-    console.log(result.data);
-    setProfiledata(result.data);
-  }
+    // console.log(result.data);
+    if(!result.data.details){
+      setProfiledata(result.data.properties);
+    }else{
+      setProfiledata(result.data.details);
+    }
+  };
+  
   useEffect(() => {
     listproperties();
-  }, []);
+  }, [
+    getKeyword,
+    getBedroom,
+    getBathroom,
+    getGarages,
+    getBuiltYear,
+    getStatus,
+    getLocation,
+    getPropertiesType,
+    getAreaMin,
+    price
+  ]);
   if (!profiledata) {
     return <h1>Load..</h1>;
   }
+
+  // console.log("addKey : ",addKeyword);
   return (
     <>
       {/* <!-- Main Header Nav --> */}
@@ -43,31 +72,52 @@ const index = () => {
       {/* <!-- Listing Grid View --> */}
       <section className="our-listing bgc-f7 pb30-991 mt85 md-mt0 ">
         <div className="container">
-          <div className="row">
-            <div className="col-lg-6">
-              <BreadCrumb2 />
-            </div>
-            {/* End .col */}
-
-            <div className="col-lg-6 position-relative">
-              <div className="listing_list_style mb20-xsd tal-991">
-                <GridListButton />
+          {/* <div className="row">
+              <div className="col-lg-6">
+                <BreadCrumb2 />
               </div>
-              {/* End list grid */}
+              {/* End .col */}
 
-              <div className="dn db-991 mt30 mb0">
-                <ShowFilter /> 
-              </div>
-              {/* ENd button for mobile sidebar show  */}
+          <div className="col-lg-6 position-relative">
+            <div className="listing_list_style mb20-xsd tal-991">
+              <GridListButton />
             </div>
-            {/* End .col filter grid list */}
+            {/* End list grid */}
+
+            <div className="dn db-991 mt30 mb0">
+              <ShowFilter />
+            </div>
+            {/* ENd button for mobile sidebar show  */}
           </div>
+          {/* End .col filter grid list */}
+          {/* </div> */}
           {/* End Page Breadcrumb and Grid,List and filter Button */}
 
           <div className="row">
             <div className="col-lg-4 col-xl-4">
               <div className="sidebar-listing-wrapper">
-                <SidebarListing />
+                <SidebarListing
+                  getKeyword={getKeyword}
+                  setKeyword={setKeyword}
+                  getBedroom={getBedroom}
+                  setBedroom={setBedroom}
+                  getBathroom={getBathroom}
+                  setBathroom={setBathroom}
+                  getGarages={getGarages}
+                  setGarages={setGarages}
+                  getBuiltYear={getBuiltYear}
+                  setBuiltYear={setBuiltYear}
+                  getStatus={getStatus}
+                  setStatus={setStatus}
+                  getLocation={getLocation}
+                  setLocation={setLocation}
+                  getPropertiesType={getPropertiesType}
+                  setPropertiesType={setPropertiesType}
+                  getAreaMin={getAreaMin}
+                  setAreaMin={setAreaMin}
+                  price={price}
+                  setPrice={setPrice}
+                />
               </div>
               {/* End SidebarListing */}
 
@@ -87,9 +137,7 @@ const index = () => {
                 </div>
                 {/* End .offcanvas-heade */}
 
-                <div className="offcanvas-body">
-                  {/* <SidebarListing /> */}
-                </div>
+                <div className="offcanvas-body">{/* <SidebarListing /> */}</div>
               </div>
               {/* End mobile sidebar listing  */}
             </div>
@@ -97,19 +145,18 @@ const index = () => {
 
             <div className="col-md-12 col-lg-8">
               <div className="grid_list_search_result ">
-                <div className="row align-items-center">
+                {/* <div className="row align-items-center">
                   <FilterTopBar />
-                </div>
+                </div> */}
               </div>
               {/* End .row */}
 
               <div className="row">
-                {
-                  profiledata.properties.map((data)=>{
-                    return(
-
-                      <FeaturedItem 
+                {profiledata.map((data) => {
+                  return (
+                    <FeaturedItem
                       key={data._id}
+                      _id={data._id}
                       title={data.title}
                       description={data.description}
                       images={data.images}
@@ -135,10 +182,9 @@ const index = () => {
                       waterSupply={data.details[0].waterSupply}
                       amenities={data.amenities}
                       createdAt={data.createdAt}
-                      />
-                    )
-                  })
-                }
+                    />
+                  );
+                })}
               </div>
               {/* End .row */}
 

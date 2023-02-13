@@ -13,17 +13,34 @@ import PropertyVideo from "../common/listing-details/PropertyVideo";
 import WalkScore from "../common/listing-details/WalkScore";
 import WhatsNearby from "../common/listing-details/WhatsNearby";
 
-const DetailsContent = () => {
+const DetailsContent = ({
+  bedrooms,
+  bathroom,
+  propertyType,
+  area,
+  description,
+  rent,
+  propertyAge,
+  furnishing,
+  rentOrBuy,
+  amenities
+}) => {
   return (
     <>
       <div className="listing_single_description">
         <div className="lsd_list">
-          <PropertyItem />
+          <PropertyItem
+            bedrooms={bedrooms}
+            bathroom={bathroom}
+            propertyType={propertyType}
+            area={area}
+
+          />
         </div>
         {/* End .lsd_list */}
 
         <h4 className="mb30">Description</h4>
-        <PropertyDescriptions />
+        <PropertyDescriptions description={description} />
       </div>
       {/* End .listing_single_description */}
 
@@ -32,7 +49,16 @@ const DetailsContent = () => {
           <div className="col-lg-12">
             <h4 className="mb15">Property Details</h4>
           </div>
-          <PropertyDetails />
+          <PropertyDetails
+            rent={rent}
+            area={area}
+            propertyAge={propertyAge}
+            bedrooms={bedrooms}
+            bathroom={bathroom}
+            furnishing={furnishing}
+            propertyType={propertyType}
+            rentOrBuy={rentOrBuy}
+          />
         </div>
       </div>
       {/* End .additional_details */}
@@ -47,12 +73,12 @@ const DetailsContent = () => {
       </div>
       {/* End .additional_details */}
 
-      <div className="property_attachment_area">
+      {/* <div className="property_attachment_area">
         <h4 className="mb30">Property Attachments</h4>
         <div className="iba_container style2">
           <Attachments />
         </div>
-      </div>
+      </div> */}
       {/* End .property_attachment_area */}
 
       <div className="application_statics mt30">
@@ -62,7 +88,7 @@ const DetailsContent = () => {
           </div>
           {/* End .col */}
 
-          <PropertyFeatures />
+          <PropertyFeatures amenities={amenities}/>
         </div>
       </div>
       {/* End .feature_area */}

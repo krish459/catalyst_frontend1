@@ -2,9 +2,10 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addLength } from "../../../features/properties/propertiesSlice";
-import properties from "../../../data/properties";
+// import properties from "../../../data/properties";
 
 const FeaturedItem = ({key,
+  _id,
   title,
   description,
   images,
@@ -195,7 +196,7 @@ const FeaturedItem = ({key,
                 </li>
               </ul>
 
-              <Link href={`/listing-details-v1/${key}`}>
+              <Link href={`/listing-details-v1/${_id}`}>
                 <a className="fp_price">
                   ${rent}
                   <small>/mo</small>
@@ -207,7 +208,7 @@ const FeaturedItem = ({key,
             <div className="tc_content">
               <p className="text-thm">{propertyType}</p>
               <h4>
-                <Link href={`/listing-details-v1/${key}`}>
+                <Link href={`/listing-details-v1/${_id}`}>
                   <a>{title}</a>
                 </Link>
               </h4>

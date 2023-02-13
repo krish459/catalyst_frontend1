@@ -10,18 +10,28 @@ import PopupSignInUp from "../../components/common/PopupSignInUp";
 import properties from "../../data/properties";
 import DetailsContent from "../../components/listing-details-v1/DetailsContent";
 import Sidebar from "../../components/listing-details-v1/Sidebar";
+import axios from "axios";
 
 const ListingDynamicDetailsV1 = () => {
   const router = useRouter();
-  const [property, setProperty] = useState({});
-  const id = router.query.id;
+  const [property, setProperty] = useState();
+  const id = "63e8ac8daa6639b68d70ad1f";
+  // const id = router.query.id;
+  console.log(id);
+  const propertybyid = async () => {
+    const result = await axios.get(
+      `https://makanmitra.dthree.in/api/property/get-properties/${id}`
+    );
+    console.log(result.data);
+    setProperty(result.data);
+  };
 
   useEffect(() => {
-    if (!id) <h1>Loading...</h1>;
-    else setProperty(properties?.find((item) => item.id == id));
-
-    return () => {};
-  }, [id]);
+    propertybyid();
+  }, []);
+  if (!property || !id) {
+    return <h1>Load..</h1>;
+  }
 
   return (
     <>
@@ -41,15 +51,15 @@ const ListingDynamicDetailsV1 = () => {
             <div className="row mb30">
               <div className="col-lg-7 col-xl-8">
                 <div className="single_property_title mt30-767">
-                  <h2>{property?.title}</h2>
-                  <p>{property?.location}</p>
+                  <h2>{property.product.title}</h2>
+                  <p>{property.product.locality}</p>
                 </div>
               </div>
               <div className="col-lg-5 col-xl-4">
                 <div className="single_property_social_share position-static transform-none">
                   <div className="price float-start fn-400">
                     <h2>
-                      ${property?.price}
+                      {property.product.rent}
                       <small>/mo</small>
                     </h2>
                   </div>
@@ -97,11 +107,11 @@ const ListingDynamicDetailsV1 = () => {
                       >
                         {({ ref, open }) => (
                           <div role="button" ref={ref} onClick={open}>
-                            <img
+                            {/* <img
                               className="img-fluid w100 cover lds-1"
                               src={property.img}
                               alt="1.jpg"
-                            />
+                            /> */}
                           </div>
                         )}
                       </Item>
@@ -149,13 +159,24 @@ const ListingDynamicDetailsV1 = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-12 col-lg-8">
-              <DetailsContent />
+              <DetailsContent
+                bedrooms={property.product.details[0].bedrooms}
+                bathroom={property.product.details[0].bathroom}
+                propertyType={property.product.details[0].propertyType}
+                area={property.product.area}
+                description={property.product.description}
+                rent={property.product.rent}
+                propertyAge={property.product.details[0].propertyAge}
+                rentOrBuy={property.product.buyOrRent}
+                amenities={property.product.amenities}
+                furnishing={property.product.details[0].furnishing}
+              />
             </div>
             {/* End details content .col-lg-8 */}
-
+{/* 
             <div className="col-lg-4 col-xl-4">
               <Sidebar />
-            </div>
+            </div> */}
             {/* End sidebar content .col-lg-4 */}
           </div>
           {/* End .row */}
