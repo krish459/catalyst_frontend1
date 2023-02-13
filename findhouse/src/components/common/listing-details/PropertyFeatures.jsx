@@ -16,13 +16,15 @@ const PropertyFeatures = ({ amenities }) => {
   //     list: ["Swimming Pool", "TV Cable", "Washer", "WiFi", "Window Coverings"],
   //   },
   // ];
+  console.log({amenities});
   const [first, setFirst] = useState({amenities})
+  console.log("first",first)
   return (
     <>
       {/* {propertyFeatures.map((item) => ( */}
         <div className="col-sm-6 col-md-6 col-lg-4" >
           <ul className="order_list list-inline-item">
-            {['sewage', 'lift', 'security', 'gym', 'rain-water'].map((val, i) => (
+            {first.amenities.map((val, i) => (
               <li key={i}>
                 <span className="flaticon-tick"></span>
                 {val}

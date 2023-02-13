@@ -15,10 +15,9 @@ import axios from "axios";
 const ListingDynamicDetailsV1 = () => {
   const router = useRouter();
   const [property, setProperty] = useState();
-  const id = "63e8ac8daa6639b68d70ad1f";
-  // const id = router.query.id;
-  console.log(id);
-  const propertybyid = async () => {
+  const id = router.query.id;
+  // console.log(id);
+  const propertybyid = async (id) => {
     const result = await axios.get(
       `https://makanmitra.dthree.in/api/property/get-properties/${id}`
     );
@@ -27,9 +26,9 @@ const ListingDynamicDetailsV1 = () => {
   };
 
   useEffect(() => {
-    propertybyid();
-  }, []);
-  if (!property || !id) {
+    propertybyid(id);
+  }, [id]);
+  if (!property || !router.query.id) {
     return <h1>Load..</h1>;
   }
 
