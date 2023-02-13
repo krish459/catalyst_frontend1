@@ -93,7 +93,7 @@ const DetailsContent = ({
       </div>
       {/* End .feature_area */}
 
-      <div className="application_statics mt30">
+      {/* <div className="application_statics mt30">
         <h4 className="mb30">
           Location{" "}
           <small className="float-end">
@@ -103,7 +103,7 @@ const DetailsContent = ({
         <div className="property_video p0">
           <PropertyLocation />
         </div>
-      </div>
+      </div> */}
       {/* End .location_area */}
 
       <div className="application_statics mt30">

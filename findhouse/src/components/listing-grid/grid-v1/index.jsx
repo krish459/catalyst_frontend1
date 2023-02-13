@@ -31,7 +31,7 @@ const index = () => {
     const result = await axios.get(
       `https://makanmitra.dthree.in/api/property/get-properties?bedrooms=${getBedroom}&bathroom=${getBathroom}&furnishing=${getGarages}&availableFromYear=${getBuiltYear}&buyOrRent=${getStatus}&locality=${getLocation}&propertyType=${getPropertiesType}&minarea=${getAreaMin}&price=${price}`
     );
-    // console.log(result.data);
+    console.log(result.data);
     if(!result.data.details){
       setProfiledata(result.data.properties);
     }else{

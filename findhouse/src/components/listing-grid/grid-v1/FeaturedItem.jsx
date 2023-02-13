@@ -2,6 +2,8 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addLength } from "../../../features/properties/propertiesSlice";
+const dayjs = require('dayjs');
+var relativeTime = require('dayjs/plugin/relativeTime')
 // import properties from "../../../data/properties";
 
 const FeaturedItem = ({key,
@@ -156,6 +158,10 @@ const FeaturedItem = ({key,
   //   ?.sort(statusTypeHandler)
   //   ?.filter(featuredHandler)
     // .map((item) => (
+
+    dayjs.extend(relativeTime)
+    var a = dayjs('2023-01-01')
+    let date = dayjs(createdAt).to(a)
       return(
 
       
@@ -247,7 +253,7 @@ const FeaturedItem = ({key,
                   </Link>
                 </li>
               </ul> */}
-              <div className="fp_pdate float-end">{createdAt}</div>
+              <div className="fp_pdate float-end">{date}</div>
             </div>
             {/* End .fp_footer */}
           </div>

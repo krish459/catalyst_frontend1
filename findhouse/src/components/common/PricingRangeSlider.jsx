@@ -43,7 +43,7 @@ const RangeSlider = ({price,setPrice}) => {
         formatLabel={(value) => ``}
         // maxValue={20000}
         // minValue={10000}
-        value={price.value}
+        value={price}
         onChange={(value) => handleOnChange(value)}
       />
 
