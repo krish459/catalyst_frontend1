@@ -25,22 +25,25 @@ const index = () => {
   const [getPropertiesType, setPropertiesType] = useState();
   const [getAreaMin, setAreaMin] = useState();
   const [price, setPrice] = useState();
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(6);
   // console.log(getKeyword);
   const [profiledata, setProfiledata] = useState();
   const listproperties = async () => {
     const result = await axios.get(
-      `https://makanmitra.dthree.in/api/property/get-properties?bedrooms=${getBedroom}&bathroom=${getBathroom}&furnishing=${getGarages}&availableFromYear=${getBuiltYear}&buyOrRent=${getStatus}&locality=${getLocation}&propertyType=${getPropertiesType}&minarea=${getAreaMin}&price=${price}`
+      `https://makanmitra.dthree.in/api/property/get-properties?bedrooms=${getBedroom}&bathroom=${getBathroom}&furnishing=${getGarages}&availableFromYear=${getBuiltYear}&buyOrRent=${getStatus}&locality=${getLocation}&propertyType=${getPropertiesType}&minarea=${getAreaMin}&price=${price}&page=${page}$perPage=${perPage}`
     );
     console.log(result.data);
-    if(!result.data.details){
-      setProfiledata(result.data.properties);
-    }else{
+    if (!result.data.details) {
+      setProfiledata(result.data.properties.docs);
+    } else {
       setProfiledata(result.data.details);
     }
   };
-  
+
   useEffect(() => {
     listproperties();
+    console.log("page no. ",page);
   }, [
     getKeyword,
     getBedroom,
@@ -51,7 +54,8 @@ const index = () => {
     getLocation,
     getPropertiesType,
     getAreaMin,
-    price
+    price,
+    page
   ]);
   if (!profiledata) {
     return <h1>Load..</h1>;
@@ -191,7 +195,10 @@ const index = () => {
               <div className="row">
                 <div className="col-lg-12 mt20">
                   <div className="mbp_pagination">
-                    <Pagination />
+                    {/* <Pagination page={page}
+                  setPage={setPage}
+                  perPage={perPage}
+                  setPerPage={setPerPage}/> */}
                   </div>
                 </div>
                 {/* End paginaion .col */}

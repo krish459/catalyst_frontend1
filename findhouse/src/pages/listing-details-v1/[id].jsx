@@ -98,19 +98,40 @@ const ListingDynamicDetailsV1 = () => {
                 <div className="row">
                   <div className="col-lg-12">
                     <div className="spls_style_two mb30-520">
+                      {/* {property.product.images.map((data)=>{
+
+                     
                       <Item
-                        original={property?.img}
-                        thumbnail={property?.img}
+                        original={`https://makanmitra.dthree.in/api/property/images/${data}`}
+                        thumbnail={`https://makanmitra.dthree.in/api/property/images/${data}`}
                         width={752}
                         height={450}
                       >
                         {({ ref, open }) => (
                           <div role="button" ref={ref} onClick={open}>
-                            {/* <img
+                            <img
                               className="img-fluid w100 cover lds-1"
-                              src={property.img}
+                              src={`https://makanmitra.dthree.in/api/property/images/${data}`}
                               alt="1.jpg"
-                            /> */}
+                            />
+                          </div>
+                        )}
+                      </Item>
+
+                       })} */}
+                       <Item
+                        original={`https://makanmitra.dthree.in/api/property/images/${property.product.images[0]}`}
+                        thumbnail={`https://makanmitra.dthree.in/api/property/images/${property.product.images[0]}`}
+                        width={752}
+                        height={450}
+                      >
+                        {({ ref, open }) => (
+                          <div role="button" ref={ref} onClick={open}>
+                            <img
+                              className="img-fluid w100 cover lds-1"
+                              src={`https://makanmitra.dthree.in/api/property/images/${property.product.images[0]}`}
+                              alt="1.jpg"
+                            />
                           </div>
                         )}
                       </Item>
@@ -122,7 +143,7 @@ const ListingDynamicDetailsV1 = () => {
 
               <div className="col-sm-5 col-lg-4">
                 <div className="row">
-                  {property?.imgList?.map((val, i) => (
+                  {property.product.images.map((val, i) => (
                     <div className="col-6" key={i}>
                       <div className="spls_style_two img-gallery-box mb24">
                         <Item
@@ -135,7 +156,7 @@ const ListingDynamicDetailsV1 = () => {
                             <div role="button" ref={ref} onClick={open}>
                               <img
                                 className="img-fluid w100"
-                                src={val}
+                                src={`https://makanmitra.dthree.in/api/property/images/${val}`}
                                 alt="2.jpg"
                               />
                             </div>

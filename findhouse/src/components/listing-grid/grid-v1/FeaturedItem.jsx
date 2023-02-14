@@ -2,11 +2,12 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addLength } from "../../../features/properties/propertiesSlice";
-const dayjs = require('dayjs');
-var relativeTime = require('dayjs/plugin/relativeTime')
+const dayjs = require("dayjs");
+var relativeTime = require("dayjs/plugin/relativeTime");
 // import properties from "../../../data/properties";
 
-const FeaturedItem = ({key,
+const FeaturedItem = ({
+  key,
   _id,
   title,
   description,
@@ -32,7 +33,8 @@ const FeaturedItem = ({key,
   monthlymaintenance,
   waterSupply,
   amenities,
-  createdAt}) => {
+  createdAt,
+}) => {
   // const {
   //   keyword,
   //   location,
@@ -157,89 +159,96 @@ const FeaturedItem = ({key,
   //   ?.filter(advanceHandler)
   //   ?.sort(statusTypeHandler)
   //   ?.filter(featuredHandler)
-    // .map((item) => (
+  // .map((item) => (
 
-    dayjs.extend(relativeTime)
-    var a = dayjs('2023-01-01')
-    let date = dayjs(createdAt).to(a)
-      return(
-
-      
+  dayjs.extend(relativeTime);
+  var a = dayjs("2023-01-01");
+  let date = dayjs(createdAt).to(a);
+  return (
+    <div
+      className={`${
+        isGridOrList ? "col-12 feature-list" : "col-md-6 col-lg-6"
+      } `}
+      key={key}
+    >
       <div
-        className={`${
-          isGridOrList ? "col-12 feature-list" : "col-md-6 col-lg-6"
-        } `}
-        key={key}
+        className={`feat_property home7 style4 ${
+          isGridOrList ? "d-flex align-items-center" : undefined
+        }`}
       >
-        <div
-          className={`feat_property home7 style4 ${
-            isGridOrList ? "d-flex align-items-center" : undefined
-          }`}
-        >
-          <div className="thumb">
-            <img className="img-whp" src={images} alt="fp1.jpg" />
-            <div className="thmb_cntnt">
-              <ul className="tag mb0">
-                <li className="list-inline-item">
-                  <a href="#">Featured</a>
-                </li>
-                {/* <li className="list-inline-item">
+        <div className="thumb">
+          {/* <img className="img-whp" src={`https://makanmitra.s3.amazonaws.com/${images[0]}`} alt="fp1.jpg" /> */}
+          <img
+            className="img-whp"
+            src={`https://makanmitra.dthree.in/api/property/images/${images[0]}`}
+            alt="fp1.jpg"
+          />
+          <div className="thmb_cntnt">
+            <ul className="tag mb0">
+              <li className="list-inline-item">
+                <a href="#">Featured</a>
+              </li>
+              {/* <li className="list-inline-item">
                   <a href="#" className="text-capitalize">
                     {item.featured}
                   </a>
                 </li> */}
-              </ul>
-              <ul className="icon mb0">
-                <li className="list-inline-item">
-                  <a href="#">
-                    <span className="flaticon-transfer-1"></span>
-                  </a>
-                </li>
-                <li className="list-inline-item">
-                  <a href="#">
-                    <span className="flaticon-heart"></span>
-                  </a>
-                </li>
-              </ul>
-
-              <Link href={`/listing-details-v1/${_id}`}>
-                <a className="fp_price">
-                  ${rent}
-                  <small>/mo</small>
+            </ul>
+            <ul className="icon mb0">
+              <li className="list-inline-item">
+                <a href="#">
+                  <span className="flaticon-transfer-1"></span>
                 </a>
-              </Link>
-            </div>
+              </li>
+              <li className="list-inline-item">
+                <a href="#">
+                  <span className="flaticon-heart"></span>
+                </a>
+              </li>
+            </ul>
+
+            <Link href={`/listing-details-v1/${_id}`}>
+              <a className="fp_price">
+                Rent : ${rent}
+                <small>/mo</small>
+              </a>
+            </Link>
           </div>
-          <div className="details">
-            <div className="tc_content">
-              <p className="text-thm">{propertyType}</p>
-              <h4>
-                <Link href={`/listing-details-v1/${_id}`}>
-                  <a>{title}</a>
-                </Link>
-              </h4>
-              <p>
-                <span className="flaticon-placeholder"></span>
-                {locality}
-              </p>
+        </div>
+        <div className="details">
+          <div className="tc_content">
+            <p className="text-thm">{propertyType}</p>
+            <h4>
+              <Link href={`/listing-details-v1/${_id}`}>
+                <a>{title}</a>
+              </Link>
+            </h4>
+            <p>
+              <span className="flaticon-placeholder"></span>
+              {locality}
+            </p>
 
-              <ul className="prop_details mb0">
-                {/* {details.map((val, i) => ( */}
-                  <li className="list-inline-item" key={details._id}>
-                    <a href="#">
-                      Bed: {bedrooms}
-                      Bath: {bathroom}
-                      deposit: {deposit}
-                    </a>
-                  </li>
-                {/* // ) */}
-                {/* )} */}
-              </ul>
-            </div>
-            {/* End .tc_content */}
+            <ul className="prop_details mb0">
+              {/* {details.map((val, i) => ( */}
+              <li className="list-inline-item" key={details._id}>
+                <a href="#" style={{ padding: "0.5rem" }}>
+                  Bed: {bedrooms}
+                </a>
+                <a href="#" style={{ padding: "0.5rem" }}>
+                  Bath: {bathroom}
+                </a>
+                <a href="#" style={{ padding: "0.5rem" }}>
+                  deposit: {deposit}
+                </a>
+              </li>
+              {/* // ) */}
+              {/* )} */}
+            </ul>
+          </div>
+          {/* End .tc_content */}
 
-            <div className="fp_footer">
-              {/* <ul className="fp_meta float-start mb0">
+          <div className="fp_footer">
+            {/* <ul className="fp_meta float-start mb0">
                 <li className="list-inline-item">
                   <Link href="/agent-v2">
                     <a>
@@ -253,15 +262,15 @@ const FeaturedItem = ({key,
                   </Link>
                 </li>
               </ul> */}
-              <div className="fp_pdate float-end">{date}</div>
-            </div>
-            {/* End .fp_footer */}
+            <div className="fp_pdate float-end">{date}</div>
           </div>
+          {/* End .fp_footer */}
         </div>
       </div>
-    
+    </div>
+
     // )
-    );
+  );
 
   // add length of filter items
   useEffect(() => {
