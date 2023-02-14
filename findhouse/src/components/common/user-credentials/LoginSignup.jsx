@@ -11,7 +11,7 @@ const LoginSignup = () => {
 
     const handleSignUp =async ()=>{
         try {
-            // console.log(name,username,email,password);
+            console.log(name,username,email,password);
             const data={
                 name,
                 username,
@@ -22,14 +22,15 @@ const LoginSignup = () => {
                 "https://makanmitra.dthree.in/api/users/register",
                 data
               );
-            //   console.log(response);
+              console.log("!!!");
+              console.log(response.data);
         } catch (error) {
             console.log(error);
         }
     }
     const handleLogIn =async ()=>{
         try {
-            // console.log(username,password);
+            console.log(username,password);
             const data={
                 username,
                 password
@@ -39,7 +40,8 @@ const LoginSignup = () => {
                 data
               );
               localStorage.setItem("token",response.data.token.split(" ")[1])
-            //   console.log(response);
+              console.log(response.data);
+              window.location.reload(false)
         } catch (error) {
             console.log(error);
         }

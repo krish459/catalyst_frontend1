@@ -4,6 +4,11 @@ import { useRouter } from "next/router";
 const HeaderMenuContent = ({ float = "" }) => {
   const route = useRouter();
 
+const handleLogout=()=>{
+  localStorage.removeItem("token")
+  window.location.reload(false)
+}
+
   const home = [
     {
       id: 1,
@@ -473,7 +478,15 @@ const HeaderMenuContent = ({ float = "" }) => {
           data-bs-toggle="modal"
           data-bs-target=".bd-example-modal-lg"
         >
-          <span className="dn-lg">Login/Register</span>
+          {!localStorage.getItem("token") ? (
+          <span className="dn-lg">
+            Login/Register
+          </span>
+          ) : (
+            <span className="dn-lg" onClick={handleLogout}>
+            Logout
+          </span>
+          )}
         </a>
       </li>
       {/* End .dropitem */}
