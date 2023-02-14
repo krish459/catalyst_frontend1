@@ -9,39 +9,52 @@ const LoginSignup = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const handleSignUp =async ()=>{
+    const handleSignUp = async (e) => {
         try {
-            console.log(name,username,email,password);
-            const data={
+            console.log(name, username, email, password);
+            const data = {
                 name,
                 username,
                 email,
                 password
-            }
-            const response = await axios.post(
+            };
+            // const response = await axios.post(
+            //     "https://makanmitra.dthree.in/api/users/register",
+            //     data
+            //   );
+            axios.post(
                 "https://makanmitra.dthree.in/api/users/register",
-                data
-              );
-              console.log("!!!");
-              console.log(response.data);
+                {
+                    data
+                }
+            ).then(res => {
+                console.log(res);
+
+            }).catch(error => {
+                console.log(error);
+            });
+
+            console.log("!!!");
         } catch (error) {
             console.log(error);
         }
+
+        e.preventDefault();
     }
-    const handleLogIn =async ()=>{
+    const handleLogIn = async () => {
         try {
-            console.log(username,password);
-            const data={
+            console.log(username, password);
+            const data = {
                 username,
                 password
             }
             const response = await axios.post(
                 "https://makanmitra.dthree.in/api/users/login",
                 data
-              );
-              localStorage.setItem("token",response.data.token.split(" ")[1])
-              console.log(response.data);
-              window.location.reload(false)
+            );
+            localStorage.setItem("token", response.data.token.split(" ")[1])
+            console.log(response.data);
+            window.location.reload(false)
         } catch (error) {
             console.log(error);
         }
@@ -159,7 +172,7 @@ const LoginSignup = () => {
                                             id="inlineFormInputGroupUsername2"
                                             placeholder="User Name"
                                             value={username}
-                                            onChange={(e)=>setUsername(e.target.value)}
+                                            onChange={(e) => setUsername(e.target.value)}
                                         />
                                         <div className="input-group-prepend">
                                             <div className="input-group-text">
@@ -176,7 +189,7 @@ const LoginSignup = () => {
                                             id="exampleInputPassword1"
                                             placeholder="Password"
                                             value={password}
-                                            onChange={(e)=>setPassword(e.target.value)}
+                                            onChange={(e) => setPassword(e.target.value)}
                                         />
                                         <div className="input-group-prepend">
                                             <div className="input-group-text">
@@ -288,7 +301,7 @@ const LoginSignup = () => {
                                             placeholder="Name"
                                             name="name"
                                             value={name}
-                                            onChange={(e)=>setName(e.target.value)}
+                                            onChange={(e) => setName(e.target.value)}
                                         />
                                         <div className="input-group-prepend">
                                             <div className="input-group-text">
@@ -303,7 +316,7 @@ const LoginSignup = () => {
                                             id="exampleInputUserName"
                                             placeholder="User Name"
                                             value={username}
-                                            onChange={(e)=>setUsername(e.target.value)}
+                                            onChange={(e) => setUsername(e.target.value)}
                                         />
                                         <div className="input-group-prepend">
                                             <div className="input-group-text">
@@ -320,7 +333,7 @@ const LoginSignup = () => {
                                             id="exampleInputEmail2"
                                             placeholder="Email"
                                             value={email}
-                                            onChange={(e)=>setEmail(e.target.value)}
+                                            onChange={(e) => setEmail(e.target.value)}
                                         />
                                         <div className="input-group-prepend">
                                             <div className="input-group-text">
@@ -337,7 +350,7 @@ const LoginSignup = () => {
                                             id="exampleInputPassword2"
                                             placeholder="Password"
                                             value={password}
-                                            onChange={(e)=>setPassword(e.target.value)}
+                                            onChange={(e) => setPassword(e.target.value)}
                                         />
                                         <div className="input-group-prepend">
                                             <div className="input-group-text">
