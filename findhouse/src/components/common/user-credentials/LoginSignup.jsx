@@ -94,17 +94,17 @@ const LoginSignup = () => {
     e.preventDefault();
   };
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setMessageLogin("")
-      setMessageSignup("")
-      setStatusLogin()
-      setStatusSignup()
-    }, 500)
+//   useEffect(() => {
+//     const timeout = setTimeout(() => {
+//       setMessageLogin("")
+//       setMessageSignup("")
+//       setStatusLogin()
+//       setStatusSignup()
+//     }, 500)
 
-    return () => clearTimeout(timeout)
+//     return () => clearTimeout(timeout)
 
-  }, [messageLogin,messageSignup,statusLogin,statusSignup])
+//   }, [messageLogin,messageSignup,statusLogin,statusSignup])
 
   return (
     <div className="modal-content">
