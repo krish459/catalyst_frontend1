@@ -175,6 +175,8 @@ const FeaturedItem = ({
   // // favourites function
   let favArray = []
   const [fav, setfav] = useState({});
+  
+  const [addFavs, setAddFavs] = useState();
 
   const savefav = (myfav) => {
     localStorage.setItem("fav", JSON.stringify(myfav));
@@ -195,11 +197,13 @@ const FeaturedItem = ({
     
     if (k !=0) {
       console.log("already added");
+      setAddFavs("Already Added")
       // console.log(fav);
     } else {
       newfav = {itemCode, title,locality,rent,images };
       // console.log(favArray);
       favArray.push(newfav)
+      setAddFavs("Added to favourites")
       console.log("favarray: ",favArray);
     }
     setfav(newfav);
@@ -218,31 +222,41 @@ const FeaturedItem = ({
     
     if (k !=0) {
       console.log("already added");
+      setAddFavs("Already Added")
       // console.log(fav);
+
     } else {
       newfav = {itemCode, title,locality,rent,images };
       // console.log(favArray);
       favArray.push(newfav)
+      setAddFavs("Added to favourites")
       console.log("favarray: ",favArray);
     }
     setfav(newfav);
     // savefav(newfav);
     savefav(favArray);}
   };
-  const removeFromfav = (itemCode, title,locality,rent,images) => {
-    let newfav = JSON.parse(JSON.stringify(fav));
-    if (itemCode in fav) {
-      delete newfav[itemCode];
-    }
-    setfav(newfav);
-    savefav(newfav);
-  };
-  const clearfav = () => {
-    setfav({});
-    savefav({});
-    console.log("fav has been cleared");
-  };
+  // const removeFromfav = (itemCode, title,locality,rent,images) => {
+  //   let newfav = JSON.parse(JSON.stringify(fav));
+  //   if (itemCode in fav) {
+  //     delete newfav[itemCode];
+  //   }
+  //   setfav(newfav);
+  //   savefav(newfav);
+  // };
+  // const clearfav = () => {
+  //   setfav({});
+  //   savefav({});
+  //   console.log("fav has been cleared");
+  // };
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setAddFavs()
+    }, 500)
 
+    return () => clearTimeout(timeout)
+
+  }, [addFavs])
   return (
     <div
       className={`${
@@ -301,6 +315,16 @@ const FeaturedItem = ({
         </div>
         <div className="details">
           <div className="tc_content">
+          {addFavs && <div className="form-group">
+                      <div
+                        className={
+                            !addFavs ? "alert alert-success" : "alert alert-danger"
+                        }
+                        role="alert"
+                      >
+                        {addFavs}
+                      </div>
+                    </div>}
             <p className="text-thm">{propertyType}</p>
             <h4>
               <Link href={`/listing-details-v1/${_id}`}>
