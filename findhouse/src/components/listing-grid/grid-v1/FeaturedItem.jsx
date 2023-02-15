@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addLength } from "../../../features/properties/propertiesSlice";
 const dayjs = require("dayjs");
@@ -34,6 +34,13 @@ const FeaturedItem = ({
   waterSupply,
   amenities,
   createdAt,
+  // favArray,
+  // fav,
+  // setfav,
+  // savefav,
+  // addtofav,
+  // removeFromfav,
+  // clearfav,
 }) => {
   // const {
   //   keyword,
@@ -164,6 +171,78 @@ const FeaturedItem = ({
   dayjs.extend(relativeTime);
   var a = dayjs("2023-01-01");
   let date = dayjs(createdAt).to(a);
+
+  // // favourites function
+  let favArray = []
+  const [fav, setfav] = useState({});
+
+  const savefav = (myfav) => {
+    localStorage.setItem("fav", JSON.stringify(myfav));
+    // localStorage.setItem("fav", myfav);
+  };
+  const addtofav = (itemCode, title,locality,rent,images) => {
+    if(!localStorage.getItem("fav")){
+      localStorage.setItem("fav", JSON.stringify(favArray));
+      let newfav = fav;
+    favArray = JSON.parse(localStorage.getItem("fav"))
+    // console.log(favArray[0].itemCode);
+    let k =0
+    for (let i=0; i < favArray.length ; i++){
+      if(favArray[i].itemCode == itemCode){
+        k = k+1
+      }
+    }
+    
+    if (k !=0) {
+      console.log("already added");
+      // console.log(fav);
+    } else {
+      newfav = {itemCode, title,locality,rent,images };
+      // console.log(favArray);
+      favArray.push(newfav)
+      console.log("favarray: ",favArray);
+    }
+    setfav(newfav);
+    // savefav(newfav);
+    savefav(favArray);
+    }
+    else{let newfav = fav;
+    favArray = JSON.parse(localStorage.getItem("fav"))
+    console.log(favArray[0].itemCode);
+    let k =0
+    for (let i=0; i < favArray.length ; i++){
+      if(favArray[i].itemCode == itemCode){
+        k = k+1
+      }
+    }
+    
+    if (k !=0) {
+      console.log("already added");
+      // console.log(fav);
+    } else {
+      newfav = {itemCode, title,locality,rent,images };
+      // console.log(favArray);
+      favArray.push(newfav)
+      console.log("favarray: ",favArray);
+    }
+    setfav(newfav);
+    // savefav(newfav);
+    savefav(favArray);}
+  };
+  const removeFromfav = (itemCode, title,locality,rent,images) => {
+    let newfav = JSON.parse(JSON.stringify(fav));
+    if (itemCode in fav) {
+      delete newfav[itemCode];
+    }
+    setfav(newfav);
+    savefav(newfav);
+  };
+  const clearfav = () => {
+    setfav({});
+    savefav({});
+    console.log("fav has been cleared");
+  };
+
   return (
     <div
       className={`${
@@ -202,14 +281,19 @@ const FeaturedItem = ({
               </li>
               <li className="list-inline-item">
                 <a href="#">
-                  <span className="flaticon-heart"></span>
+                  <span
+                    className="flaticon-heart"
+                    onClick={() => {
+                      addtofav(_id, title, locality, rent, images);
+                    }}
+                  ></span>
                 </a>
               </li>
             </ul>
 
             <Link href={`/listing-details-v1/${_id}`}>
               <a className="fp_price">
-                 ₹{rent}
+                ₹{rent}
                 <small>/mo</small>
               </a>
             </Link>

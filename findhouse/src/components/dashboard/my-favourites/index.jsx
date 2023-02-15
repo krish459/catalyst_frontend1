@@ -82,9 +82,9 @@ const index = () => {
                     <div className="favorite_item_list">
                       <FavouritProducts />
 
-                      <div className="mbp_pagination">
+                      {/* <div className="mbp_pagination">
                         <Pagination />
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>

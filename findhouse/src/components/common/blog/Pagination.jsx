@@ -10,19 +10,20 @@ const Pagination = ({ page, setPage, perPage, setPerPage }) => {
 
   return (
     <ul className="page_navigation">
-      <li className="page-item disabled">
+      {/* <li className="page-item disabled">
         <a
           className="page-link"
           href="#"
           tabIndex="-1"
           aria-disabled="true"
-          // value={page}
-          // onClick={(page) => setPage(page - 1)}
         >
           {" "}
+          <button onClick={()=>{setPage(page-1)}}>
+
+          </button>
           <span className="flaticon-left-arrow"></span>
         </a>
-      </li>
+      </li> */}
       <li className="page-item">
         <a className="page-link" href="#">
           <button onClick={()=>{setPage(1)}}>1</button>
@@ -68,7 +69,7 @@ const Pagination = ({ page, setPage, perPage, setPerPage }) => {
           29
         </a>
       </li> */}
-      <li
+      {/* <li
         className="page-item"
         // value={page}
         // onClick={(page) => setPage(page + 1)}
@@ -76,7 +77,7 @@ const Pagination = ({ page, setPage, perPage, setPerPage }) => {
         <a className="page-link" href="#">
           <span className="flaticon-right-arrow"></span>
         </a>
-      </li>
+      </li> */}
     </ul>
   );
 };

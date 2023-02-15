@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Provider } from "react-redux";
 import { store } from "../app/store";
 import ScrollToTop from "../components/common/ScrollTop";
@@ -9,6 +10,27 @@ if (typeof window !== "undefined") {
 }
 
 function MyApp({ Component, pageProps }) {
+  //  // favourites function
+   let favArray = []
+   const [fav, setfav] = useState({});
+   
+ 
+ 
+   
+  //  const removeFromfav = (itemCode) => {
+  //    let newfav = JSON.parse(JSON.stringify(fav));
+  //    if (itemCode in fav) {
+  //      delete newfav[itemCode];
+  //    }
+  //    setfav(newfav);
+  //    savefav(newfav);
+  //  };
+  //  const clearfav = () => {
+  //    setfav({});
+  //    savefav({});
+  //    console.log("fav has been cleared");
+  //  };
+  
   return (
     <>
       <Seo
@@ -17,7 +39,8 @@ function MyApp({ Component, pageProps }) {
         }
       />
       <Provider store={store}>
-        <Component {...pageProps} />
+        <Component {...pageProps}/>
+        {/* <Component {...pageProps} removeFromfav={removeFromfav} clearfav={clearfav} /> */}
       </Provider>
 
       <ScrollToTop />

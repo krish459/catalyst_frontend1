@@ -1,12 +1,34 @@
 import Link from "next/link";
+import { useState } from "react";
 
-import properties from "../../../data/properties";
+// import properties from "../../../data/properties";
 
 const FavouritProducts = () => {
-  let content = properties?.slice(0, 4)?.map((item) => (
-    <div className="feat_property list favorite_page" key={item.id}>
+
+    let favArray = JSON.parse(localStorage.getItem('fav'))
+    const removeFromfav=(itemCode)=>{
+      
+    for (let i=0; i < favArray.length ; i++){
+      if(favArray[i].itemCode == itemCode){
+        console.log(favArray[i].itemCode);
+        console.log(itemCode);
+        favArray.splice(i,1)
+        console.log(favArray);
+      }
+    }
+    localStorage.setItem("fav", JSON.stringify(favArray));
+    }
+    if(!localStorage.getItem("fav")){
+      localStorage.setItem("fav", JSON.stringify([]));
+    }else{
+      
+    }
+
+    // console.log("properties", properties);/
+    let content = favArray.map((item) => (
+      <div className="feat_property list favorite_page" key={item.itemCode}>
       <div className="thumb">
-        <img className="img-whp cover" src={item.img} alt="fp1.jpg" />
+        <img className="img-whp cover" src={`https://makanmitra.dthree.in/api/property/images/${item.images[0]}`} alt="fp1.jpg" />
         <div className="thmb_cntnt">
           <ul className="tag mb0">
             <li className="list-inline-item">
@@ -21,15 +43,15 @@ const FavouritProducts = () => {
         <div className="tc_content">
           <h4>
             {" "}
-            <Link href={`/listing-details-v1/${item.id}`}>
+            <Link href={`/listing-details-v1/${item.itemCode}`}>
               <a>{item.title}</a>
             </Link>
           </h4>
           <p>
-            <span className="flaticon-placeholder"></span> {item.location}
+            <span className="flaticon-placeholder"></span> {item.locality}
           </p>
           <a className="fp_price text-thm" href="#">
-            ${item.price}
+            ${item.rent}
             <small>/mo</small>
           </a>
         </div>
@@ -44,7 +66,7 @@ const FavouritProducts = () => {
           title="Delete"
         >
           <a href="#">
-            <span className="flaticon-garbage"></span>
+            <span className="flaticon-garbage" onClick={()=>{removeFromfav(item.itemCode)}}></span>
           </a>
         </li>
       </ul>
@@ -53,6 +75,7 @@ const FavouritProducts = () => {
   ));
 
   return <>{content}</>;
+  
 };
 
 export default FavouritProducts;

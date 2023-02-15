@@ -26,7 +26,7 @@ const index = () => {
   const [getAreaMin, setAreaMin] = useState();
   const [price, setPrice] = useState();
   const [page, setPage] = useState(1);
-  const [perPage, setPerPage] = useState(2);
+  const [perPage, setPerPage] = useState(6);
   // console.log(getKeyword);
   const [profiledata, setProfiledata] = useState();
   const listproperties = async () => {
