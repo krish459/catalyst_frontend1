@@ -209,7 +209,7 @@ const FeaturedItem = ({
 
             <Link href={`/listing-details-v1/${_id}`}>
               <a className="fp_price">
-                Rent : ${rent}
+                 ₹{rent}
                 <small>/mo</small>
               </a>
             </Link>
