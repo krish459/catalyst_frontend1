@@ -2,5 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/listing-grid-v1": "pages/listing-grid-v1.js"
+  "/my-favourites": "pages/my-favourites.js"
 }

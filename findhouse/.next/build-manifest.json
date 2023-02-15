@@ -25,10 +25,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/listing-grid-v1": [
+    "/my-favourites": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/listing-grid-v1.js"
+      "static/chunks/pages/my-favourites.js"
     ]
   },
   "ampFirstPages": []

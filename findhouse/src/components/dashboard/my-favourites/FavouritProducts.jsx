@@ -18,14 +18,13 @@ const FavouritProducts = () => {
     }
     localStorage.setItem("fav", JSON.stringify(favArray));
     }
+
     if(!localStorage.getItem("fav")){
       localStorage.setItem("fav", JSON.stringify([]));
-    }else{
-      
     }
 
     // console.log("properties", properties);/
-    let content = favArray.map((item) => (
+    let content = favArray && favArray.map((item) => (
       <div className="feat_property list favorite_page" key={item.itemCode}>
       <div className="thumb">
         <img className="img-whp cover" src={`https://makanmitra.dthree.in/api/property/images/${item.images[0]}`} alt="fp1.jpg" />

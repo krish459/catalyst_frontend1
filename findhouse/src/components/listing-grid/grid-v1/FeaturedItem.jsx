@@ -208,7 +208,7 @@ const FeaturedItem = ({
     }
     else{let newfav = fav;
     favArray = JSON.parse(localStorage.getItem("fav"))
-    console.log(favArray[0].itemCode);
+    // console.log(favArray[0].itemCode);
     let k =0
     for (let i=0; i < favArray.length ; i++){
       if(favArray[i].itemCode == itemCode){
