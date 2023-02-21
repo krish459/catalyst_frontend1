@@ -132,6 +132,7 @@ const ListingDynamicDetailsV1 = () => {
                               src={`https://makanmitra.dthree.in/api/property/images/${property.product.images[0]}`}
                               alt="1.jpg"
                             />
+                          <h6>{ref[0]}</h6>
                           </div>
                         )}
                       </Item>
@@ -147,8 +148,8 @@ const ListingDynamicDetailsV1 = () => {
                     <div className="col-6" key={i}>
                       <div className="spls_style_two img-gallery-box mb24">
                         <Item
-                          original={val}
-                          thumbnail={val}
+                          original={`https://makanmitra.dthree.in/api/property/images/${val}`}
+                          thumbnail={`https://makanmitra.dthree.in/api/property/images/${val}`}
                           width={752}
                           height={450}
                         >
@@ -158,7 +159,7 @@ const ListingDynamicDetailsV1 = () => {
                                 className="img-fluid w100"
                                 src={`https://makanmitra.dthree.in/api/property/images/${val}`}
                                 alt="2.jpg"
-                              />
+                                />
                             </div>
                           )}
                         </Item>
