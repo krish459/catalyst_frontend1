@@ -26,7 +26,8 @@ const index = () => {
   const [getAreaMin, setAreaMin] = useState();
   const [price, setPrice] = useState();
   const [page, setPage] = useState(1);
-  const [perPage, setPerPage] = useState(6);
+  const [perPage, setPerPage] = useState(2);
+  const [totalPages, setTotalPages] = useState();
   // console.log(getKeyword);
   const [profiledata, setProfiledata] = useState();
   const listproperties = async () => {
@@ -36,8 +37,12 @@ const index = () => {
     console.log(result.data);
     if (!result.data.details) {
       setProfiledata(result.data.properties.docs);
+      setTotalPages(result.data.properties.totalPages);
+      // console.log("Pages Krish : ", totalPages);
     } else {
       setProfiledata(result.data.details);
+      setTotalPages(result.data.properties.totalPages);
+      // console.log("Pages Krish : ", totalPages);
     }
   };
 
@@ -55,7 +60,8 @@ const index = () => {
     getAreaMin,
     price,
     page,
-    perPage
+    perPage,
+    totalPages
   ]);
   if (!profiledata) {
     return <h1>Load..</h1>;
@@ -200,6 +206,8 @@ const index = () => {
                       setPage={setPage}
                       perPage={perPage}
                       setPerPage={setPerPage}
+                      totalPages={totalPages}
+                      setTotalPages={setTotalPages}
                     />
                   </div>
                 </div>

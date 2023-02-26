@@ -1,4 +1,8 @@
-const CheckBoxFilter = () => {
+const CheckBoxFilter = ({amenities, setAmenities}) => {
+  const selectAmenities = ({icon})=>{
+    // amenities.append({icon})
+    console.log(amenities);
+  }
   return (
     <>
       <div className="col-xxs-6 col-sm col-lg col-xl">
@@ -9,6 +13,7 @@ const CheckBoxFilter = () => {
                 type="checkbox"
                 className="form-check-input"
                 id="customCheck1"
+                onClick={selectAmenities("Air Conditioning")}
               />
               <label className="form-check-label" htmlFor="customCheck1">
                 Air Conditioning

@@ -1,12 +1,25 @@
 import { useEffect } from "react";
 
-const Pagination = ({ page, setPage, perPage, setPerPage }) => {
-  const buttonClicked = (e) => {
-    console.log("!!!");
-    setPage(e)
-    console.log(page);
+const Pagination = ({
+  page,
+  setPage,
+  perPage,
+  setPerPage,
+  totalPages,
+  setTotalPages,
+}) => {
+  // const buttonClicked = (e) => {
+  //   console.log("!!!");
+  //   setPage(e)
+  //   console.log(page);
 
+  // }
+  let pageArray = [];
+  for (let i = 0; i < totalPages; i++) {
+    pageArray.push(i);
   }
+
+  // console.log("page array", pageArray);
 
   return (
     <ul className="page_navigation">
@@ -24,41 +37,64 @@ const Pagination = ({ page, setPage, perPage, setPerPage }) => {
           <span className="flaticon-left-arrow"></span>
         </a>
       </li> */}
-      <li className="page-item">
+      {pageArray.map((k) => {
+        return (
+          <li className="page-item">
+            <a className="page-link" href="#">
+              <button
+              style={{border:"none", background:"white"}}
+                onClick={() => {
+                  setPage(k+1);
+                }}
+              >
+                {k+1}
+              </button>
+            </a>
+          </li>
+        );
+      })}
+      {/* <li className="page-item " aria-current="page">
         <a className="page-link" href="#">
-          <button onClick={()=>{setPage(1)}}>1</button>
+          <button
+            onClick={() => {
+              setPage(2);
+            }}
+          >
+            2
+          </button>
+          2 <span className="sr-only">(current)</span>
         </a>
-      </li>
-      <li
-        className="page-item "
-        aria-current="page"
-      >
-        <a className="page-link" href="#">
-        <button onClick={()=>{setPage(2)}}>2
-        </button>
-          {/* 2 <span className="sr-only">(current)</span> */}
-        </a>
-      </li>
-      <li
+      </li> */}
+      {/* <li
         className="page-item"
         value={3}
         onChange={(e) => setPage(e.target.value)}
       >
         <a className="page-link" href="#">
-        <button onClick={()=>{setPage(3)}}>3
-        </button>
+          <button
+            onClick={() => {
+              setPage(3);
+            }}
+          >
+            3
+          </button>
         </a>
-      </li>
-      <li
+      </li> */}
+      {/* <li
         className="page-item"
         value={4}
         onChange={(e) => setPage(e.target.value)}
       >
         <a className="page-link" href="#">
-        <button onClick={()=>{setPage(4)}}>4
-        </button>
+          <button
+            onClick={() => {
+              setPage(4);
+            }}
+          >
+            4
+          </button>
         </a>
-      </li>
+      </li> */}
       {/* <li className="page-item">
         <a className="page-link" href="#">
           ...

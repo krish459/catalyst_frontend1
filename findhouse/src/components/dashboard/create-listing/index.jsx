@@ -6,8 +6,94 @@ import DetailedInfo from "./DetailedInfo";
 import FloorPlans from "./FloorPlans";
 import LocationField from "./LocationField";
 import PropertyMediaUploader from "./PropertyMediaUploader";
+import { useEffect, useState } from "react";
 
 const index = () => {
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [type, setType] = useState("");
+  const [status, setStatus] = useState("");
+  const [price, setPrice] = useState();
+  const [area, setArea] = useState();
+  const [bedrooms, setBedrooms] = useState();
+  const [bathroom, setBathroom] = useState();
+  const [yearBuilt, setYearBuilt] = useState();
+  const [amenities, setAmenities] = useState([]);
+  const [propertySelectedImgs, setPropertySelectedImgs] = useState([]);
+
+  const handlePropertyImages = async (e) => {
+    e.preventDefault();
+    try {
+      const data = {
+        images: propertySelectedImgs
+      };
+
+      //   const response = await axios.post(
+      //     "https://makanmitra.dthree.in/api/users/register",
+      //     { data }
+      //   );
+      // axios
+      //   .post(
+      //     "https://makanmitra.dthree.in/api/users/register",
+
+      //     data,
+
+      //     { headers: { "Content-Type": "application/json" } }
+      //   )
+      // .then((res) => {
+      //   console.log(res);
+      // })
+      // .catch((error) => {
+      //   console.log(error);
+      // });
+
+      console.log(data);
+      //   console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handlePropertySubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const data = {
+        title: title,
+        desc:desc,
+        type:type,
+        status:status,
+        price:parseInt(price),
+        area:parseInt(area),
+        bedrooms:parseInt(bedrooms),
+        bathroom: parseInt(bathroom),
+        yearBuilt: parseInt(yearBuilt),
+        amenities: amenities
+      };
+
+      //   const response = await axios.post(
+      //     "https://makanmitra.dthree.in/api/users/register",
+      //     { data }
+      //   );
+      // axios
+      //   .post(
+      //     "https://makanmitra.dthree.in/api/users/register",
+
+      //     data,
+
+      //     { headers: { "Content-Type": "application/json" } }
+      //   )
+      // .then((res) => {
+      //   console.log(res);
+      // })
+      // .catch((error) => {
+      //   console.log(error);
+      // });
+
+      console.log(data);
+      //   console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       {/* <!-- Main Header Nav --> */}
@@ -66,10 +152,17 @@ const index = () => {
                         <h3 className="mb30">Create Listing</h3>
                       </div>
 
-                      <CreateList />
+                      <CreateList title={title} setTitle={setTitle} desc={desc} setDesc={setDesc} type={type} setType={setType} status={status} setStatus={setStatus} 
+                      price={price}
+                      setPrice={setPrice}
+                      area={area}
+                      setArea={setArea}
+                      bedrooms={bedrooms}
+                      setBedrooms={setBedrooms}
+                      />
                     </div>
                   </div>
-                  <div className="my_dashboard_review mt30">
+                  {/* <div className="my_dashboard_review mt30">
                     <div className="row">
                       <div className="col-lg-12">
                         <h3 className="mb30">Location</h3>
@@ -77,31 +170,37 @@ const index = () => {
 
                       <LocationField />
                     </div>
-                  </div>
+                  </div> */}
                   <div className="my_dashboard_review mt30">
                     <div className="col-lg-12">
                       <h3 className="mb30">Detailed Information</h3>
                     </div>
-                    <DetailedInfo />
+                    <DetailedInfo bathroom={bathroom} setBathroom={setBathroom} yearBuilt={yearBuilt} setYearBuilt={setYearBuilt} amenities={amenities} setAmenities={setAmenities}/>
                   </div>
                   <div className="my_dashboard_review mt30">
                     <div className="col-lg-12">
                       <h3 className="mb30">Property media</h3>
                     </div>
-                    <PropertyMediaUploader />
+                    <PropertyMediaUploader propertySelectedImgs={propertySelectedImgs} setPropertySelectedImgs={setPropertySelectedImgs} handlePropertyImages={handlePropertyImages} />
                   </div>
-                  <div className="my_dashboard_review mt30">
+                  {/* <div className="my_dashboard_review mt30">
                     <div className="col-lg-12">
                       <h3 className="mb30">Floor Plans</h3>
                       <button className="btn admore_btn mb30">Add More</button>
                     </div>
                     <FloorPlans />
-                  </div>
+                  </div> */}
                 </div>
                 {/* End .col */}
               </div>
               {/* End .row */}
-
+              <div className="col-xl-12" >
+                <div className="my_profile_setting_input text-center" style={{margin:"auto", width: "100rem"}}>
+                  <button className="btn btn1 float-start" onClick={handlePropertySubmit}>
+                    Post Property
+                  </button>
+                </div>
+              </div>
               <div className="row mt50">
                 <div className="col-lg-12">
                   <div className="copyright-widget text-center">

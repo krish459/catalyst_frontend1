@@ -1,115 +1,117 @@
 import CheckBoxFilter from "../../common/CheckBoxFilter";
 
-const DetailedInfo = () => {
+const DetailedInfo = ({bathroom ,setBathroom,yearBuilt,setYearBuilt,amenities,setAmenities}) => {
   return (
     <div className="row">
-      <div className="col-lg-6 col-xl-4">
+      {/* <div className="col-lg-6 col-xl-4">
         <div className="my_profile_setting_input form-group">
           <label htmlFor="propertyId">Property ID</label>
           <input type="text" className="form-control" id="propertyId" />
         </div>
-      </div>
+      </div> */}
       {/* End .col */}
 
-      <div className="col-lg-6 col-xl-4">
+      {/* <div className="col-lg-6 col-xl-4">
         <div className="my_profile_setting_input form-group">
           <label htmlFor="propertyASize">Area Size</label>
           <input type="text" className="form-control" id="propertyASize" />
         </div>
-      </div>
+      </div> */}
       {/* End .col */}
 
-      <div className="col-lg-6 col-xl-4">
+      {/* <div className="col-lg-6 col-xl-4">
         <div className="my_profile_setting_input form-group">
           <label htmlFor="sizePrefix">Size Prefix</label>
           <input type="text" className="form-control" id="sizePrefix" />
         </div>
-      </div>
+      </div> */}
       {/* End .col */}
 
-      <div className="col-lg-6 col-xl-4">
+      {/* <div className="col-lg-6 col-xl-4">
         <div className="my_profile_setting_input form-group">
           <label htmlFor="landArea">Land Area</label>
           <input type="text" className="form-control" id="landArea" />
         </div>
-      </div>
+      </div> */}
       {/* End .col */}
 
-      <div className="col-lg-6 col-xl-4">
+      {/* <div className="col-lg-6 col-xl-4">
         <div className="my_profile_setting_input form-group">
           <label htmlFor="LASPostfix">Land Area Size Postfix</label>
           <input type="text" className="form-control" id="LASPostfix" />
         </div>
-      </div>
+      </div> */}
       {/* End .col */}
 
-      <div className="col-lg-6 col-xl-4">
+      {/* <div className="col-lg-6 col-xl-4">
         <div className="my_profile_setting_input form-group">
           <label htmlFor="bedRooms">Bedrooms</label>
-          <input type="text" className="form-control" id="bedRooms" />
+          <input type="text" className="form-control" id="bedRooms"  />
         </div>
-      </div>
+      </div> */}
       {/* End .col */}
 
       <div className="col-lg-6 col-xl-4">
         <div className="my_profile_setting_input form-group">
           <label htmlFor="bathRooms">Bathrooms</label>
-          <input type="text" className="form-control" id="bathRooms" />
+          <input type="text" className="form-control" id="bathRooms" value={bathroom}
+            onChange={(e) => setBathroom(e.target.value)}/>
         </div>
       </div>
       {/* End .col */}
 
-      <div className="col-lg-6 col-xl-4">
+      {/* <div className="col-lg-6 col-xl-4">
         <div className="my_profile_setting_input form-group">
           <label htmlFor="garages">Garages</label>
           <input type="text" className="form-control" id="garages" />
         </div>
-      </div>
+      </div> */}
       {/* End .col */}
 
-      <div className="col-lg-6 col-xl-4">
+      {/* <div className="col-lg-6 col-xl-4">
         <div className="my_profile_setting_input form-group">
           <label htmlFor="garagesSize">Garages Size</label>
           <input type="text" className="form-control" id="garagesSize" />
         </div>
-      </div>
+      </div> */}
       {/* End .col */}
 
       <div className="col-lg-6 col-xl-4">
         <div className="my_profile_setting_input form-group">
           <label htmlFor="yearBuild">Year Built</label>
-          <input type="text" className="form-control" id="yearBuild" />
+          <input type="text" className="form-control" id="yearBuild" value={yearBuilt}
+            onChange={(e) => setYearBuilt(e.target.value)}/>
         </div>
       </div>
       {/* End .col */}
 
-      <div className="col-lg-6 col-xl-4">
+      {/* <div className="col-lg-6 col-xl-4">
         <div className="my_profile_setting_input form-group">
           <label htmlFor="videoUrl">Video URL</label>
           <input type="text" className="form-control" id="videoUrl" />
         </div>
-      </div>
+      </div> */}
       {/* End .col */}
-
+{/* 
       <div className="col-lg-6 col-xl-4">
         <div className="my_profile_setting_input form-group">
           <label htmlFor="virtualTour">360° Virtual Tour</label>
           <input type="text" className="form-control" id="virtualTour" />
         </div>
-      </div>
+      </div> */}
 
       <div className="col-xl-12">
         <h4 className="mb10">Amenities</h4>
       </div>
 
-      <CheckBoxFilter />
+      <CheckBoxFilter amenities={amenities} setAmenities={setAmenities} />
 
-      <div className="col-xl-12">
+      {/* <div className="col-xl-12">
         <div className="my_profile_setting_input overflow-hidden mt20">
           <button className="btn btn1 float-start">Back</button>
           <button className="btn btn2 float-end">Next</button>
         </div>
-      </div>
+      </div> */}
       {/* End .col */}
     </div>
   );

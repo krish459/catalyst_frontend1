@@ -1,8 +1,8 @@
 import { useState } from "react";
 import selectedFiles from "../../../utils/selectedFiles";
 
-const PropertyMediaUploader = () => {
-  const [propertySelectedImgs, setPropertySelectedImgs] = useState([]);
+const PropertyMediaUploader = ({propertySelectedImgs,setPropertySelectedImgs,handlePropertyImages}) => {
+  // const [propertySelectedImgs, setPropertySelectedImgs] = useState([]);
 
   // multiple image select
   const multipleImage = (e) => {
@@ -74,7 +74,7 @@ const PropertyMediaUploader = () => {
       </div>
       {/* End .col */}
 
-      <div className="col-xl-6">
+      {/* <div className="col-xl-6">
         <div className="resume_uploader mb30">
           <h3>Attachments</h3>
           <form className="form-inline d-flex flex-wrap wrap">
@@ -85,13 +85,12 @@ const PropertyMediaUploader = () => {
             </label>
           </form>
         </div>
-      </div>
+      </div> */}
       {/* End .col */}
 
       <div className="col-xl-12">
         <div className="my_profile_setting_input">
-          <button className="btn btn1 float-start">Back</button>
-          <button className="btn btn2 float-end">Next</button>
+          <button className="btn btn1 float-center" onClick={handlePropertyImages}>Upload</button>
         </div>
       </div>
       {/* End .col */}
