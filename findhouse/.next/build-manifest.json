@@ -25,6 +25,11 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+    "/listing-details-v1/[id]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/listing-details-v1/[id].js"
+    ],
     "/listing-grid-v1": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
