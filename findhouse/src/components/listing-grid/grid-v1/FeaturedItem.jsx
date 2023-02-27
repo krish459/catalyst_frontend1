@@ -5,6 +5,7 @@ import { addLength } from "../../../features/properties/propertiesSlice";
 const dayjs = require("dayjs");
 var relativeTime = require("dayjs/plugin/relativeTime");
 // import properties from "../../../data/properties";
+import { FcLike } from 'react-icons/fc'
 
 const FeaturedItem = ({
   key,
@@ -273,6 +274,26 @@ const FeaturedItem = ({
     return () => clearTimeout(timeout);
   }, [addFavs]);
 
+  useEffect(() => {
+    let favArray2 = JSON.parse(localStorage.getItem("fav"));
+    let k = 0;
+      // for (let i = 0; i < favArray2.length; i++) {
+      //   if (favArray2[i].itemCode == itemCode) {
+      //     k = k + 1;
+      //   }
+      // }
+      // if (k != 0) {
+      //   // console.log("already added");
+      //   setAddFavs("Already Added");
+      //   setfavButton(true)
+      //   // console.log(fav);
+      // }
+      // for (let i = 0; i < favArray2.length; i++) {
+      //     setfavButton(true)
+      // }
+  }, [])
+  
+
   return (
     <div
       className={`${
@@ -321,12 +342,9 @@ const FeaturedItem = ({
                       ></span>
                     ) : (
                       <span
-                        className="flaticon-heart"
-                        style={{ background: "red" }}
-                        onClick={() => {
-                          removeFromfav(_id);
-                        }}
-                      ></span>
+                      ><FcLike onClick={() => {
+                        removeFromfav(_id);
+                      }} size="30"/></span>
                     )}
                   </a>
                 </li>
