@@ -26,7 +26,7 @@ const index = () => {
   const [getAreaMin, setAreaMin] = useState();
   const [price, setPrice] = useState();
   const [page, setPage] = useState(1);
-  const [perPage, setPerPage] = useState(2);
+  const [perPage, setPerPage] = useState(7);
   const [totalPages, setTotalPages] = useState();
   // console.log(getKeyword);
   const [profiledata, setProfiledata] = useState();

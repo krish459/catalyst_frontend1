@@ -173,77 +173,93 @@ const FeaturedItem = ({
   let date = dayjs(createdAt).to(a);
 
   // // favourites function
-  let favArray = []
+  let favArray = [];
   const [fav, setfav] = useState({});
-  
+
   const [addFavs, setAddFavs] = useState();
+
+  const [favButton, setfavButton] = useState();
 
   const savefav = (myfav) => {
     localStorage.setItem("fav", JSON.stringify(myfav));
     // localStorage.setItem("fav", myfav);
   };
-  const addtofav = (itemCode, title,locality,rent,images) => {
-    if(!localStorage.getItem("fav")){
+  const addtofav = (itemCode, title, locality, rent, images) => {
+    if (!localStorage.getItem("fav")) {
       localStorage.setItem("fav", JSON.stringify(favArray));
       let newfav = fav;
-    favArray = JSON.parse(localStorage.getItem("fav"))
-    // console.log(favArray[0].itemCode);
-    let k =0
-    for (let i=0; i < favArray.length ; i++){
-      if(favArray[i].itemCode == itemCode){
-        k = k+1
+      favArray = JSON.parse(localStorage.getItem("fav"));
+      // console.log(favArray[0].itemCode);
+      let k = 0;
+      for (let i = 0; i < favArray.length; i++) {
+        if (favArray[i].itemCode == itemCode) {
+          k = k + 1;
+        }
       }
-    }
-    
-    if (k !=0) {
-      console.log("already added");
-      setAddFavs("Already Added")
-      // console.log(fav);
-    } else {
-      newfav = {itemCode, title,locality,rent,images };
-      // console.log(favArray);
-      favArray.push(newfav)
-      setAddFavs("Added to favourites")
-      console.log("favarray: ",favArray);
-    }
-    setfav(newfav);
-    // savefav(newfav);
-    savefav(favArray);
-    }
-    else{let newfav = fav;
-    favArray = JSON.parse(localStorage.getItem("fav"))
-    // console.log(favArray[0].itemCode);
-    let k =0
-    for (let i=0; i < favArray.length ; i++){
-      if(favArray[i].itemCode == itemCode){
-        k = k+1
-      }
-    }
-    
-    if (k !=0) {
-      console.log("already added");
-      setAddFavs("Already Added")
-      // console.log(fav);
 
+      if (k != 0) {
+        console.log("already added");
+        setAddFavs("Already Added");
+        setfavButton(true);
+        // console.log(fav);
+      } else {
+        newfav = { itemCode, title, locality, rent, images };
+        // console.log(favArray);
+        favArray.push(newfav);
+        setAddFavs("Added to favourites");
+        console.log("favarray: ", favArray);
+      }
+      setfav(newfav);
+      // savefav(newfav);
+      setfavButton(true);
+      savefav(favArray);
     } else {
-      newfav = {itemCode, title,locality,rent,images };
-      // console.log(favArray);
-      favArray.push(newfav)
-      setAddFavs("Added to favourites")
-      console.log("favarray: ",favArray);
+      let newfav = fav;
+      favArray = JSON.parse(localStorage.getItem("fav"));
+      // console.log(favArray[0].itemCode);
+      let k = 0;
+      for (let i = 0; i < favArray.length; i++) {
+        if (favArray[i].itemCode == itemCode) {
+          k = k + 1;
+        }
+      }
+
+      if (k != 0) {
+        console.log("already added");
+        setAddFavs("Already Added");
+        // console.log(fav);
+      } else {
+        newfav = { itemCode, title, locality, rent, images };
+        // console.log(favArray);
+        favArray.push(newfav);
+        setAddFavs("Added to favourites");
+        console.log("favarray: ", favArray);
+      }
+      setfav(newfav);
+      // savefav(newfav);
+      setfavButton(true);
+      savefav(favArray);
     }
-    setfav(newfav);
-    // savefav(newfav);
-    savefav(favArray);}
   };
-  // const removeFromfav = (itemCode, title,locality,rent,images) => {
-  //   let newfav = JSON.parse(JSON.stringify(fav));
-  //   if (itemCode in fav) {
-  //     delete newfav[itemCode];
-  //   }
-  //   setfav(newfav);
-  //   savefav(newfav);
-  // };
+  const removeFromfav = (itemCode) => {
+    let favArray1 = JSON.parse(localStorage.getItem("fav"));
+    for (let i = 0; i < favArray1.length; i++) {
+      if (favArray1[i].itemCode == itemCode) {
+        console.log(favArray1[i].itemCode);
+        console.log(itemCode);
+        favArray1.splice(i, 1);
+        console.log(favArray1);
+      }
+    }
+    setAddFavs("Removed from favourites");
+    localStorage.setItem("fav", JSON.stringify(favArray1));
+    setfavButton(false);
+  };
+
+  if (!localStorage.getItem("fav")) {
+    localStorage.setItem("fav", JSON.stringify([]));
+  }
+
   // const clearfav = () => {
   //   setfav({});
   //   savefav({});
@@ -251,12 +267,12 @@ const FeaturedItem = ({
   // };
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setAddFavs()
-    }, 500)
+      setAddFavs();
+    }, 500);
 
-    return () => clearTimeout(timeout)
+    return () => clearTimeout(timeout);
+  }, [addFavs]);
 
-  }, [addFavs])
   return (
     <div
       className={`${
@@ -293,16 +309,39 @@ const FeaturedItem = ({
                   <span className="flaticon-transfer-1"></span>
                 </a>
               </li>
-              <li className="list-inline-item">
-                <a href="#">
-                  <span
-                    className="flaticon-heart"
-                    onClick={() => {
-                      addtofav(_id, title, locality, rent, images);
-                    }}
-                  ></span>
-                </a>
-              </li>
+              {localStorage.getItem("token") ? (
+                <li className="list-inline-item">
+                  <a href="#">
+                    {!favButton ? (
+                      <span
+                        className="flaticon-heart"
+                        onClick={() => {
+                          addtofav(_id, title, locality, rent, images);
+                        }}
+                      ></span>
+                    ) : (
+                      <span
+                        className="flaticon-heart"
+                        style={{ background: "red" }}
+                        onClick={() => {
+                          removeFromfav(_id);
+                        }}
+                      ></span>
+                    )}
+                  </a>
+                </li>
+              ) : (
+                <li className="list-inline-item">
+                  <a href="#">
+                    <span
+                      className="flaticon-heart"
+                      onClick={() => {
+                        setAddFavs("Login first");
+                      }}
+                    ></span>
+                  </a>
+                </li>
+              )}
             </ul>
 
             <Link href={`/listing-details-v1/${_id}`}>
@@ -315,16 +354,18 @@ const FeaturedItem = ({
         </div>
         <div className="details">
           <div className="tc_content">
-          {addFavs && <div className="form-group">
-                      <div
-                        className={
-                            !addFavs ? "alert alert-success" : "alert alert-danger"
-                        }
-                        role="alert"
-                      >
-                        {addFavs}
-                      </div>
-                    </div>}
+            {addFavs && (
+              <div className="form-group">
+                <div
+                  className={
+                    !addFavs ? "alert alert-success" : "alert alert-danger"
+                  }
+                  role="alert"
+                >
+                  {addFavs}
+                </div>
+              </div>
+            )}
             <p className="text-thm">{propertyType}</p>
             <h4>
               <Link href={`/listing-details-v1/${_id}`}>

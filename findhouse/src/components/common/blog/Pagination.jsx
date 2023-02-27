@@ -39,7 +39,7 @@ const Pagination = ({
       </li> */}
       {pageArray.map((k) => {
         return (
-          <li className="page-item">
+          <li className="page-item" key={k}>
             <a className="page-link" href="#">
               <button
               style={{border:"none", background:"white"}}
