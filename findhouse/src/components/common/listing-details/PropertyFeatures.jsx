@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const PropertyFeatures = ({ amenities }) => {
-  console.log(amenities);
+  // console.log(amenities);
   // const propertyFeatures = [
   //   {
   //     id: 1,
@@ -16,9 +16,14 @@ const PropertyFeatures = ({ amenities }) => {
   //     list: ["Swimming Pool", "TV Cable", "Washer", "WiFi", "Window Coverings"],
   //   },
   // ];
-  console.log({amenities});
+  // console.log({amenities});
   const [first, setFirst] = useState({amenities})
-  console.log("first",first)
+  // console.log("first",first)
+
+  if (!first.amenities) {
+    return <h1>Load..</h1>;
+  }
+
   return (
     <>
       {/* {propertyFeatures.map((item) => ( */}

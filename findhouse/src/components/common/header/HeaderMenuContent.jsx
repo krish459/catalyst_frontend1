@@ -478,7 +478,7 @@ const handleLogout=()=>{
           data-bs-toggle="modal"
           data-bs-target=".bd-example-modal-lg"
         >
-          {!localStorage.getItem("token") ? (
+          {typeof window !== "undefined" ? (!localStorage.getItem("token") ? (
           <span className="dn-lg">
             Login/Register
           </span>
@@ -486,7 +486,7 @@ const handleLogout=()=>{
             <span className="dn-lg" onClick={handleLogout}>
             Logout
           </span>
-          )}
+          )) : null}
         </a>
       </li>
       {/* End .dropitem */}
