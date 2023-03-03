@@ -77,7 +77,7 @@ const LoginSignup = () => {
         .then((res) => {
           console.log(res);
           setMessageLogin(res.data.message)
-          localStorage.setItem("token", res.data.token.split(" ")[1]);
+          typeof window !== "undefined" ? localStorage.setItem("token", res.data.token.split(" ")[1]) : null
           window.location.reload(false)
         })
         .catch((error) => {

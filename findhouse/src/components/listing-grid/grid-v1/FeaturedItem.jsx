@@ -5,7 +5,7 @@ import { addLength } from "../../../features/properties/propertiesSlice";
 const dayjs = require("dayjs");
 var relativeTime = require("dayjs/plugin/relativeTime");
 // import properties from "../../../data/properties";
-import { FcLike } from 'react-icons/fc'
+import { FcLike } from "react-icons/fc";
 
 const FeaturedItem = ({
   key,
@@ -35,6 +35,8 @@ const FeaturedItem = ({
   waterSupply,
   amenities,
   createdAt,
+  // favButton,
+  // setfavButton
   // favArray,
   // fav,
   // setfav,
@@ -170,7 +172,8 @@ const FeaturedItem = ({
   // .map((item) => (
 
   dayjs.extend(relativeTime);
-  var a = dayjs("2023-01-01");
+  // var a = dayjs("2023-01-01");
+  var a = dayjs();
   let date = dayjs(createdAt).to(a);
 
   // // favourites function
@@ -182,14 +185,16 @@ const FeaturedItem = ({
   const [favButton, setfavButton] = useState();
 
   const savefav = (myfav) => {
-    localStorage.setItem("fav", JSON.stringify(myfav));
+    
+    typeof window !== "undefined" ? localStorage.setItem("fav", JSON.stringify(myfav)) : null
     // localStorage.setItem("fav", myfav);
   };
   const addtofav = (itemCode, title, locality, rent, images) => {
     if (!localStorage.getItem("fav")) {
       localStorage.setItem("fav", JSON.stringify(favArray));
       let newfav = fav;
-      favArray = JSON.parse(localStorage.getItem("fav"));
+      favArray = typeof window !== "undefined" ? JSON.parse(localStorage.getItem("fav")) : []
+      
       // console.log(favArray[0].itemCode);
       let k = 0;
       for (let i = 0; i < favArray.length; i++) {
@@ -216,7 +221,7 @@ const FeaturedItem = ({
       savefav(favArray);
     } else {
       let newfav = fav;
-      favArray = JSON.parse(localStorage.getItem("fav"));
+      favArray = typeof window !== "undefined" ? JSON.parse(localStorage.getItem("fav")) : []
       // console.log(favArray[0].itemCode);
       let k = 0;
       for (let i = 0; i < favArray.length; i++) {
@@ -243,7 +248,7 @@ const FeaturedItem = ({
     }
   };
   const removeFromfav = (itemCode) => {
-    let favArray1 = JSON.parse(localStorage.getItem("fav"));
+    let favArray1 = typeof window !== "undefined" ? JSON.parse(localStorage.getItem("fav")) : []
     for (let i = 0; i < favArray1.length; i++) {
       if (favArray1[i].itemCode == itemCode) {
         console.log(favArray1[i].itemCode);
@@ -275,24 +280,23 @@ const FeaturedItem = ({
   }, [addFavs]);
 
   useEffect(() => {
-    let favArray2 = JSON.parse(localStorage.getItem("fav"));
-    let k = 0;
-      // for (let i = 0; i < favArray2.length; i++) {
-      //   if (favArray2[i].itemCode == itemCode) {
-      //     k = k + 1;
-      //   }
-      // }
-      // if (k != 0) {
-      //   // console.log("already added");
-      //   setAddFavs("Already Added");
-      //   setfavButton(true)
-      //   // console.log(fav);
-      // }
-      // for (let i = 0; i < favArray2.length; i++) {
-      //     setfavButton(true)
-      // }
-  }, [])
-  
+    // let favArray2 = JSON.parse(localStorage.getItem("fav"));
+    // let k = 0;
+    // for (let i = 0; i < favArray2.length; i++) {
+    //   if (favArray2[i].itemCode == itemCode) {
+    //     k = k + 1;
+    //   }
+    // }
+    // if (k != 0) {
+    //   // console.log("already added");
+    //   setAddFavs("Already Added");
+    //   setfavButton(true)
+    //   // console.log(fav);
+    // }
+    // for (let i = 0; i < favArray2.length; i++) {
+    //     setfavButton(true)
+    // }
+  }, []);
 
   return (
     <div
@@ -341,10 +345,14 @@ const FeaturedItem = ({
                         }}
                       ></span>
                     ) : (
-                      <span
-                      ><FcLike onClick={() => {
-                        removeFromfav(_id);
-                      }} size="30"/></span>
+                      <span>
+                        <FcLike
+                          onClick={() => {
+                            removeFromfav(_id);
+                          }}
+                          size="30"
+                        />
+                      </span>
                     )}
                   </a>
                 </li>

@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const FavouritProducts = () => {
 
-    let favArray = JSON.parse(localStorage.getItem('fav'))
+    let favArray = typeof window !== "undefined" ? JSON.parse(localStorage.getItem("fav")) : []
     const removeFromfav=(itemCode)=>{
       
     for (let i=0; i < favArray.length ; i++){
@@ -16,11 +16,12 @@ const FavouritProducts = () => {
         console.log(favArray);
       }
     }
-    localStorage.setItem("fav", JSON.stringify(favArray));
+    typeof window !== "undefined" ? localStorage.setItem("fav", JSON.stringify(favArray)) : null
+    
     }
 
     if(!localStorage.getItem("fav")){
-      localStorage.setItem("fav", JSON.stringify([]));
+      typeof window !== "undefined" ? localStorage.setItem("fav", JSON.stringify(favArray)) : null
     }
 
     // console.log("properties", properties);/

@@ -41,7 +41,7 @@ const index = () => {
       // console.log("Pages Krish : ", totalPages);
     } else {
       setProfiledata(result.data.details);
-      setTotalPages(result.data.properties.totalPages);
+      // setTotalPages(result.data.properties.totalPages);
       // console.log("Pages Krish : ", totalPages);
     }
   };

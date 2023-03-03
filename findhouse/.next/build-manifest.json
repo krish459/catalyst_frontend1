@@ -29,6 +29,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/listing-grid-v1.js"
+    ],
+    "/my-favourites": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/my-favourites.js"
     ]
   },
   "ampFirstPages": []
