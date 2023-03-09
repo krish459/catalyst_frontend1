@@ -196,7 +196,7 @@ const FilteringItem = ({
 
   return (
     <ul className="sasw_list mb0">
-      {/* <li className="search_area">
+      <li className="search_area">
         <div className="form-group mb-3">
           <input
             type="text"
@@ -209,7 +209,7 @@ const FilteringItem = ({
             <span className="flaticon-magnifying-glass"></span>
           </label>
         </div>
-      </li> */}
+      </li>
       {/* End li */}
 
       <li className="search_area">

@@ -13,6 +13,7 @@ import SidebarListing from "../../common/listing/SidebarListing";
 import PopupSignInUp from "../../common/PopupSignInUp";
 import BreadCrumb2 from "./BreadCrumb2";
 import FeaturedItem from "./FeaturedItem";
+import queryString from "query-string";
 
 const index = () => {
   const [getKeyword, setKeyword] = useState();
@@ -25,25 +26,60 @@ const index = () => {
   const [getPropertiesType, setPropertiesType] = useState();
   const [getAreaMin, setAreaMin] = useState();
   const [price, setPrice] = useState();
-  const [page, setPage] = useState(1);
-  const [perPage, setPerPage] = useState(7);
+  const [page, setPage] = useState();
+  const [perPage, setPerPage] = useState(4);
   const [totalPages, setTotalPages] = useState();
   // console.log(getKeyword);
   const [profiledata, setProfiledata] = useState();
+
   const listproperties = async () => {
-    const result = await axios.get(
-      `https://makanmitra.dthree.in/api/property/get-properties?bedrooms=${getBedroom}&bathroom=${getBathroom}&furnishing=${getGarages}&availableFromYear=${getBuiltYear}&buyOrRent=${getStatus}&locality=${getLocation}&propertyType=${getPropertiesType}&minarea=${getAreaMin}&price=${price}&page=${page}&perPage=${perPage}`
-    );
-    console.log(result.data);
-    if (!result.data.details) {
-      setProfiledata(result.data.properties.docs);
-      setTotalPages(result.data.properties.totalPages);
-      // console.log("Pages Krish : ", totalPages);
-    } else {
-      setProfiledata(result.data.details);
-      // setTotalPages(result.data.properties.totalPages);
-      // console.log("Pages Krish : ", totalPages);
-    }
+    const params = {
+      keyword: getKeyword,
+      bedrooms: getBedroom,
+      bathroom: getBathroom,
+      furnishing: getGarages,
+      availableFromYear: getBuiltYear,
+      buyOrRent: getStatus,
+      locality: getLocation,
+      propertyType: getPropertiesType,
+      minarea: getAreaMin,
+      price: price,
+      page: page,
+      perPage: perPage,
+    };
+
+    const queryParams = Object.keys(params)
+      .filter((key) => params[key] !== undefined)
+      .map((key) => `${key}=${encodeURIComponent(params[key])}`)
+      .join("&");
+
+    const apiUrl = `https://makanmitra.dthree.in/api/property/get-properties?${queryParams}`;
+    // console.log(apiUrl);
+
+    const result = await axios.get(apiUrl);
+    // console.log(result.data.properties.docs);
+    setProfiledata(result.data.properties.docs);
+    setTotalPages(result.data.properties.totalPages);
+
+    // Object.keys(params).forEach(key => params[key] === undefined && delete params[key]);
+    // const apiUrl = `https://makanmitra.dthree.in/api/property/get-properties?${queryString.stringify(params)}`;
+    // console.log(apiUrl);
+    // const result = await axios.get(apiUrl);
+    // const result = await axios.get(
+    //   `https://makanmitra.dthree.in/api/property/get-properties?keyword=${getKeyword}`
+    // );
+    // const result = await axios.get(
+    //   `https://makanmitra.dthree.in/api/property/get-properties?keyword=${getKeyword}&bedrooms=${getBedroom}&bathroom=${getBathroom}&furnishing=${getGarages}&availableFromYear=${getBuiltYear}&buyOrRent=${getStatus}&locality=${getLocation}&propertyType=${getPropertiesType}&minarea=${getAreaMin}&price=${price}&page=${page}&perPage=${perPage}`
+    // );
+    // if (!result.data.details) {
+    //   setProfiledata(result.data.properties.docs);
+    //   setTotalPages(result.data.properties.totalPages);
+    //   // console.log("Pages Krish : ", totalPages);
+    // } else {
+    //   setProfiledata(result.data.details);
+    //   // setTotalPages(result.data.properties.totalPages);
+    //   // console.log("Pages Krish : ", totalPages);
+    // }
   };
 
   useEffect(() => {
@@ -61,7 +97,7 @@ const index = () => {
     price,
     page,
     perPage,
-    totalPages
+    totalPages,
   ]);
   if (!profiledata) {
     return <h1>Load..</h1>;
