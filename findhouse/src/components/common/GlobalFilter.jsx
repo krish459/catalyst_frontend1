@@ -1,23 +1,61 @@
 import Router from "next/router";
-import {
-  addKeyword,
-  addLocation,
-} from "../../features/properties/propertiesSlice";
+// import {
+//   addKeyword,
+//   addLocation,
+// } from "../../features/properties/propertiesSlice";
 import PricingRangeSlider from "./PricingRangeSlider";
 import CheckBoxFilter from "./CheckBoxFilter";
 import GlobalSelectBox from "./GlobalSelectBox";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const GlobalFilter = ({ className = "" }) => {
-  const [location, setLocation] = useState()
+  const [districts, setDistricts] = useState([{ districtid: 1, districtname: "Adilabad" },
+  { districtid: 2, districtname: "Agar Malwa" },
+  { districtid: 3, districtname: "borivali" },
+  { districtid: 4, districtname: "malad" },
+  { districtid: 5, districtname: "andheri" },
+  { districtid: 6, districtname: "Aizawl" },
+  { districtid: 7, districtname: "Ajmer" },
+  { districtid: 8, districtname: "Akola" },
+  { districtid: 9, districtname: "Alappuzha" },
+  { districtid: 10, districtname: "Aligarh" },]);
+  const [location, setLocation] = useState();
+
+  // useEffect(() => {
+  //   const fetchDistricts = async () => {
+  //     const response = await axios.get(
+  //       // "https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=<>&format=json&offset=0&limit=700"
+        
+  //     );
+
+  //     console.log(response);
+  //     setDistricts(response);
+  //   };
+  //   fetchDistricts();
+  // }, []);
+
   // submit handler
   const submitHandler = () => {
-    Router.push("/listing-grid-v1");
+    Router.push({
+      pathname: "/listing-grid-v1",
+      query: { location: location },
+    });
+    // Router.push("/listing-grid-v1");
   };
+
+  const handleLocationChange = (event) => {
+    setLocation(event.target.value);
+  };
+
+  // useEffect(() => {
+  //   console.log(location);
+  // }, [location])
+  
 
   return (
     <div className={`home1-advnc-search ${className}`}>
-      <ul className="h1ads_1st_list mb0 w-15">
+      <ul className="h1ads_1st_list mb0">
         {/* <li className="list-inline-item">
           <div className="form-group">
             <input
@@ -48,16 +86,27 @@ const GlobalFilter = ({ className = "" }) => {
         {/* End li */}
 
         <li className="list-inline-item">
-          <div className="form-group">
+          {/* <div className="form-group">
             <input
               type="text"
               className="form-control"
               placeholder="Location"
               onChange={(e) => setLocation(e.target.value)}
             />
-            {/* <label>
+            <label>
               <span className="flaticon-maps-and-flags"></span>
-            </label> */}
+            </label>
+          </div> */}
+
+          <div>
+            <select value={location} onChange={handleLocationChange}>
+              <option value="">Location</option>
+              {districts.map((district) => (
+                <option key={district.districtid} value={district.districtname}>
+                  {district.districtname}
+                </option>
+              ))}
+            </select>
           </div>
         </li>
         {/* End li */}
@@ -128,6 +177,7 @@ const GlobalFilter = ({ className = "" }) => {
               onClick={submitHandler}
               type="submit"
               className="btn btn-thm"
+              disabled={!location}
             >
               Search
             </button>

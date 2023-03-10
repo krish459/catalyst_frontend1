@@ -5,7 +5,7 @@ const Hero = () => {
     <section className="home-one home1-overlay home1_bgi1">
       <div className="container">
         <div className="row posr">
-          <div className="col-lg-12">
+          <div className="col-lg-6 mx-auto">
             <HeroFilter />
           </div>
         </div>

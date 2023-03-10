@@ -16,13 +16,18 @@ import FeaturedItem from "./FeaturedItem";
 import queryString from "query-string";
 
 const index = () => {
+
+  const paramName = 'location';
+  const urlParams = new URLSearchParams(window.location.search);
+  const paramValue = urlParams.get(paramName);
+  let paramLocation = !paramValue?"":paramValue
   const [getKeyword, setKeyword] = useState();
   const [getBedroom, setBedroom] = useState();
   const [getBathroom, setBathroom] = useState();
   const [getGarages, setGarages] = useState();
   const [getBuiltYear, setBuiltYear] = useState();
   const [getStatus, setStatus] = useState();
-  const [getLocation, setLocation] = useState();
+  const [getLocation, setLocation] = useState(paramLocation);
   const [getPropertiesType, setPropertiesType] = useState();
   const [getAreaMin, setAreaMin] = useState();
   const [price, setPrice] = useState();
