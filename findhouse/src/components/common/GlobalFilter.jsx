@@ -6,8 +6,10 @@ import {
 import PricingRangeSlider from "./PricingRangeSlider";
 import CheckBoxFilter from "./CheckBoxFilter";
 import GlobalSelectBox from "./GlobalSelectBox";
+import { useState } from "react";
 
 const GlobalFilter = ({ className = "" }) => {
+  const [location, setLocation] = useState()
   // submit handler
   const submitHandler = () => {
     Router.push("/listing-grid-v1");
@@ -15,8 +17,8 @@ const GlobalFilter = ({ className = "" }) => {
 
   return (
     <div className={`home1-advnc-search ${className}`}>
-      <ul className="h1ads_1st_list mb0">
-        <li className="list-inline-item">
+      <ul className="h1ads_1st_list mb0 w-15">
+        {/* <li className="list-inline-item">
           <div className="form-group">
             <input
               type="text"
@@ -25,10 +27,10 @@ const GlobalFilter = ({ className = "" }) => {
               onChange={(e) => dispatch(addKeyword(e.target.value))}
             />
           </div>
-        </li>
+        </li> */}
         {/* End li */}
 
-        <li className="list-inline-item">
+        {/* <li className="list-inline-item">
           <div className="search_option_two">
             <div className="candidate_revew_select">
               <select className="selectpicker w100 form-select show-tick">
@@ -42,7 +44,7 @@ const GlobalFilter = ({ className = "" }) => {
               </select>
             </div>
           </div>
-        </li>
+        </li> */}
         {/* End li */}
 
         <li className="list-inline-item">
@@ -51,16 +53,16 @@ const GlobalFilter = ({ className = "" }) => {
               type="text"
               className="form-control"
               placeholder="Location"
-              onChange={(e) => dispatch(addLocation(e.target.value))}
+              onChange={(e) => setLocation(e.target.value)}
             />
-            <label>
+            {/* <label>
               <span className="flaticon-maps-and-flags"></span>
-            </label>
+            </label> */}
           </div>
         </li>
         {/* End li */}
 
-        <li className="list-inline-item">
+        {/* <li className="list-inline-item">
           <div className="small_dropdown2">
             <div
               id="prncgs"
@@ -80,10 +82,10 @@ const GlobalFilter = ({ className = "" }) => {
               </div>
             </div>
           </div>
-        </li>
+        </li> */}
         {/* End li */}
 
-        <li className="custome_fields_520 list-inline-item">
+        {/* <li className="custome_fields_520 list-inline-item">
           <div className="navbered">
             <div className="mega-dropdown ">
               <span
@@ -103,7 +105,7 @@ const GlobalFilter = ({ className = "" }) => {
 
                   <CheckBoxFilter />
                 </div>
-                {/* End .row */}
+                End .row
 
                 <div className="row p15 pt0-xsd">
                   <div className="col-lg-12 col-xl-12">
@@ -112,12 +114,12 @@ const GlobalFilter = ({ className = "" }) => {
                     </ul>
                   </div>
                 </div>
-                {/* End .row */}
+                End .row
               </div>
-              {/* End .dropdown-menu */}
+              End .dropdown-menu
             </div>
           </div>
-        </li>
+        </li> */}
         {/* End li */}
 
         <li className="list-inline-item">

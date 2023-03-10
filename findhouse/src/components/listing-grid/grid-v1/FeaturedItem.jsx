@@ -356,18 +356,33 @@ const FeaturedItem = ({
                     )}
                   </a>
                 </li>
-              ) : (
+              ) : 
+              
+              (
                 <li className="list-inline-item">
-                  <a href="#">
+                  <a href="#"
+                  data-bs-toggle="modal"
+                  data-bs-target=".bd-example-modal-lg"
+                  >
                     <span
                       className="flaticon-heart"
-                      onClick={() => {
-                        setAddFavs("Login first");
-                      }}
                     ></span>
                   </a>
                 </li>
-              )}
+              )
+              // (
+              //   <li className="list-inline-item">
+              //     <a href="#">
+              //       <span
+              //         className="flaticon-heart"
+              //         onClick={() => {
+              //           setAddFavs("Login first");
+              //         }}
+              //       ></span>
+              //     </a>
+              //   </li>
+              // )
+              }
             </ul>
 
             <Link href={`/listing-details-v1/${_id}`}>

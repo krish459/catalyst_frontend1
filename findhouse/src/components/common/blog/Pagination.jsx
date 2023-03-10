@@ -14,6 +14,9 @@ const Pagination = ({
   //   console.log(page);
 
   // }
+  useEffect(() => {
+    setPage(1); // set the default active page to 1
+  }, []);
   let pageArray = [];
   for (let i = 0; i < totalPages; i++) {
     pageArray.push(i);
@@ -37,12 +40,16 @@ const Pagination = ({
           <span className="flaticon-left-arrow"></span>
         </a>
       </li> */}
+      
       {pageArray.map((k) => {
         return (
           <li className="page-item" key={k}>
-            <a className="page-link" href="#">
+              
+            <a className="page-link" href="#" style={{border:"none", background: page === k+1 ? "grey" : (page === 1 && k === 0) ? "grey" : "white"}}>
               <button
-              style={{border:"none", background:"white"}}
+              // style={{border:"none", background:"white"}}
+                // style={{border:"none", background: page === k+1 ? "grey" : "white"}}
+                style={{border:"none", background: page === k+1 ? "grey" : (page === 1 && k === 0) ? "grey" : "white"}}
                 onClick={() => {
                   setPage(k+1);
                 }}
