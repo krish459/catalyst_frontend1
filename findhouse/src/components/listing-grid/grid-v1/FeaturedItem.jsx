@@ -299,6 +299,9 @@ const FeaturedItem = ({
   }, []);
 
   return (
+    <Link href={`/listing-details-v1/${_id}`}>
+
+    
     <div
       className={`${
         isGridOrList ? "col-12 feature-list" : "col-md-6 col-lg-6"
@@ -409,9 +412,12 @@ const FeaturedItem = ({
             )}
             <p className="text-thm">{propertyType}</p>
             <h4>
-              <Link href={`/listing-details-v1/${_id}`}>
+              
                 <a>{title}</a>
-              </Link>
+              
+              {/* <Link href={`/listing-details-v1/${_id}`}>
+                <a>{title}</a>
+              </Link> */}
             </h4>
             <p>
               <span className="flaticon-placeholder"></span>
@@ -428,7 +434,7 @@ const FeaturedItem = ({
                   Bath: {bathroom}
                 </a>
                 <a href="#" style={{ padding: "0.5rem" }}>
-                  deposit: {deposit}
+                  Deposit: ₹{deposit}
                 </a>
               </li>
               {/* // ) */}
@@ -458,7 +464,7 @@ const FeaturedItem = ({
         </div>
       </div>
     </div>
-
+    </Link>
     // )
   );
 
