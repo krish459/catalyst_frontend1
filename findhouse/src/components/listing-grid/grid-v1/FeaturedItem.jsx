@@ -185,16 +185,20 @@ const FeaturedItem = ({
   const [favButton, setfavButton] = useState();
 
   const savefav = (myfav) => {
-    
-    typeof window !== "undefined" ? localStorage.setItem("fav", JSON.stringify(myfav)) : null
+    typeof window !== "undefined"
+      ? localStorage.setItem("fav", JSON.stringify(myfav))
+      : null;
     // localStorage.setItem("fav", myfav);
   };
   const addtofav = (itemCode, title, locality, rent, images) => {
     if (!localStorage.getItem("fav")) {
       localStorage.setItem("fav", JSON.stringify(favArray));
       let newfav = fav;
-      favArray = typeof window !== "undefined" ? JSON.parse(localStorage.getItem("fav")) : []
-      
+      favArray =
+        typeof window !== "undefined"
+          ? JSON.parse(localStorage.getItem("fav"))
+          : [];
+
       // console.log(favArray[0].itemCode);
       let k = 0;
       for (let i = 0; i < favArray.length; i++) {
@@ -221,7 +225,10 @@ const FeaturedItem = ({
       savefav(favArray);
     } else {
       let newfav = fav;
-      favArray = typeof window !== "undefined" ? JSON.parse(localStorage.getItem("fav")) : []
+      favArray =
+        typeof window !== "undefined"
+          ? JSON.parse(localStorage.getItem("fav"))
+          : [];
       // console.log(favArray[0].itemCode);
       let k = 0;
       for (let i = 0; i < favArray.length; i++) {
@@ -248,7 +255,10 @@ const FeaturedItem = ({
     }
   };
   const removeFromfav = (itemCode) => {
-    let favArray1 = typeof window !== "undefined" ? JSON.parse(localStorage.getItem("fav")) : []
+    let favArray1 =
+      typeof window !== "undefined"
+        ? JSON.parse(localStorage.getItem("fav"))
+        : [];
     for (let i = 0; i < favArray1.length; i++) {
       if (favArray1[i].itemCode == itemCode) {
         console.log(favArray1[i].itemCode);
@@ -299,7 +309,6 @@ const FeaturedItem = ({
   }, []);
 
   return (
-   
     <div
       className={`${
         isGridOrList ? "col-12 feature-list" : "col-md-6 col-lg-6"
@@ -314,13 +323,12 @@ const FeaturedItem = ({
         <div className="thumb">
           {/* <img className="img-whp" src={`https://makanmitra.s3.amazonaws.com/${images[0]}`} alt="fp1.jpg" /> */}
           <Link href={`/listing-details-v1/${_id}`}>
-
-          <img
-            className="img-whp"
-            src={`https://makanmitra.dthree.in/api/property/images/${images[0]}`}
-            alt="fp1.jpg"
+            <img
+              className="img-whp"
+              src={`https://makanmitra.dthree.in/api/property/images/${images[0]}`}
+              alt="fp1.jpg"
             />
-            </Link>
+          </Link>
           <div className="thmb_cntnt">
             <ul className="tag mb0">
               {/* <li className="list-inline-item">
@@ -332,64 +340,62 @@ const FeaturedItem = ({
                   </a>
                 </li> */}
             </ul>
-            
+
             <ul className="icon mb0">
               <li className="list-inline-item">
                 <a href="#">
                   <span className="flaticon-transfer-1"></span>
                 </a>
               </li>
-              {localStorage.getItem("token") ? (
-                <li className="list-inline-item">
-                  <a href="#">
-                    {!favButton ? (
-                      <span
-                        className="flaticon-heart"
-                        onClick={() => {
-                          addtofav(_id, title, locality, rent, images);
-                        }}
-                      ></span>
-                    ) : (
-                      <span>
-                        <FcLike
+              {
+                localStorage.getItem("token") ? (
+                  <li className="list-inline-item">
+                    <a href="#">
+                      {!favButton ? (
+                        <span
+                          className="flaticon-heart"
                           onClick={() => {
-                            removeFromfav(_id);
+                            addtofav(_id, title, locality, rent, images);
                           }}
-                          size="30"
-                        />
-                      </span>
-                    )}
-                  </a>
-                </li>
-              ) : 
-              
-              (
-                <li className="list-inline-item">
-                  <a href="#"
-                  data-bs-toggle="modal"
-                  data-bs-target=".bd-example-modal-lg"
-                  >
-                    <span
-                      className="flaticon-heart"
-                    ></span>
-                  </a>
-                </li>
-              )
-              // (
-              //   <li className="list-inline-item">
-              //     <a href="#">
-              //       <span
-              //         className="flaticon-heart"
-              //         onClick={() => {
-              //           setAddFavs("Login first");
-              //         }}
-              //       ></span>
-              //     </a>
-              //   </li>
-              // )
+                        ></span>
+                      ) : (
+                        <span>
+                          <FcLike
+                            onClick={() => {
+                              removeFromfav(_id);
+                            }}
+                            size="30"
+                          />
+                        </span>
+                      )}
+                    </a>
+                  </li>
+                ) : (
+                  <li className="list-inline-item">
+                    <a
+                      href="#"
+                      data-bs-toggle="modal"
+                      data-bs-target=".bd-example-modal-lg"
+                    >
+                      <span className="flaticon-heart"></span>
+                    </a>
+                  </li>
+                )
+                // (
+                //   <li className="list-inline-item">
+                //     <a href="#">
+                //       <span
+                //         className="flaticon-heart"
+                //         onClick={() => {
+                //           setAddFavs("Login first");
+                //         }}
+                //       ></span>
+                //     </a>
+                //   </li>
+                // )
               }
             </ul>
-              
+
             <Link href={`/listing-details-v1/${_id}`}>
               <a className="fp_price">
                 ₹{rent.toLocaleString()}
@@ -399,57 +405,55 @@ const FeaturedItem = ({
           </div>
         </div>
         <Link href={`/listing-details-v1/${_id}`}>
-        <div className="details">
-          <div className="tc_content">
-            {addFavs && (
-              <div className="form-group">
-                <div
-                  className={
-                    !addFavs ? "alert alert-success" : "alert alert-danger"
-                  }
-                  role="alert"
-                >
-                  {addFavs}
+          <div className="details">
+            <div className="tc_content">
+              {addFavs && (
+                <div className="form-group">
+                  <div
+                    className={
+                      !addFavs ? "alert alert-success" : "alert alert-danger"
+                    }
+                    role="alert"
+                  >
+                    {addFavs}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            
-            <p className="text-thm">{propertyType}</p>
-            <h4>
-              
+              <p className="text-thm">{propertyType}</p>
+              <h4>
                 <a>{title}</a>
-              
-              {/* <Link href={`/listing-details-v1/${_id}`}>
+
+                {/* <Link href={`/listing-details-v1/${_id}`}>
                 <a>{title}</a>
               </Link> */}
-            </h4>
-            <p>
-              <span className="flaticon-placeholder"></span>
-              {locality}
-            </p>
+              </h4>
+              <p>
+                <span className="flaticon-placeholder"></span>
+                {locality.slice(0, 40)}...
+              </p>
 
-            <ul className="prop_details mb0">
-              {/* {details.map((val, i) => ( */}
-              <li className="list-inline-item" key={details._id}>
-                <a href="#" style={{ padding: "0.5rem" }}>
-                  Bed: {bedrooms}
-                </a>
-                <a href="#" style={{ padding: "0.5rem" }}>
-                  Bath: {bathroom}
-                </a>
-                <a href="#" style={{ padding: "0.5rem" }}>
-                  Deposit: ₹{deposit.toLocaleString()}
-                </a>
-              </li>
-              {/* // ) */}
-              {/* )} */}
-            </ul>
-          </div>
-          {/* End .tc_content */}
+              <ul className="prop_details mb0">
+                {/* {details.map((val, i) => ( */}
+                <li className="list-inline-item" key={details._id}>
+                  <a href="#" style={{ padding: "0.5rem" }}>
+                    Bed: {bedrooms}
+                  </a>
+                  <a href="#" style={{ padding: "0.5rem" }}>
+                    Bath: {bathroom}
+                  </a>
+                  <a href="#" style={{ padding: "0.5rem" }}>
+                    Deposit: ₹{deposit.toLocaleString()}
+                  </a>
+                </li>
+                {/* // ) */}
+                {/* )} */}
+              </ul>
+            </div>
+            {/* End .tc_content */}
 
-          <div className="fp_footer">
-            {/* <ul className="fp_meta float-start mb0">
+            <div className="fp_footer">
+              {/* <ul className="fp_meta float-start mb0">
                 <li className="list-inline-item">
                   <Link href="/agent-v2">
                     <a>
@@ -463,12 +467,11 @@ const FeaturedItem = ({
                   </Link>
                 </li>
               </ul> */}
-            <div className="fp_pdate float-end">{date}</div>
+              <div className="fp_pdate float-end">{date}</div>
+            </div>
+            {/* End .fp_footer */}
           </div>
-          {/* End .fp_footer */}
-        </div>
         </Link>
-
       </div>
     </div>
     // )

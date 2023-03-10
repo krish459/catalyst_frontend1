@@ -8,32 +8,41 @@ import CheckBoxFilter from "./CheckBoxFilter";
 import GlobalSelectBox from "./GlobalSelectBox";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Select from 'react-select';
 
 const GlobalFilter = ({ className = "" }) => {
-  const [districts, setDistricts] = useState([{ districtid: 1, districtname: "Adilabad" },
-  { districtid: 2, districtname: "Kandivali" },
-  { districtid: 3, districtname: "Borivali" },
-  { districtid: 4, districtname: "Malad" },
-  { districtid: 5, districtname: "Andheri" },
-  { districtid: 6, districtname: "Goregaon" },
-  { districtid: 7, districtname: "Ajmer" },
-  { districtid: 8, districtname: "Akola" },
-  { districtid: 9, districtname: "Alappuzha" },
-  { districtid: 10, districtname: "Aligarh" },]);
+  const [districts, setDistricts] = useState([]);
+  // const [districts, setDistricts] = useState([{ districtid: 1, districtname: "Adilabad" },
+  // { districtid: 2, districtname: "Kandivali" },
+  // { districtid: 3, districtname: "Borivali" },
+  // { districtid: 4, districtname: "Malad" },
+  // { districtid: 5, districtname: "Andheri" },
+  // { districtid: 6, districtname: "Goregaon" },
+  // { districtid: 7, districtname: "Ajmer" },
+  // { districtid: 8, districtname: "Akola" },
+  // { districtid: 9, districtname: "Alappuzha" },
+  // { districtid: 10, districtname: "Aligarh" },]);
   const [location, setLocation] = useState();
-
-  // useEffect(() => {
-  //   const fetchDistricts = async () => {
-  //     const response = await axios.get(
-  //       // "https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=<>&format=json&offset=0&limit=700"
+  const API_KEY = '91f0c5adff9f43f7a51ed1eec6250fef';
+  useEffect(() => {
+    const fetchPlaces = async () => {
+      const response = await axios.get(
+        `https://api.opencagedata.com/geocode/v1/json?q=Maharashtra&key=${API_KEY}&countrycode=in&limit=500`
         
-  //     );
-
-  //     console.log(response);
-  //     setDistricts(response);
-  //   };
-  //   fetchDistricts();
-  // }, []);
+      );
+      const results = response.data.results;
+      const newDistricts = results.map((result, index) => {
+        return {
+          districtid: index + 1,
+          districtname: result.formatted
+        };
+      });
+      
+      setDistricts(newDistricts);
+    };
+    fetchPlaces();
+    console.log(districts);
+  }, []);
 
   // submit handler
   const submitHandler = () => {
@@ -45,14 +54,27 @@ const GlobalFilter = ({ className = "" }) => {
   };
 
   const handleLocationChange = (event) => {
-    setLocation(event.target.value);
+    // console.log(event.value);
+    setLocation(event.value);
   };
 
   // useEffect(() => {
   //   console.log(location);
   // }, [location])
   
-
+  // if(!districts){
+  //   return <h1>Load..</h1>
+  // }
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      width: '20rem'
+    })
+  };
+  const options = districts.map((district) => ({
+    value: district.districtname,
+    label: district.districtname,
+  }));
   return (
     <div className={`home1-advnc-search ${className}`}>
       <ul className="h1ads_1st_list mb0">
@@ -99,15 +121,19 @@ const GlobalFilter = ({ className = "" }) => {
           </div> */}
 
           <div>
-            <select value={location} onChange={handleLocationChange}>
+            <Select value={location} onChange={handleLocationChange} placeholder={location ? location : "Location"} options={options} styles={customStyles} isSearchable/>
+              
+          </div>
+          {/* <div>
+            <Select value={location} onChange={handleLocationChange} styles={customStyles} isSearchable>
               <option value="">Location</option>
               {districts.map((district) => (
                 <option key={district.districtid} value={district.districtname}>
                   {district.districtname}
                 </option>
               ))}
-            </select>
-          </div>
+            </Select>
+          </div> */}
         </li>
         {/* End li */}
 
