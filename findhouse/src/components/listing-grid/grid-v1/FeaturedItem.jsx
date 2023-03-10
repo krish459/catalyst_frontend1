@@ -390,7 +390,7 @@ const FeaturedItem = ({
 
             <Link href={`/listing-details-v1/${_id}`}>
               <a className="fp_price">
-                ₹{rent}
+                ₹{rent.toLocaleString()}
                 <small>/mo</small>
               </a>
             </Link>
@@ -434,7 +434,7 @@ const FeaturedItem = ({
                   Bath: {bathroom}
                 </a>
                 <a href="#" style={{ padding: "0.5rem" }}>
-                  Deposit: ₹{deposit}
+                  Deposit: ₹{deposit.toLocaleString()}
                 </a>
               </li>
               {/* // ) */}

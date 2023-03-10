@@ -58,7 +58,7 @@ const ListingDynamicDetailsV1 = () => {
                 <div className="single_property_social_share position-static transform-none">
                   <div className="price float-start fn-400">
                     <h2>
-                      {property.product.rent}
+                    ₹{property.product.rent.toLocaleString()}
                       <small>/mo</small>
                     </h2>
                   </div>
@@ -184,9 +184,9 @@ const ListingDynamicDetailsV1 = () => {
                 bedrooms={property.product.details[0].bedrooms}
                 bathroom={property.product.details[0].bathroom}
                 propertyType={property.product.details[0].propertyType}
-                area={property.product.area}
+                area={property.product.area.toLocaleString()}
                 description={property.product.description}
-                rent={property.product.rent}
+                rent={property.product.rent.toLocaleString()}
                 propertyAge={property.product.details[0].propertyAge}
                 rentOrBuy={property.product.buyOrRent}
                 amenities={property.product.amenities}

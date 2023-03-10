@@ -2,5 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/listing-details-v1/[id]": "pages/listing-details-v1/[id].js",
   "/listing-grid-v1": "pages/listing-grid-v1.js"
 }
