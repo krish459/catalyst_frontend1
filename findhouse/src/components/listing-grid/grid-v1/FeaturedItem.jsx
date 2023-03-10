@@ -299,9 +299,7 @@ const FeaturedItem = ({
   }, []);
 
   return (
-    <Link href={`/listing-details-v1/${_id}`}>
-
-    
+   
     <div
       className={`${
         isGridOrList ? "col-12 feature-list" : "col-md-6 col-lg-6"
@@ -315,22 +313,26 @@ const FeaturedItem = ({
       >
         <div className="thumb">
           {/* <img className="img-whp" src={`https://makanmitra.s3.amazonaws.com/${images[0]}`} alt="fp1.jpg" /> */}
+          <Link href={`/listing-details-v1/${_id}`}>
+
           <img
             className="img-whp"
             src={`https://makanmitra.dthree.in/api/property/images/${images[0]}`}
             alt="fp1.jpg"
-          />
+            />
+            </Link>
           <div className="thmb_cntnt">
             <ul className="tag mb0">
-              <li className="list-inline-item">
+              {/* <li className="list-inline-item">
                 <a href="#">Featured</a>
-              </li>
+              </li> */}
               {/* <li className="list-inline-item">
                   <a href="#" className="text-capitalize">
                     {item.featured}
                   </a>
                 </li> */}
             </ul>
+            
             <ul className="icon mb0">
               <li className="list-inline-item">
                 <a href="#">
@@ -387,7 +389,7 @@ const FeaturedItem = ({
               // )
               }
             </ul>
-
+              
             <Link href={`/listing-details-v1/${_id}`}>
               <a className="fp_price">
                 ₹{rent.toLocaleString()}
@@ -396,6 +398,7 @@ const FeaturedItem = ({
             </Link>
           </div>
         </div>
+        <Link href={`/listing-details-v1/${_id}`}>
         <div className="details">
           <div className="tc_content">
             {addFavs && (
@@ -410,6 +413,8 @@ const FeaturedItem = ({
                 </div>
               </div>
             )}
+
+            
             <p className="text-thm">{propertyType}</p>
             <h4>
               
@@ -462,9 +467,10 @@ const FeaturedItem = ({
           </div>
           {/* End .fp_footer */}
         </div>
+        </Link>
+
       </div>
     </div>
-    </Link>
     // )
   );
 
