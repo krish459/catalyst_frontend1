@@ -174,7 +174,7 @@ const FeaturedItem = ({
   dayjs.extend(relativeTime);
   // var a = dayjs("2023-01-01");
   var a = dayjs();
-  let date = dayjs(createdAt).to(a);
+  let date = dayjs(a).to(createdAt);
 
   // // favourites function
   let favArray = [];
