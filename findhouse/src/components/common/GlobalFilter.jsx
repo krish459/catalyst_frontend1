@@ -11,11 +11,11 @@ import axios from "axios";
 
 const GlobalFilter = ({ className = "" }) => {
   const [districts, setDistricts] = useState([{ districtid: 1, districtname: "Adilabad" },
-  { districtid: 2, districtname: "Agar Malwa" },
-  { districtid: 3, districtname: "borivali" },
-  { districtid: 4, districtname: "malad" },
-  { districtid: 5, districtname: "andheri" },
-  { districtid: 6, districtname: "Aizawl" },
+  { districtid: 2, districtname: "Kandivali" },
+  { districtid: 3, districtname: "Borivali" },
+  { districtid: 4, districtname: "Malad" },
+  { districtid: 5, districtname: "Andheri" },
+  { districtid: 6, districtname: "Goregaon" },
   { districtid: 7, districtname: "Ajmer" },
   { districtid: 8, districtname: "Akola" },
   { districtid: 9, districtname: "Alappuzha" },
