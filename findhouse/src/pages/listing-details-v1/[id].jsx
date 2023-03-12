@@ -11,10 +11,14 @@ import properties from "../../data/properties";
 import DetailsContent from "../../components/listing-details-v1/DetailsContent";
 import Sidebar from "../../components/listing-details-v1/Sidebar";
 import axios from "axios";
+import { FcLike } from "react-icons/fc";
 
+let favArray = [];
 const ListingDynamicDetailsV1 = () => {
   const router = useRouter();
   const [property, setProperty] = useState();
+  const [fav, setfav] = useState({});
+  const [favButton, setfavButton] = useState();
   const id = router.query.id;
   // console.log(id);
   const propertybyid = async (id) => {
@@ -26,11 +30,105 @@ const ListingDynamicDetailsV1 = () => {
   };
 
   useEffect(() => {
-    propertybyid(id);
+    {id && propertybyid(id);}
   }, [id]);
   if (!property || !router.query.id) {
     return <h1>Load..</h1>;
   }
+
+  // const [addFavs, setAddFavs] = useState();
+
+  const savefav = (myfav) => {
+    typeof window !== "undefined"
+      ? localStorage.setItem("fav", JSON.stringify(myfav))
+      : null;
+  };
+  const addtofav = (itemCode, title, locality, rent, images) => {
+    if (!localStorage.getItem("fav")) {
+      localStorage.setItem("fav", JSON.stringify(favArray));
+      favArray =
+        typeof window !== "undefined"
+          ? JSON.parse(localStorage.getItem("fav"))
+          : [];
+
+      let k = 0;
+      for (let i = 0; i < favArray.length; i++) {
+        if (favArray[i].itemCode == itemCode) {
+          k = k + 1;
+        }
+      }
+
+      if (k != 0) {
+        console.log("already added");
+        // setAddFavs("Already Added");
+        setfavButton(true);
+      } else {
+        const newfav = { itemCode, title, locality, rent, images };
+        favArray.push(newfav);
+        // setAddFavs("Added to favourites");
+        console.log("favarray: ", favArray);
+      }
+      setfav(newfav);
+      setfavButton(true);
+      savefav(favArray);
+    } else {
+      let newfav = fav;
+      favArray =
+        typeof window !== "undefined"
+          ? JSON.parse(localStorage.getItem("fav"))
+          : [];
+
+      let k = 0;
+      for (let i = 0; i < favArray.length; i++) {
+        if (favArray[i].itemCode == itemCode) {
+          k = k + 1;
+        }
+      }
+
+      if (k != 0) {
+        console.log("already added");
+        // setAddFavs("Already Added");
+      } else {
+        newfav = { itemCode, title, locality, rent, images };
+        favArray.push(newfav);
+        // setAddFavs("Added to favourites");
+        console.log("favarray: ", favArray);
+      }
+      setfav(newfav);
+      setfavButton(true);
+      savefav(favArray);
+    }
+  };
+  const removeFromfav = (itemCode) => {
+    let favArray1 =
+      typeof window !== "undefined"
+        ? JSON.parse(localStorage.getItem("fav"))
+        : [];
+    for (let i = 0; i < favArray1.length; i++) {
+      if (favArray1[i].itemCode == itemCode) {
+        console.log(favArray1[i].itemCode);
+        console.log(itemCode);
+        favArray1.splice(i, 1);
+        console.log(favArray1);
+      }
+    }
+    // setAddFavs("Removed from favourites");
+    localStorage.setItem("fav", JSON.stringify(favArray1));
+    setfavButton(false);
+  };
+
+  if (!localStorage.getItem("fav")) {
+    localStorage.setItem("fav", JSON.stringify([]));
+  }
+
+  
+  // useEffect(() => {
+  //   const timeout = setTimeout(() => {
+  //     setAddFavs();
+  //   }, 500);
+
+  //   return () => clearTimeout(timeout);
+  // }, [addFavs]);
 
   return (
     <>
@@ -58,24 +156,66 @@ const ListingDynamicDetailsV1 = () => {
                 <div className="single_property_social_share position-static transform-none">
                   <div className="price float-start fn-400">
                     <h2>
-                    ₹{property.product.rent.toLocaleString()}
+                      ₹{property.product.rent.toLocaleString()}
                       <small>/mo</small>
                     </h2>
                   </div>
 
                   <div className="spss style2 mt20 text-end tal-400">
                     <ul className="mb0">
-                      <li className="list-inline-item">
+                      {/* <li className="list-inline-item">
                         <a href="#">
                           <span className="flaticon-transfer-1"></span>
                         </a>
-                      </li>
-                      <li className="list-inline-item">
+                      </li> */}
+                      {/* <li className="list-inline-item">
                         <a href="#">
                           <span className="flaticon-heart"></span>
                         </a>
-                      </li>
-                      <li className="list-inline-item">
+                      </li> */}
+
+                      {
+                        localStorage.getItem("token") ? (
+                          <li className="list-inline-item">
+                            <a href="#">
+                              {!favButton ? (
+                                <span
+                                  className="flaticon-heart"
+                                  onClick={() => {
+                                    addtofav(
+                                      property.product._id,
+                                      property.product.title,
+                                      property.product.locality,
+                                      property.product.rent,
+                                      property.product.images
+                                    );
+                                  }}
+                                ></span>
+                              ) : (
+                                <span>
+                                  <FcLike
+                                    onClick={() => {
+                                      removeFromfav(property.product._id);
+                                    }}
+                                    size="30"
+                                  />
+                                </span>
+                              )}
+                            </a>
+                          </li>
+                        ) : (
+                          <li className="list-inline-item">
+                            <a
+                              href="#"
+                              data-bs-toggle="modal"
+                              data-bs-target=".bd-example-modal-lg"
+                            >
+                              <span className="flaticon-heart"></span>
+                            </a>
+                          </li>
+                        )
+                      }
+                      {/* <li className="list-inline-item">
                         <a href="#">
                           <span className="flaticon-share"></span>
                         </a>
@@ -84,7 +224,7 @@ const ListingDynamicDetailsV1 = () => {
                         <a href="#">
                           <span className="flaticon-printer"></span>
                         </a>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                   {/* End activity and social sharing */}
@@ -119,7 +259,7 @@ const ListingDynamicDetailsV1 = () => {
                       </Item>
 
                        })} */}
-                       <Item
+                      <Item
                         original={`https://makanmitra.dthree.in/api/property/images/${property.product.images[0]}`}
                         thumbnail={`https://makanmitra.dthree.in/api/property/images/${property.product.images[0]}`}
                         width={752}
@@ -132,7 +272,7 @@ const ListingDynamicDetailsV1 = () => {
                               src={`https://makanmitra.dthree.in/api/property/images/${property.product.images[0]}`}
                               alt="1.jpg"
                             />
-                          <h6>{ref[0]}</h6>
+                            <h6>{ref[0]}</h6>
                           </div>
                         )}
                       </Item>
@@ -159,7 +299,7 @@ const ListingDynamicDetailsV1 = () => {
                                 className="img-fluid w100"
                                 src={`https://makanmitra.dthree.in/api/property/images/${val}`}
                                 alt="2.jpg"
-                                />
+                              />
                             </div>
                           )}
                         </Item>
@@ -194,7 +334,7 @@ const ListingDynamicDetailsV1 = () => {
               />
             </div>
             {/* End details content .col-lg-8 */}
-{/* 
+            {/* 
             <div className="col-lg-4 col-xl-4">
               <Sidebar />
             </div> */}

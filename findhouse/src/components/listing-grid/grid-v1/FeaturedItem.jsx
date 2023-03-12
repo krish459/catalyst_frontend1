@@ -289,24 +289,7 @@ const FeaturedItem = ({
     return () => clearTimeout(timeout);
   }, [addFavs]);
 
-  useEffect(() => {
-    // let favArray2 = JSON.parse(localStorage.getItem("fav"));
-    // let k = 0;
-    // for (let i = 0; i < favArray2.length; i++) {
-    //   if (favArray2[i].itemCode == itemCode) {
-    //     k = k + 1;
-    //   }
-    // }
-    // if (k != 0) {
-    //   // console.log("already added");
-    //   setAddFavs("Already Added");
-    //   setfavButton(true)
-    //   // console.log(fav);
-    // }
-    // for (let i = 0; i < favArray2.length; i++) {
-    //     setfavButton(true)
-    // }
-  }, []);
+ 
 
   return (
     <div
