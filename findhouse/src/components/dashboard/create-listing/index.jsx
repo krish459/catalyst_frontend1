@@ -7,6 +7,7 @@ import FloorPlans from "./FloorPlans";
 import LocationField from "./LocationField";
 import PropertyMediaUploader from "./PropertyMediaUploader";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 const index = () => {
   const [title, setTitle] = useState("");
@@ -14,43 +15,79 @@ const index = () => {
   const [type, setType] = useState("");
   const [status, setStatus] = useState("");
   const [price, setPrice] = useState();
+  const [locality, setLocality] = useState("");
+  const [state, setState] = useState("");
   const [area, setArea] = useState();
   const [bedrooms, setBedrooms] = useState();
   const [bathroom, setBathroom] = useState();
+  const [propertyAge, setPropertyAge] = useState();
+
+  const [furnishing, setFurnishing] = useState("");
+  const [tenants, setTenants] = useState();
+  const [deposit, setDeposit] = useState();
+  const [foodPreference, setFoodPreference] = useState("");
+  const [balcony, setBalcony] = useState();
+  const [flatFloor, setFlatFloor] = useState();
+  const [totalFloors, setTotalFloors] = useState();
+  const [availableFrom, setAvailableFrom] = useState("");
+  const [facing, setFacing] = useState("");
+  const [monthlyMaintenance, setMonthlyMaintenance] = useState();
+  const [waterSupply, setWaterSupply] = useState();
+
   const [yearBuilt, setYearBuilt] = useState();
   const [amenities, setAmenities] = useState([]);
   const [propertySelectedImgs, setPropertySelectedImgs] = useState([]);
+  const [getImgKeys, setImgKeys] = useState();
+  // const [title, setTitle] = useState("this is title");
+  // const [desc, setDesc] = useState("coiq cbco jc");
+  // const [type, setType] = useState("mansion");
+  // const [status, setStatus] = useState("buy");
+  // const [price, setPrice] = useState(1234);
+  // const [locality, setLocality] = useState("malad");
+  // const [state, setState] = useState("maharastra");
+  // const [area, setArea] = useState(1234);
+  // const [bedrooms, setBedrooms] = useState(2);
+  // const [bathroom, setBathroom] = useState(2);
+  // const [propertyAge, setPropertyAge] = useState(12);
+
+  // const [furnishing, setFurnishing] = useState("full");
+  // const [tenants, setTenants] = useState(2);
+  // const [deposit, setDeposit] = useState(1234);
+  // const [foodPreference, setFoodPreference] = useState("veg");
+  // const [balcony, setBalcony] = useState(1);
+  // const [flatFloor, setFlatFloor] = useState(1);
+  // const [totalFloors, setTotalFloors] = useState(3);
+  // const [availableFrom, setAvailableFrom] = useState("2024-12-02");
+  // const [facing, setFacing] = useState("east");
+  // const [monthlyMaintenance, setMonthlyMaintenance] = useState(1234);
+  // const [waterSupply, setWaterSupply] = useState(12);
+
+  // const [yearBuilt, setYearBuilt] = useState();
+  // const [amenities, setAmenities] = useState([]);
+  // const [propertySelectedImgs, setPropertySelectedImgs] = useState([]);
+  // const [getImgKeys, setImgKeys] = useState();
 
   const handlePropertyImages = async (e) => {
     e.preventDefault();
     try {
-      const data = {
-        images: propertySelectedImgs
-      };
+      const formData = new FormData();
+      propertySelectedImgs.forEach((img) => {
+        formData.append("images", img);
+      });
 
-      //   const response = await axios.post(
-      //     "https://makanmitra.dthree.in/api/users/register",
-      //     { data }
-      //   );
-      // axios
-      //   .post(
-      //     "https://makanmitra.dthree.in/api/users/register",
-
-      //     data,
-
-      //     { headers: { "Content-Type": "application/json" } }
-      //   )
-      // .then((res) => {
-      //   console.log(res);
-      // })
-      // .catch((error) => {
-      //   console.log(error);
-      // });
-
-      console.log(data);
-      //   console.log(response.data);
+      const result = await axios.post(
+        "https://makanmitra.dthree.in/api/property/multiple-image",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(result.data.imgkeys);
+      setImgKeys(result.data.imgkeys);
     } catch (error) {
-      console.log(error);
+      console.log("error: ", error);
     }
   };
   const handlePropertySubmit = async (e) => {
@@ -58,40 +95,51 @@ const index = () => {
     try {
       const data = {
         title: title,
-        desc:desc,
-        type:type,
-        status:status,
-        price:parseInt(price),
-        area:parseInt(area),
-        bedrooms:parseInt(bedrooms),
-        bathroom: parseInt(bathroom),
-        yearBuilt: parseInt(yearBuilt),
-        amenities: amenities
+        description: desc,
+        images: getImgKeys,
+        area: parseInt(area),
+        locality:locality,
+        state:state,
+        rent: parseInt(price),
+        buyOrRent: status,
+        details: [
+          {
+            bedrooms: parseInt(bedrooms),
+            bathroom: parseInt(bathroom),
+            propertyType: type,
+            propertyAge: parseInt(propertyAge),
+            furnishing: furnishing,
+            tenants: parseInt(tenants),
+            deposit: parseInt(deposit),
+            foodPreference: foodPreference,
+            balcony: parseInt(balcony),
+            flatFloor: parseInt(flatFloor),
+            totalFloors: parseInt(totalFloors),
+            availableFrom: availableFrom,
+            facing:facing,
+            monthlyMaintenance:parseInt(monthlyMaintenance),
+            waterSupply:parseInt(waterSupply)
+          },
+        ],
+        amenities:amenities,
+        flatOwner: "63eb8ba7dc3f062b7d024307"
       };
 
-      //   const response = await axios.post(
-      //     "https://makanmitra.dthree.in/api/users/register",
-      //     { data }
-      //   );
-      // axios
-      //   .post(
-      //     "https://makanmitra.dthree.in/api/users/register",
+      const token = localStorage.getItem('token')
 
-      //     data,
-
-      //     { headers: { "Content-Type": "application/json" } }
-      //   )
-      // .then((res) => {
-      //   console.log(res);
-      // })
-      // .catch((error) => {
-      //   console.log(error);
-      // });
-
-      console.log(data);
-      //   console.log(response.data);
+      const propertyResult = await axios.post(
+        "https://makanmitra.dthree.in/api/property/add-properties",
+        data,
+        {
+          headers: {
+            "Authorization": `Bearer ${token}` ,
+          },
+        }
+      );
+      console.log("Dtaa: ",data);
+      console.log(propertyResult.data);
     } catch (error) {
-      console.log(error);
+      console.log("error: ", error);
     }
   };
   return (
@@ -152,13 +200,21 @@ const index = () => {
                         <h3 className="mb30">Create Listing</h3>
                       </div>
 
-                      <CreateList title={title} setTitle={setTitle} desc={desc} setDesc={setDesc} type={type} setType={setType} status={status} setStatus={setStatus} 
-                      price={price}
-                      setPrice={setPrice}
-                      area={area}
-                      setArea={setArea}
-                      bedrooms={bedrooms}
-                      setBedrooms={setBedrooms}
+                      <CreateList
+                        title={title}
+                        setTitle={setTitle}
+                        desc={desc}
+                        setDesc={setDesc}
+                        type={type}
+                        setType={setType}
+                        status={status}
+                        setStatus={setStatus}
+                        price={price}
+                        setPrice={setPrice}
+                        area={area}
+                        setArea={setArea}
+                        bedrooms={bedrooms}
+                        setBedrooms={setBedrooms}
                       />
                     </div>
                   </div>
@@ -175,13 +231,52 @@ const index = () => {
                     <div className="col-lg-12">
                       <h3 className="mb30">Detailed Information</h3>
                     </div>
-                    <DetailedInfo bathroom={bathroom} setBathroom={setBathroom} yearBuilt={yearBuilt} setYearBuilt={setYearBuilt} amenities={amenities} setAmenities={setAmenities}/>
+                    <DetailedInfo
+                      bathroom={bathroom}
+                      setBathroom={setBathroom}
+                      yearBuilt={yearBuilt}
+                      setYearBuilt={setYearBuilt}
+                      locality={locality}
+                      setLocality={setLocality}
+                      state={state}
+                      setState={setState}
+                      propertyAge={propertyAge}
+                      setPropertyAge={setPropertyAge}
+                      amenities={amenities}
+                      setAmenities={setAmenities}
+                      furnishing={furnishing}
+                      setFurnishing={setFurnishing}
+                      tenants={tenants}
+                      setTenants={setTenants}
+                      deposit={deposit}
+                      setDeposit={setDeposit}
+                      foodPreference={foodPreference}
+                      setFoodPreference={setFoodPreference}
+                      balcony={balcony}
+                      setBalcony={setBalcony}
+                      flatFloor={flatFloor}
+                      setFlatFloor={setFlatFloor}
+                      totalFloors={totalFloors}
+                      setTotalFloors={setTotalFloors}
+                      availableFrom={availableFrom}
+                      setAvailableFrom={setAvailableFrom}
+                      facing={facing}
+                      setFacing={setFacing}
+                      monthlyMaintenance={monthlyMaintenance}
+                      setMonthlyMaintenance={setMonthlyMaintenance}
+                      waterSupply={waterSupply}
+                      setWaterSupply={setWaterSupply}
+                    />
                   </div>
                   <div className="my_dashboard_review mt30">
                     <div className="col-lg-12">
                       <h3 className="mb30">Property media</h3>
                     </div>
-                    <PropertyMediaUploader propertySelectedImgs={propertySelectedImgs} setPropertySelectedImgs={setPropertySelectedImgs} handlePropertyImages={handlePropertyImages} />
+                    <PropertyMediaUploader
+                      propertySelectedImgs={propertySelectedImgs}
+                      setPropertySelectedImgs={setPropertySelectedImgs}
+                      handlePropertyImages={handlePropertyImages}
+                    />
                   </div>
                   {/* <div className="my_dashboard_review mt30">
                     <div className="col-lg-12">
@@ -194,16 +289,22 @@ const index = () => {
                 {/* End .col */}
               </div>
               {/* End .row */}
-              <div className="col-xl-12" >
-                <div className="my_profile_setting_input text-center" style={{margin:"auto", width: "100rem"}}>
-                  <button className="btn btn1 float-start" onClick={handlePropertySubmit}>
+              { propertySelectedImgs != 0 && <div className="col-xl-12" >
+                <div
+                  className="my_profile_setting_input text-center"
+                  style={{ margin: "auto", width: "10rem",alignItems:"center", marginTop:"0.1rem",marginBottom:"2rem" }}
+                >
+                  <button
+                    className="btn btn1 float-start"
+                    onClick={handlePropertySubmit}
+                  >
                     Post Property
                   </button>
                 </div>
-              </div>
+              </div>}
               <div className="row mt50">
                 <div className="col-lg-12">
-                  <div className="copyright-widget text-center">
+                  <div className="copyright-widget text-center" style={{ alignItems:"center", marginBottom:"0.1rem" }}>
                     <p>© 2020 Find House. Made with love.</p>
                   </div>
                 </div>

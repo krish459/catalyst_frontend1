@@ -54,9 +54,9 @@ const CreateList = ({
             value={type}
             onChange={(e) => setType(e.target.value)}
           >
-            <option data-tokens="type1">Type1</option>
-            <option data-tokens="Type2">Type2</option>
-            <option data-tokens="Type3">Type3</option>
+            <option data-tokens="type1">flat</option>
+            <option data-tokens="Type2">mansion</option>
+            <option data-tokens="Type3">bunglow</option>
             <option data-tokens="Type4">Type4</option>
             <option data-tokens="Type5">Type5</option>
           </select>
@@ -66,7 +66,7 @@ const CreateList = ({
 
       <div className="col-lg-6 col-xl-6">
         <div className="my_profile_setting_input ui_kit_select_search form-group">
-          <label>Status</label>
+          <label>Buy/Rent</label>
           <select
             className="selectpicker form-select"
             data-live-search="true"
@@ -74,11 +74,8 @@ const CreateList = ({
             value={status}
             onChange={(e) => setStatus(e.target.value)}
           >
-            <option data-tokens="Status1">Status1</option>
-            <option data-tokens="Status2">Status2</option>
-            <option data-tokens="Status3">Status3</option>
-            <option data-tokens="Status4">Status4</option>
-            <option data-tokens="Status5">Status5</option>
+            <option data-tokens="Status1">buy</option>
+            <option data-tokens="Status2">rent</option>
           </select>
         </div>
       </div>
@@ -86,7 +83,7 @@ const CreateList = ({
 
       <div className="col-lg-4 col-xl-4">
         <div className="my_profile_setting_input form-group">
-          <label htmlFor="formGroupExamplePrice">Price</label>
+          <label htmlFor="formGroupExamplePrice">Rent</label>
           <input
             type="number"
             className="form-control"

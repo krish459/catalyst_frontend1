@@ -1,6 +1,12 @@
 const CheckBoxFilter = ({amenities, setAmenities}) => {
-  const selectAmenities = ({icon})=>{
-    // amenities.append({icon})
+  const selectAmenities = (icon) => {
+    if (amenities.includes(icon)) {
+      // If the amenity already exists in the array, remove it
+      setAmenities(amenities.filter(item => item !== icon));
+    } else {
+      // If the amenity doesn't exist in the array, add it
+      setAmenities([...amenities, icon]);
+    }
     console.log(amenities);
   }
   return (
@@ -13,7 +19,7 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
                 type="checkbox"
                 className="form-check-input"
                 id="customCheck1"
-                onClick={selectAmenities("Air Conditioning")}
+                onClick={() => selectAmenities("Air Conditioning")}
               />
               <label className="form-check-label" htmlFor="customCheck1">
                 Air Conditioning
@@ -28,6 +34,7 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
                 type="checkbox"
                 className="form-check-input"
                 id="customCheck2"
+                onClick={() => selectAmenities("Lawn")}
               />
               <label className="form-check-label" htmlFor="customCheck2">
                 Lawn
@@ -42,6 +49,7 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
                 type="checkbox"
                 className="form-check-input"
                 id="customCheck3"
+                onClick={() => selectAmenities("Swimming Pool")}
               />
               <label className="form-check-label" htmlFor="customCheck3">
                 Swimming Pool
@@ -61,6 +69,7 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
                 type="checkbox"
                 className="form-check-input"
                 id="customCheck4"
+                onClick={() => selectAmenities("Barbeque")}
               />
               <label className="form-check-label" htmlFor="customCheck4">
                 Barbeque
@@ -75,6 +84,7 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
                 type="checkbox"
                 className="form-check-input"
                 id="customCheck5"
+                onClick={() => selectAmenities("Microwave")}
               />
               <label className="form-check-label" htmlFor="customCheck5">
                 Microwave
@@ -89,6 +99,7 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
                 type="checkbox"
                 className="form-check-input"
                 id="customCheck6"
+                onClick={() => selectAmenities("TV Cable")}
               />
               <label className="form-check-label" htmlFor="customCheck6">
                 TV Cable
@@ -100,51 +111,7 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
       </div>
       {/* End .col */}
 
-      <div className="col-xs-6 col-sm col-lg col-xl">
-        <ul className="ui_kit_checkbox selectable-list">
-          <li>
-            <div className="form-check custom-checkbox">
-              <input
-                type="checkbox"
-                className="form-check-input"
-                id="customCheck7"
-              />
-              <label className="form-check-label" htmlFor="customCheck7">
-                Dryer
-              </label>
-            </div>
-          </li>
-          {/* End li */}
-
-          <li>
-            <div className="form-check custom-checkbox">
-              <input
-                type="checkbox"
-                className="form-check-input"
-                id="customCheck8"
-              />
-              <label className="form-check-label" htmlFor="customCheck8">
-                Outdoor Shower
-              </label>
-            </div>
-          </li>
-          {/* End li */}
-
-          <li>
-            <div className="form-check custom-checkbox">
-              <input
-                type="checkbox"
-                className="form-check-input"
-                id="customCheck9"
-              />
-              <label className="form-check-label" htmlFor="customCheck9">
-                Washer
-              </label>
-            </div>
-          </li>
-          {/* End li */}
-        </ul>
-      </div>
+     
       {/* End .col */}
 
       <div className="col-xxs-6 col-sm col-lg col-xl">
@@ -155,6 +122,7 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
                 type="checkbox"
                 className="form-check-input"
                 id="customCheck10"
+                onClick={() => selectAmenities("Gym")}
               />
               <label className="form-check-label" htmlFor="customCheck10">
                 Gym
@@ -163,7 +131,7 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
           </li>
           {/* End li */}
 
-          <li>
+          {/* <li>
             <div className="form-check custom-checkbox">
               <input
                 type="checkbox"
@@ -174,7 +142,7 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
                 Refrigerator
               </label>
             </div>
-          </li>
+          </li> */}
           {/* End li */}
 
           <li>
@@ -183,6 +151,7 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
                 type="checkbox"
                 className="form-check-input"
                 id="customCheck12"
+                onClick={() => selectAmenities("WiFi")}
               />
               <label className="form-check-label" htmlFor="customCheck12">
                 WiFi
@@ -196,7 +165,7 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
 
       <div className="col-xxs-6 col-sm col-lg col-xl">
         <ul className="ui_kit_checkbox selectable-list">
-          <li>
+          {/* <li>
             <div className="form-check custom-checkbox">
               <input
                 type="checkbox"
@@ -207,10 +176,10 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
                 Laundry
               </label>
             </div>
-          </li>
+          </li> */}
           {/* End li */}
 
-          <li>
+          {/* <li>
             <div className="form-check custom-checkbox">
               <input
                 type="checkbox"
@@ -221,10 +190,10 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
                 Sauna
               </label>
             </div>
-          </li>
+          </li> */}
           {/* End li */}
 
-          <li>
+          {/* <li>
             <div className="form-check custom-checkbox">
               <input
                 type="checkbox"
@@ -235,7 +204,7 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
                 Window Coverings
               </label>
             </div>
-          </li>
+          </li> */}
           {/* End li */}
         </ul>
       </div>

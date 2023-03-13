@@ -89,8 +89,8 @@ const PropertyMediaUploader = ({propertySelectedImgs,setPropertySelectedImgs,han
       {/* End .col */}
 
       <div className="col-xl-12">
-        <div className="my_profile_setting_input">
-          <button className="btn btn1 float-center" onClick={handlePropertyImages}>Upload</button>
+        <div className="my_profile_setting_input" style={{ margin: "auto", width: "10rem",alignItems:"center", marginTop:"0.1rem",marginBottom:"2rem" }}>
+          <button className="btn btn1 float-center" onClick={handlePropertyImages} >Upload</button>
         </div>
       </div>
       {/* End .col */}
