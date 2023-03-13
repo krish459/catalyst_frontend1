@@ -7,6 +7,7 @@ import FloorPlans from "./FloorPlans";
 import LocationField from "./LocationField";
 import PropertyMediaUploader from "./PropertyMediaUploader";
 import { useEffect, useState } from "react";
+import jwt from "jsonwebtoken";
 import axios from "axios";
 
 const index = () => {
@@ -38,6 +39,7 @@ const index = () => {
   const [amenities, setAmenities] = useState([]);
   const [propertySelectedImgs, setPropertySelectedImgs] = useState([]);
   const [getImgKeys, setImgKeys] = useState();
+  const [getImgDone, setImgDone] = useState(true);
   // const [title, setTitle] = useState("this is title");
   // const [desc, setDesc] = useState("coiq cbco jc");
   // const [type, setType] = useState("mansion");
@@ -86,6 +88,7 @@ const index = () => {
       );
       console.log(result.data.imgkeys);
       setImgKeys(result.data.imgkeys);
+      setImgDone(true);
     } catch (error) {
       console.log("error: ", error);
     }
@@ -93,13 +96,16 @@ const index = () => {
   const handlePropertySubmit = async (e) => {
     e.preventDefault();
     try {
+      const token = localStorage.getItem("token");
+      const decodedToken = jwt.decode(token);
+      console.log("decodedToken: ",decodedToken);
       const data = {
         title: title,
         description: desc,
         images: getImgKeys,
         area: parseInt(area),
-        locality:locality,
-        state:state,
+        locality: locality,
+        state: state,
         rent: parseInt(price),
         buyOrRent: status,
         details: [
@@ -116,27 +122,25 @@ const index = () => {
             flatFloor: parseInt(flatFloor),
             totalFloors: parseInt(totalFloors),
             availableFrom: availableFrom,
-            facing:facing,
-            monthlyMaintenance:parseInt(monthlyMaintenance),
-            waterSupply:parseInt(waterSupply)
+            facing: facing,
+            monthlyMaintenance: parseInt(monthlyMaintenance),
+            waterSupply: parseInt(waterSupply),
           },
         ],
-        amenities:amenities,
-        flatOwner: "63eb8ba7dc3f062b7d024307"
+        amenities: amenities,
+        flatOwner: decodedToken.user_id,
       };
-
-      const token = localStorage.getItem('token')
 
       const propertyResult = await axios.post(
         "https://makanmitra.dthree.in/api/property/add-properties",
         data,
         {
           headers: {
-            "Authorization": `Bearer ${token}` ,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
-      console.log("Dtaa: ",data);
+      console.log("Dtaa: ", data);
       console.log(propertyResult.data);
     } catch (error) {
       console.log("error: ", error);
@@ -289,22 +293,33 @@ const index = () => {
                 {/* End .col */}
               </div>
               {/* End .row */}
-              { propertySelectedImgs != 0 && <div className="col-xl-12" >
-                <div
-                  className="my_profile_setting_input text-center"
-                  style={{ margin: "auto", width: "10rem",alignItems:"center", marginTop:"0.1rem",marginBottom:"2rem" }}
-                >
-                  <button
-                    className="btn btn1 float-start"
-                    onClick={handlePropertySubmit}
+              {getImgDone && (
+                <div className="col-xl-12">
+                  <div
+                    className="my_profile_setting_input text-center"
+                    style={{
+                      margin: "auto",
+                      width: "10rem",
+                      alignItems: "center",
+                      marginTop: "0.1rem",
+                      marginBottom: "2rem",
+                    }}
                   >
-                    Post Property
-                  </button>
+                    <button
+                      className="btn btn1 float-start"
+                      onClick={handlePropertySubmit}
+                    >
+                      Post Property
+                    </button>
+                  </div>
                 </div>
-              </div>}
+              )}
               <div className="row mt50">
                 <div className="col-lg-12">
-                  <div className="copyright-widget text-center" style={{ alignItems:"center", marginBottom:"0.1rem" }}>
+                  <div
+                    className="copyright-widget text-center"
+                    style={{ alignItems: "center", marginBottom: "0.1rem" }}
+                  >
                     <p>© 2020 Find House. Made with love.</p>
                   </div>
                 </div>

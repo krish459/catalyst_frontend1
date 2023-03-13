@@ -22,6 +22,7 @@ const CreateList = ({
           <input
             type="text"
             className="form-control"
+            placeholder="Enter property title"
             id="propertyTitle"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -37,6 +38,7 @@ const CreateList = ({
             className="form-control"
             id="propertyDescription"
             rows="7"
+            placeholder="Enter description"
             value={desc}
             onChange={(e) => setDesc(e.target.value)}
           ></textarea>
@@ -46,7 +48,7 @@ const CreateList = ({
 
       <div className="col-lg-6 col-xl-6">
         <div className="my_profile_setting_input ui_kit_select_search form-group">
-          <label>Type</label>
+          <label>Prroperty type</label>
           <select
             className="selectpicker form-select"
             data-live-search="true"
@@ -88,6 +90,7 @@ const CreateList = ({
             type="number"
             className="form-control"
             id="formGroupExamplePrice"
+            placeholder="Enter rent per month"
             value={price}
             onChange={(e) => setPrice(Number(e.target.value))}
           />
@@ -102,6 +105,7 @@ const CreateList = ({
             type="text"
             className="form-control"
             id="formGroupExampleArea"
+            placeholder="Enter Area of property"
             value={area}
             onChange={(e) => setArea(Number(e.target.value))}
           />
@@ -111,7 +115,7 @@ const CreateList = ({
 
       <div className="col-lg-4 col-xl-4">
         <div className="my_profile_setting_input ui_kit_select_search form-group">
-          <label>Rooms</label>
+          <label>Bedrooms</label>
           <select
             className="selectpicker form-select"
             data-live-search="true"

@@ -40,10 +40,38 @@ const DetailedInfo = ({
     <div className="row">
       <div className="col-lg-6 col-xl-4">
         <div className="my_profile_setting_input form-group">
+          <label htmlFor="bathRooms">Bathrooms</label>
+          {/* <input
+            type="text"
+            className="form-control"
+            id="bathrooms"
+            placeholder="Enter "
+            
+          /> */}
+          <select
+            className="selectpicker form-select"
+            data-live-search="true"
+            data-width="100%"
+            id="bathrooms"
+            value={bathroom}
+            onChange={(e) => setBathroom(e.target.value)}>
+            <option data-tokens="Status1">1</option>
+            <option data-tokens="Status2">2</option>
+            <option data-tokens="Status3">3</option>
+            <option data-tokens="Status4">4</option>
+            <option data-tokens="Status5">5</option>
+            <option data-tokens="Status6">Other</option>
+          </select>
+        </div>
+      </div>
+      {/* End .col */}
+      <div className="col-lg-6 col-xl-4">
+        <div className="my_profile_setting_input form-group">
           <label htmlFor="propertyId">Locality</label>
           <input
             type="text"
             className="form-control"
+            placeholder="Enter Complete Address of property"
             id="locality"
             value={locality}
             onChange={(e) => setLocality(e.target.value)}
@@ -55,13 +83,24 @@ const DetailedInfo = ({
       <div className="col-lg-6 col-xl-4">
         <div className="my_profile_setting_input form-group">
           <label htmlFor="furnishing">Furnishing</label>
-          <input
+          {/* <input
             type="text"
             className="form-control"
             id="furnishing"
+            
+          /> */}
+          <select
+            className="selectpicker form-select"
+            data-live-search="true"
+            data-width="100%"
+            id="furnishing"
             value={furnishing}
             onChange={(e) => setFurnishing(e.target.value)}
-          />
+          >
+            <option data-tokens="Status1">full</option>
+            <option data-tokens="Status2">partially</option>
+            <option data-tokens="Status3">not</option>
+          </select>
         </div>
       </div>
       <div className="col-lg-6 col-xl-4">
@@ -70,6 +109,7 @@ const DetailedInfo = ({
           <input
             type="number"
             className="form-control"
+            placeholder="Enter Number of tetants"
             id="tenants"
             value={tenants}
             onChange={(e) => setTenants(e.target.value)}
@@ -83,6 +123,7 @@ const DetailedInfo = ({
             type="number"
             className="form-control"
             id="deposit"
+            placeholder="Enter Deposit"
             value={deposit}
             onChange={(e) => setDeposit(e.target.value)}
           />
@@ -95,6 +136,7 @@ const DetailedInfo = ({
           <input
             type="text"
             className="form-control"
+            placeholder="Enter State"
             id="state"
             value={state}
             onChange={(e) => setState(e.target.value)}
@@ -109,6 +151,7 @@ const DetailedInfo = ({
           <input
             type="text"
             className="form-control"
+            placeholder="Enter Property age"
             id="propertyAge"
             value={propertyAge}
             onChange={(e) => setPropertyAge(e.target.value)}
@@ -124,6 +167,7 @@ const DetailedInfo = ({
       type="text"
       className="form-control"
       id="furnishing"
+      placeholder="Enter Food preference"
       value={foodPreference}
       onChange={(e) => setFoodPreference(e.target.value)}
     />
@@ -137,6 +181,7 @@ const DetailedInfo = ({
       type="text"
       className="form-control"
       id="furnishing"
+      placeholder="Enter Number of balcony"
       value={balcony}
       onChange={(e) => setBalcony(e.target.value)}
     />
@@ -149,6 +194,7 @@ const DetailedInfo = ({
     <input
       type="text"
       className="form-control"
+      placeholder="Enter Number of floor"
       id="furnishing"
       value={flatFloor}
       onChange={(e) => setFlatFloor(e.target.value)}
@@ -163,6 +209,7 @@ const DetailedInfo = ({
       type="text"
       className="form-control"
       id="furnishing"
+      placeholder="Enter Total number of floors"
       value={totalFloors}
       onChange={(e) => setTotalFloors(e.target.value)}
     />
@@ -175,6 +222,7 @@ const DetailedInfo = ({
     <input
       type="text"
       className="form-control"
+      placeholder="yyyy-mm-dd"
       id="furnishing"
       value={availableFrom}
       onChange={(e) => setAvailableFrom(e.target.value)}
@@ -188,6 +236,7 @@ const DetailedInfo = ({
     <input
       type="text"
       className="form-control"
+      placeholder="Property facing direction"
       id="furnishing"
       value={facing}
       onChange={(e) => setFacing(e.target.value)}
@@ -201,6 +250,7 @@ const DetailedInfo = ({
       type="text"
       className="form-control"
       id="furnishing"
+      placeholder="Enter Monthly maintainence"
       value={monthlyMaintenance}
       onChange={(e) => setMonthlyMaintenance(e.target.value)}
     />
@@ -214,6 +264,7 @@ const DetailedInfo = ({
       type="text"
       className="form-control"
       id="furnishing"
+      placeholder="Enter hours of water supply"
       value={waterSupply}
       onChange={(e) => setWaterSupply(e.target.value)}
     />
@@ -237,19 +288,7 @@ const DetailedInfo = ({
       </div> */}
       {/* End .col */}
 
-      <div className="col-lg-6 col-xl-4">
-        <div className="my_profile_setting_input form-group">
-          <label htmlFor="bathRooms">Bathrooms</label>
-          <input
-            type="text"
-            className="form-control"
-            id="bathRooms"
-            value={bathroom}
-            onChange={(e) => setBathroom(e.target.value)}
-          />
-        </div>
-      </div>
-      {/* End .col */}
+      
 
       {/* <div className="col-lg-6 col-xl-4">
         <div className="my_profile_setting_input form-group">
