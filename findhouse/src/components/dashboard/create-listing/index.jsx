@@ -39,35 +39,8 @@ const index = () => {
   const [amenities, setAmenities] = useState([]);
   const [propertySelectedImgs, setPropertySelectedImgs] = useState([]);
   const [getImgKeys, setImgKeys] = useState();
-  const [getImgDone, setImgDone] = useState(true);
-  // const [title, setTitle] = useState("this is title");
-  // const [desc, setDesc] = useState("coiq cbco jc");
-  // const [type, setType] = useState("mansion");
-  // const [status, setStatus] = useState("buy");
-  // const [price, setPrice] = useState(1234);
-  // const [locality, setLocality] = useState("malad");
-  // const [state, setState] = useState("maharastra");
-  // const [area, setArea] = useState(1234);
-  // const [bedrooms, setBedrooms] = useState(2);
-  // const [bathroom, setBathroom] = useState(2);
-  // const [propertyAge, setPropertyAge] = useState(12);
-
-  // const [furnishing, setFurnishing] = useState("full");
-  // const [tenants, setTenants] = useState(2);
-  // const [deposit, setDeposit] = useState(1234);
-  // const [foodPreference, setFoodPreference] = useState("veg");
-  // const [balcony, setBalcony] = useState(1);
-  // const [flatFloor, setFlatFloor] = useState(1);
-  // const [totalFloors, setTotalFloors] = useState(3);
-  // const [availableFrom, setAvailableFrom] = useState("2024-12-02");
-  // const [facing, setFacing] = useState("east");
-  // const [monthlyMaintenance, setMonthlyMaintenance] = useState(1234);
-  // const [waterSupply, setWaterSupply] = useState(12);
-
-  // const [yearBuilt, setYearBuilt] = useState();
-  // const [amenities, setAmenities] = useState([]);
-  // const [propertySelectedImgs, setPropertySelectedImgs] = useState([]);
-  // const [getImgKeys, setImgKeys] = useState();
+  const [imgDone, setImgDone] = useState(true);
+  const [message, setMessage] = useState();
 
   const handlePropertyImages = async (e) => {
     e.preventDefault();
@@ -89,6 +62,8 @@ const index = () => {
       console.log(result.data.imgkeys);
       setImgKeys(result.data.imgkeys);
       setImgDone(true);
+      // print(imgDone)
+      setMessage("Images uploaded Successfully");
     } catch (error) {
       console.log("error: ", error);
     }
@@ -98,7 +73,7 @@ const index = () => {
     try {
       const token = localStorage.getItem("token");
       const decodedToken = jwt.decode(token);
-      console.log("decodedToken: ",decodedToken);
+      console.log("decodedToken: ", decodedToken);
       const data = {
         title: title,
         description: desc,
@@ -142,10 +117,18 @@ const index = () => {
       );
       console.log("Dtaa: ", data);
       console.log(propertyResult.data);
+      setMessage("Property posted successfully");
     } catch (error) {
       console.log("error: ", error);
     }
   };
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setMessage("");
+    }, 500);
+
+    return () => clearTimeout(timeout);
+  }, [message]);
   return (
     <>
       {/* <!-- Main Header Nav --> */}
@@ -293,7 +276,7 @@ const index = () => {
                 {/* End .col */}
               </div>
               {/* End .row */}
-              {getImgDone && (
+              {imgDone && (
                 <div className="col-xl-12">
                   <div
                     className="my_profile_setting_input text-center"
@@ -314,6 +297,20 @@ const index = () => {
                   </div>
                 </div>
               )}
+              {message && (
+                <div className="form-group">
+                  <div
+                    className="alert alert-success text-center margin-auto"
+                    // className={
+                    //     !statusLogin ? "alert alert-success" : "alert alert-danger"
+                    // }
+                    role="alert"
+                  >
+                    {message}
+                  </div>
+                </div>
+              )}
+
               <div className="row mt50">
                 <div className="col-lg-12">
                   <div
