@@ -106,31 +106,31 @@ const DetailsContent = ({
       </div> */}
       {/* End .location_area */}
 
-      <div className="application_statics mt30">
+      {/* <div className="application_statics mt30">
         <h4 className="mb30">Floor plans</h4>
         <div className="faq_according style2">
           <FloorPlans />
         </div>
-      </div>
+      </div> */}
       {/* End .floor_plane */}
 
-      <div className="shop_single_tab_content style2 mt30">
+      {/* <div className="shop_single_tab_content style2 mt30">
         <PropertyVideo />
-      </div>
+      </div> */}
       {/* End property-video  */}
 
-      <div className="walkscore_area mt30">
+      {/* <div className="walkscore_area mt30">
         <WalkScore />
-      </div>
+      </div> */}
       {/* End walkscore_area */}
 
-      <div className="whats_nearby mt30">
+      {/* <div className="whats_nearby mt30">
         <h4 className="mb10">What&apos;s Nearby</h4>
         <WhatsNearby />
-      </div>
+      </div> */}
       {/* End what's nearby area */}
 
-      <div className="product_single_content">
+      {/* <div className="product_single_content">
         <div className="mbp_pagination_comments mt30">
           <div className="total_review">
             <h4>896 Reviews</h4>
@@ -144,7 +144,7 @@ const DetailsContent = ({
               Write a Review
             </a>
           </div>
-          {/* End .total_review */}
+          End .total_review
           <Comments />
           <div className="custom_hr"></div>
 
@@ -165,7 +165,7 @@ const DetailsContent = ({
             <ReviewBox />
           </div>
         </div>
-      </div>
+      </div> */}
       {/* End review and comment area area */}
     </>
   );

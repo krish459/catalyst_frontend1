@@ -27,7 +27,7 @@ const Index = () => {
       <Hero />
 
       {/* <!-- Feature Properties --> */}
-      <section id="feature-property" className="feature-property bgc-f7">
+      {/* <section id="feature-property" className="feature-property bgc-f7">
         <div className="container">
           <div className="row">
             <div className="col-lg-6 offset-lg-3">
@@ -43,10 +43,10 @@ const Index = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* <!-- Property Cities --> */}
-      <section id="property-city" className="property-city pb30">
+      {/* <section id="property-city" className="property-city pb30">
         <div className="container">
           <div className="row">
             <div className="col-lg-6 offset-lg-3">
@@ -60,7 +60,7 @@ const Index = () => {
             <FindProperties />
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* <!-- Why Chose Us --> */}
       <section id="why-chose" className="whychose_us bgc-f7 pb30">
@@ -80,7 +80,7 @@ const Index = () => {
       </section>
 
       {/* <!-- Our Blog --> */}
-      <section className="our-blog bgc-f7 pb30">
+      {/* <section className="our-blog bgc-f7 pb30">
         <div className="container">
           <div className="row">
             <div className="col-lg-6 offset-lg-3">
@@ -94,7 +94,7 @@ const Index = () => {
             <Blogs />
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* <!-- Our Partners --> */}
       <section id="our-partners" className="our-partners">

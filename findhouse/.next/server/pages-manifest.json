@@ -2,7 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/listing-grid-v1": "pages/listing-grid-v1.js",
-  "/": "pages/index.js",
-  "/listing-details-v1/[id]": "pages/listing-details-v1/[id].js"
+  "/my-properties": "pages/my-properties.js",
+  "/": "pages/index.js"
 }

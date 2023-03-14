@@ -3,11 +3,11 @@ import Link from "next/link";
 const CopyrightFooter = () => {
   const menuItems = [
     { id: 1, name: "Home", routeLink: "/" },
-    { id: 2, name: "Listing", routeLink: "/listing-grid-v3" },
-    { id: 3, name: "Property", routeLink: "/listing-grid-v4" },
-    { id: 4, name: "About Us", routeLink: "/about-us" },
-    { id: 5, name: "Blog", routeLink: "/blog-list-3" },
-    { id: 6, name: "Contact", routeLink: "/contact" },
+    { id: 2, name: "Listing", routeLink: "/listing-grid-v1" },
+    // { id: 3, name: "Property", routeLink: "/listing-grid-v4" },
+    // { id: 4, name: "About Us", routeLink: "/about-us" },
+    // { id: 5, name: "Blog", routeLink: "/blog-list-3" },
+    // { id: 6, name: "Contact", routeLink: "/contact" },
   ];
 
   return (

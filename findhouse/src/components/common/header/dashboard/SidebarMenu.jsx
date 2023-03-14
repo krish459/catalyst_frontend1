@@ -8,30 +8,30 @@ import {
 const SidebarMenu = () => {
   const route = useRouter();
 
-  const myProperties = [
-    { id: 1, name: "General Elements", route: "/my-properties" },
-    { id: 2, name: "Advanced Elements", route: "/my-properties" },
-    { id: 3, name: "Editors", route: "/my-properties" },
-  ];
-  const reviews = [
-    { id: 1, name: "My Reviews", route: "/my-review" },
-    { id: 2, name: "Visitor Reviews", route: "/my-review" },
-  ];
-  const manageAccount = [
-    {
-      id: 1,
-      name: "My Package",
-      route: "/my-package",
-      icon: "flaticon-box",
-    },
-    {
-      id: 2,
-      name: "My Profile",
-      route: "/my-profile",
-      icon: "flaticon-user",
-    },
-    { id: 3, name: "Logout", route: "/login", icon: "flaticon-logout" },
-  ];
+  // const myProperties = [
+  //   { id: 1, name: "General Elements", route: "/my-properties" },
+  //   { id: 2, name: "Advanced Elements", route: "/my-properties" },
+  //   { id: 3, name: "Editors", route: "/my-properties" },
+  // ];
+  // const reviews = [
+  //   { id: 1, name: "My Reviews", route: "/my-review" },
+  //   { id: 2, name: "Visitor Reviews", route: "/my-review" },
+  // ];
+  // const manageAccount = [
+  //   {
+  //     id: 1,
+  //     name: "My Package",
+  //     route: "/my-package",
+  //     icon: "flaticon-box",
+  //   },
+    // {
+    //   id: 2,
+    //   name: "My Profile",
+    //   route: "/my-profile",
+    //   icon: "flaticon-user",
+    // },
+  //   { id: 3, name: "Logout", route: "/login", icon: "flaticon-logout" },
+  // ];
 
   return (
     <>
@@ -99,9 +99,9 @@ const SidebarMenu = () => {
         {/* End Main */}
 
         <li className="title">
-          <span>Manage Listings</span>
+          {/* <span>Manage Listings</span> */}
           <ul>
-            <li
+            {/* <li
               className={`treeview ${
                 isParentPageActive(myProperties, route.pathname) ? "active" : ""
               }`}
@@ -121,10 +121,10 @@ const SidebarMenu = () => {
                   </li>
                 ))}
               </ul>
-            </li>
+            </li>  */}
             {/* end properties */}
 
-            <li
+            {/* <li
               className={`treeview ${
                 isParentPageActive(reviews, route.pathname) ? "active" : ""
               }`}
@@ -145,7 +145,7 @@ const SidebarMenu = () => {
                   </li>
                 ))}
               </ul>
-            </li>
+            </li> */}
             {/* End Review */}
 
             <li
@@ -162,7 +162,36 @@ const SidebarMenu = () => {
                 </a>
               </Link>
             </li>
+            
             <li
+              className={`treeview ${
+                isSinglePageActive("/my-profile", route.pathname)
+                  ? "active"
+                  : ""
+              }`}
+            >
+              <Link href="/my-profile">
+                <a>
+                  <i className="flaticon-user"></i>
+                  <span>My Profile</span>
+                </a>
+              </Link>
+            </li>
+            <li
+              className={`treeview ${
+                isSinglePageActive("/my-properties", route.pathname)
+                  ? "active"
+                  : ""
+              }`}
+            >
+              <Link href="/my-properties">
+                <a>
+                  <i className="flaticon-box"></i>
+                  <span>My Properties</span>
+                </a>
+              </Link>
+            </li>
+            {/* <li
               className={`treeview ${
                 isSinglePageActive("/my-saved-search", route.pathname)
                   ? "active"
@@ -175,12 +204,12 @@ const SidebarMenu = () => {
                   <span> Saved Search</span>
                 </a>
               </Link>
-            </li>
+            </li> */}
           </ul>
         </li>
         {/* End manage listing */}
 
-        <li className="title">
+        {/* <li className="title">
           <span>Manage Account</span>
           <ul>
             {manageAccount.map((item) => (
@@ -198,7 +227,7 @@ const SidebarMenu = () => {
               </li>
             ))}
           </ul>
-        </li>
+        </li> */}
       </ul>
     </>
   );
