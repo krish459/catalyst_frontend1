@@ -5,8 +5,33 @@ import TableData from "./TableData";
 import Filtering from "./Filtering";
 import Pagination from "./Pagination";
 import SearchBox from "./SearchBox";
+import jwt from "jsonwebtoken";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const index = () => {
+  const [myProperty, setMyProperty] = useState();
+  const token = localStorage.getItem("token");
+  const decodedToken = jwt.decode(token);
+  const propertybyid = async (flatOwner) => {
+    try {
+      const result = await axios.get(
+        `https://makanmitra.dthree.in/api/property/broker-properties/${flatOwner}`
+      );
+      console.log(result.data);
+      setMyProperty(result.data);
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  };
+
+  useEffect(() => {
+    {decodedToken.user_id && propertybyid(decodedToken.user_id);}
+  }, [decodedToken.user_id]);
+  if (!myProperty || !decodedToken.user_id) {
+    return <h1>Load..</h1>;
+  }
+
   return (
     <>
       {/* <!-- Main Header Nav --> */}
@@ -81,13 +106,13 @@ const index = () => {
                   <div className="my_dashboard_review mb40">
                     <div className="property_table">
                       <div className="table-responsive mt0">
-                        <TableData />
+                        <TableData myProperty={myProperty} />
                       </div>
                       {/* End .table-responsive */}
-
+{/* 
                       <div className="mbp_pagination">
                         <Pagination />
-                      </div>
+                      </div> */}
                       {/* End .mbp_pagination */}
                     </div>
                     {/* End .property_table */}

@@ -76,8 +76,8 @@ const CreateList = ({
             value={status}
             onChange={(e) => setStatus(e.target.value)}
           >
-            <option data-tokens="Status1">buy</option>
-            <option data-tokens="Status2">rent</option>
+            <option data-tokens="buy">buy</option>
+            <option data-tokens="rent">rent</option>
           </select>
         </div>
       </div>
