@@ -8,9 +8,13 @@ import SearchBox from "./SearchBox";
 import jwt from "jsonwebtoken";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 const index = () => {
   const [myProperty, setMyProperty] = useState();
+  const [myMessage, setMyMessage] = useState();
+  // const router = useRouter();
+  // const id = router.query.id;
   const token = localStorage.getItem("token");
   const decodedToken = jwt.decode(token);
   const propertybyid = async (flatOwner) => {
@@ -25,9 +29,33 @@ const index = () => {
     }
   };
 
+  const deletepropertybyid = async (id) => {
+    const result = await axios.delete(
+      `https://makanmitra.dthree.in/api/property/delete-property/${id}`
+    );
+    console.log(result.data);
+    // setMyMessage("Property deleted")
+    setMyMessage(result.data.message)
+  };
+
+  // useEffect(() => {
+  //   {id && deletepropertybyid(id);}
+  // }, [id]);
+
   useEffect(() => {
-    {decodedToken.user_id && propertybyid(decodedToken.user_id);}
+    {
+      decodedToken.user_id && propertybyid(decodedToken.user_id);
+    }
   }, [decodedToken.user_id]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setMyMessage("");
+    }, 5000);
+
+    return () => clearTimeout(timeout);
+  }, [myMessage]);
+
   if (!myProperty || !decodedToken.user_id) {
     return <h1>Load..</h1>;
   }
@@ -105,11 +133,24 @@ const index = () => {
                 <div className="col-lg-12">
                   <div className="my_dashboard_review mb40">
                     <div className="property_table">
+                      {myMessage && (
+                        <div className="form-group">
+                          <div
+                            className="alert alert-success text-center margin-auto"
+                            role="alert"
+                          >
+                            {myMessage}
+                          </div>
+                        </div>
+                      )}
                       <div className="table-responsive mt0">
-                        <TableData myProperty={myProperty} />
+                        <TableData
+                          myProperty={myProperty}
+                          deletepropertybyid={deletepropertybyid}
+                        />
                       </div>
                       {/* End .table-responsive */}
-{/* 
+                      {/* 
                       <div className="mbp_pagination">
                         <Pagination />
                       </div> */}

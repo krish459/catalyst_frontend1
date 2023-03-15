@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-const TableData = ({ myProperty }) => {
+const TableData = ({ myProperty,deletepropertybyid }) => {
   // let theadConent = [
   //   "Listing Title",
   //   "Date published",
@@ -131,7 +131,7 @@ const TableData = ({ myProperty }) => {
             <a href="#">
               <span
                 className="flaticon-garbage"
-                
+                onClick={()=>{deletepropertybyid(item._id)}}
               ></span>
             </a>
           </li>
