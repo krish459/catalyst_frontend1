@@ -9,6 +9,7 @@ import PropertyDetails from "../common/listing-details/PropertyDetails";
 import PropertyFeatures from "../common/listing-details/PropertyFeatures";
 import PropertyItem from "../common/listing-details/PropertyItem";
 import PropertyLocation from "../common/listing-details/PropertyLocation";
+import PropertySearch from "../common/listing-details/PropertySearch";
 import PropertyVideo from "../common/listing-details/PropertyVideo";
 import WalkScore from "../common/listing-details/WalkScore";
 import WhatsNearby from "../common/listing-details/WhatsNearby";
@@ -23,7 +24,8 @@ const DetailsContent = ({
   propertyAge,
   furnishing,
   rentOrBuy,
-  amenities
+  amenities,
+  locality
 }) => {
   return (
     <>
@@ -93,17 +95,18 @@ const DetailsContent = ({
       </div>
       {/* End .feature_area */}
 
-      {/* <div className="application_statics mt30">
+      <div className="application_statics mt30">
         <h4 className="mb30">
           Location{" "}
           <small className="float-end">
-            1421 San Pedro St, Los Angeles, CA 90015
+            {locality}
           </small>
         </h4>
         <div className="property_video p0">
-          <PropertyLocation />
+          {/* <PropertyLocation /> */}
+          <PropertySearch address1={locality} />
         </div>
-      </div> */}
+      </div>
       {/* End .location_area */}
 
       {/* <div className="application_statics mt30">

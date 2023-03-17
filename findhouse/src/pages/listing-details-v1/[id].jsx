@@ -7,9 +7,9 @@ import Footer from "../../components/common/footer/Footer";
 import Header from "../../components/common/header/DefaultHeader";
 import MobileMenu from "../../components/common/header/MobileMenu";
 import PopupSignInUp from "../../components/common/PopupSignInUp";
-import properties from "../../data/properties";
+// import properties from "../../data/properties";
 import DetailsContent from "../../components/listing-details-v1/DetailsContent";
-import Sidebar from "../../components/listing-details-v1/Sidebar";
+// import Sidebar from "../../components/listing-details-v1/Sidebar";
 import axios from "axios";
 import { FcLike } from "react-icons/fc";
 
@@ -163,11 +163,58 @@ const ListingDynamicDetailsV1 = () => {
 
                   <div className="spss style2 mt20 text-end tal-400">
                     <ul className="mb0">
-                      {/* <li className="list-inline-item">
+                      <li className="list-inline-item">
                         <a href="#">
                           <span className="flaticon-transfer-1"></span>
                         </a>
-                      </li> */}
+                      </li>
+
+                      {/*const ShareLink = () => {
+  const [isLinkCopied, setIsLinkCopied] = useState(false);
+  const propertyUrl = window.location.href;
+  const sharedUrl = `${propertyUrl}?referral=${btoa('user123')}`;
+
+  const copyLinkToClipboard = () => {
+    navigator.clipboard.writeText(sharedUrl);
+    setIsLinkCopied(true);
+  };
+
+  return (
+    <div className="share-link">
+      <ul className="list-inline">
+        <li className="list-inline-item">
+          <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(sharedUrl)}`} target="_blank">
+            <span className="flaticon-facebook"></span>
+          </a>
+        </li>
+        <li className="list-inline-item">
+          <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(sharedUrl)}`} target="_blank">
+            <span className="flaticon-twitter"></span>
+          </a>
+        </li>
+        <li className="list-inline-item">
+          <a href={`https://www.linkedin.com/shareArticle?url=${encodeURIComponent(sharedUrl)}`} target="_blank">
+            <span className="flaticon-linkedin"></span>
+          </a>
+        </li>
+        <li className="list-inline-item">
+          <a href={`mailto:?subject=Check out this property&body=${encodeURIComponent(sharedUrl)}`} target="_blank">
+            <span className="flaticon-email"></span>
+          </a>
+        </li>
+        <li className="list-inline-item">
+          <a href="#" onClick={copyLinkToClipboard}>
+            <span className="flaticon-transfer-1"></span>
+          </a>
+        </li>
+      </ul>
+      {isLinkCopied && <span className="copied-message">Link copied to clipboard!</span>}
+    </div>
+  );
+};
+
+export default ShareLink;
+ */}
                       {/* <li className="list-inline-item">
                         <a href="#">
                           <span className="flaticon-heart"></span>
@@ -331,7 +378,9 @@ const ListingDynamicDetailsV1 = () => {
                 rentOrBuy={property.product.buyOrRent}
                 amenities={property.product.amenities}
                 furnishing={property.product.details[0].furnishing}
+                locality={property.product.locality}
               />
+
             </div>
             {/* End details content .col-lg-8 */}
             {/* 
