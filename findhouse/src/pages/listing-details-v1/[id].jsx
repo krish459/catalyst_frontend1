@@ -16,27 +16,14 @@ import { FcLike } from "react-icons/fc";
 let favArray = [];
 const ListingDynamicDetailsV1 = () => {
   const router = useRouter();
+  const [shortUrl, setShortUrl] = useState("");
   const [property, setProperty] = useState();
   const [fav, setfav] = useState({});
   const [favButton, setfavButton] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const id = router.query.id;
-  // console.log(id);
-  const propertybyid = async (id) => {
-    const result = await axios.get(
-      `https://makanmitra.dthree.in/api/property/get-properties/${id}`
-    );
-    console.log(result.data);
-    setProperty(result.data);
-  };
 
-  useEffect(() => {
-    {id && propertybyid(id);}
-  }, [id]);
-  if (!property || !router.query.id) {
-    return <h1>Load..</h1>;
-  }
-
-  // const [addFavs, setAddFavs] = useState();
 
   const savefav = (myfav) => {
     typeof window !== "undefined"
@@ -116,21 +103,64 @@ const ListingDynamicDetailsV1 = () => {
     localStorage.setItem("fav", JSON.stringify(favArray1));
     setfavButton(false);
   };
+  const propertybyid = async (id) => {
+    const token = localStorage.getItem("token");
 
-  if (!localStorage.getItem("fav")) {
-    localStorage.setItem("fav", JSON.stringify([]));
+    
+    if (!token) {
+        setShowLoginModal(true);
+        setIsLoading(false);
+        return;
+      }
+    
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const result = await axios.get(
+      `https://makanmitra.dthree.in/api/property/get-properties/${id}`,
+      config
+    );
+    console.log(result.data);
+    setProperty(result.data);
+    setShortUrl(result.data.product.short);
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    {
+      id && propertybyid(id);
+    }
+  }, [id]);
+
+
+  useEffect(() => {
+    if (!localStorage.getItem("fav")) {
+      localStorage.setItem("fav", JSON.stringify([]));
+    }
+  }, []);
+  
+  // if (isLoading || !property || !router.query.id) {
+  //   return <div>Loading...</div>;
+  // } 
+
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
-  
-  // useEffect(() => {
-  //   const timeout = setTimeout(() => {
-  //     setAddFavs();
-  //   }, 500);
-
-  //   return () => clearTimeout(timeout);
-  // }, [addFavs]);
-
+  if (showLoginModal) {
+    return (
+      <>
+        <Header />
+        <MobileMenu />
+        <PopupSignInUp />
+      </>
+    );
+  }
   return (
+    
     <>
       {/* <!-- Main Header Nav --> */}
       <Header />
@@ -163,105 +193,59 @@ const ListingDynamicDetailsV1 = () => {
 
                   <div className="spss style2 mt20 text-end tal-400">
                     <ul className="mb0">
-                      <li className="list-inline-item">
-                        <a href="#">
-                          <span className="flaticon-transfer-1"></span>
-                        </a>
+                      {/* <li
+                        className="list-inline-item"
+                        onClick={handleShareClick}
+                      >
+                        
+                        <span className="flaticon-transfer-1"></span>
                       </li>
+                      {shortUrl && (
+                        <div>
+                          <input type="text" value={shortUrl} readOnly />
+                          <button onClick={handleCopyClick}>Copy</button>
+                        </div>
+                      )} */}
 
-                      {/*const ShareLink = () => {
-  const [isLinkCopied, setIsLinkCopied] = useState(false);
-  const propertyUrl = window.location.href;
-  const sharedUrl = `${propertyUrl}?referral=${btoa('user123')}`;
-
-  const copyLinkToClipboard = () => {
-    navigator.clipboard.writeText(sharedUrl);
-    setIsLinkCopied(true);
-  };
-
-  return (
-    <div className="share-link">
-      <ul className="list-inline">
-        <li className="list-inline-item">
-          <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(sharedUrl)}`} target="_blank">
-            <span className="flaticon-facebook"></span>
-          </a>
-        </li>
-        <li className="list-inline-item">
-          <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(sharedUrl)}`} target="_blank">
-            <span className="flaticon-twitter"></span>
-          </a>
-        </li>
-        <li className="list-inline-item">
-          <a href={`https://www.linkedin.com/shareArticle?url=${encodeURIComponent(sharedUrl)}`} target="_blank">
-            <span className="flaticon-linkedin"></span>
-          </a>
-        </li>
-        <li className="list-inline-item">
-          <a href={`mailto:?subject=Check out this property&body=${encodeURIComponent(sharedUrl)}`} target="_blank">
-            <span className="flaticon-email"></span>
-          </a>
-        </li>
-        <li className="list-inline-item">
-          <a href="#" onClick={copyLinkToClipboard}>
-            <span className="flaticon-transfer-1"></span>
-          </a>
-        </li>
-      </ul>
-      {isLinkCopied && <span className="copied-message">Link copied to clipboard!</span>}
-    </div>
-  );
-};
-
-export default ShareLink;
- */}
-                      {/* <li className="list-inline-item">
-                        <a href="#">
-                          <span className="flaticon-heart"></span>
-                        </a>
-                      </li> */}
-
-                      {
-                        localStorage.getItem("token") ? (
-                          <li className="list-inline-item">
-                            <a href="#">
-                              {!favButton ? (
-                                <span
-                                  className="flaticon-heart"
+                      {localStorage.getItem("token") ? (
+                        <li className="list-inline-item">
+                          <a href="#">
+                            {!favButton ? (
+                              <span
+                                className="flaticon-heart"
+                                onClick={() => {
+                                  addtofav(
+                                    property.product._id,
+                                    property.product.title,
+                                    property.product.locality,
+                                    property.product.rent,
+                                    property.product.images
+                                  );
+                                }}
+                              ></span>
+                            ) : (
+                              <span>
+                                <FcLike
                                   onClick={() => {
-                                    addtofav(
-                                      property.product._id,
-                                      property.product.title,
-                                      property.product.locality,
-                                      property.product.rent,
-                                      property.product.images
-                                    );
+                                    removeFromfav(property.product._id);
                                   }}
-                                ></span>
-                              ) : (
-                                <span>
-                                  <FcLike
-                                    onClick={() => {
-                                      removeFromfav(property.product._id);
-                                    }}
-                                    size="30"
-                                  />
-                                </span>
-                              )}
-                            </a>
-                          </li>
-                        ) : (
-                          <li className="list-inline-item">
-                            <a
-                              href="#"
-                              data-bs-toggle="modal"
-                              data-bs-target=".bd-example-modal-lg"
-                            >
-                              <span className="flaticon-heart"></span>
-                            </a>
-                          </li>
-                        )
-                      }
+                                  size="30"
+                                />
+                              </span>
+                            )}
+                          </a>
+                        </li>
+                      ) : (
+                        <li className="list-inline-item">
+                          <a
+                            href="#"
+                            data-bs-toggle="modal"
+                            data-bs-target=".bd-example-modal-lg"
+                          >
+                            <span className="flaticon-heart"></span>
+                          </a>
+                        </li>
+                      )}
                       {/* <li className="list-inline-item">
                         <a href="#">
                           <span className="flaticon-share"></span>
@@ -380,7 +364,6 @@ export default ShareLink;
                 furnishing={property.product.details[0].furnishing}
                 locality={property.product.locality}
               />
-
             </div>
             {/* End details content .col-lg-8 */}
             {/* 
