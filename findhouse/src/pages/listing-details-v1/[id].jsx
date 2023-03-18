@@ -7,11 +7,13 @@ import Footer from "../../components/common/footer/Footer";
 import Header from "../../components/common/header/DefaultHeader";
 import MobileMenu from "../../components/common/header/MobileMenu";
 import PopupSignInUp from "../../components/common/PopupSignInUp";
+// import Modal from 'react-modal';
 // import properties from "../../data/properties";
 import DetailsContent from "../../components/listing-details-v1/DetailsContent";
 // import Sidebar from "../../components/listing-details-v1/Sidebar";
 import axios from "axios";
 import { FcLike } from "react-icons/fc";
+import LoginSignup from "../../components/common/user-credentials/LoginSignup";
 
 let favArray = [];
 const ListingDynamicDetailsV1 = () => {
@@ -138,6 +140,16 @@ const ListingDynamicDetailsV1 = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (showLoginModal) {
+      const triggerEl = document.querySelector(".flaticon-heart");
+      console.log(triggerEl);
+      if (triggerEl) {
+        triggerEl.click();
+      } 
+    }
+  }, [showLoginModal]);
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -148,6 +160,15 @@ const ListingDynamicDetailsV1 = () => {
         <Header />
         <MobileMenu />
         <PopupSignInUp />
+        <li className="list-inline-item">
+          <a
+            href="#"
+            data-bs-toggle="modal"
+            data-bs-target=".bd-example-modal-lg"
+          >
+            <span className="flaticon-heart"></span>
+          </a>
+        </li>
       </>
     );
   }
