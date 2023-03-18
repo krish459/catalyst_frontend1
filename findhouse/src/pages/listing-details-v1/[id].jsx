@@ -24,7 +24,6 @@ const ListingDynamicDetailsV1 = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const id = router.query.id;
 
-
   const savefav = (myfav) => {
     typeof window !== "undefined"
       ? localStorage.setItem("fav", JSON.stringify(myfav))
@@ -106,13 +105,11 @@ const ListingDynamicDetailsV1 = () => {
   const propertybyid = async (id) => {
     const token = localStorage.getItem("token");
 
-    
     if (!token) {
-        setShowLoginModal(true);
-        setIsLoading(false);
-        return;
-      }
-    
+      setShowLoginModal(true);
+      setIsLoading(false);
+      return;
+    }
 
     const config = {
       headers: {
@@ -135,16 +132,11 @@ const ListingDynamicDetailsV1 = () => {
     }
   }, [id]);
 
-
   useEffect(() => {
     if (!localStorage.getItem("fav")) {
       localStorage.setItem("fav", JSON.stringify([]));
     }
   }, []);
-  
-  // if (isLoading || !property || !router.query.id) {
-  //   return <div>Loading...</div>;
-  // } 
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -160,7 +152,6 @@ const ListingDynamicDetailsV1 = () => {
     );
   }
   return (
-    
     <>
       {/* <!-- Main Header Nav --> */}
       <Header />
@@ -363,6 +354,7 @@ const ListingDynamicDetailsV1 = () => {
                 amenities={property.product.amenities}
                 furnishing={property.product.details[0].furnishing}
                 locality={property.product.locality}
+                view={property.product.view}
               />
             </div>
             {/* End details content .col-lg-8 */}

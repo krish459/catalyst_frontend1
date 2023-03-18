@@ -11,6 +11,7 @@ import PropertyItem from "../common/listing-details/PropertyItem";
 import PropertyLocation from "../common/listing-details/PropertyLocation";
 import PropertySearch from "../common/listing-details/PropertySearch";
 import PropertyVideo from "../common/listing-details/PropertyVideo";
+import ShareProperty from "../common/listing-details/ShareProperty";
 import WalkScore from "../common/listing-details/WalkScore";
 import WhatsNearby from "../common/listing-details/WhatsNearby";
 
@@ -25,7 +26,8 @@ const DetailsContent = ({
   furnishing,
   rentOrBuy,
   amenities,
-  locality
+  locality,
+  view
 }) => {
   return (
     <>
@@ -122,10 +124,14 @@ const DetailsContent = ({
       </div> */}
       {/* End property-video  */}
 
-      {/* <div className="walkscore_area mt30">
-        <WalkScore />
-      </div> */}
+      <div className="walkscore_area mt30">
+        <WalkScore view={view}/>
+      </div>
       {/* End walkscore_area */}
+      <div className="walkscore_area mt30">
+        <ShareProperty/>
+      </div>
+      {/* End ShareProperty */}
 
       {/* <div className="whats_nearby mt30">
         <h4 className="mb10">What&apos;s Nearby</h4>
