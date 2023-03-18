@@ -7,8 +7,27 @@ import MobileMenu from "../common/header/MobileMenu";
 import PopupSignInUp from "../common/PopupSignInUp";
 import BreadCrumbBlog from "./BreadCrumbBlog";
 import Blog from "./Blog";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const index = () => {
+  const [profiledata, setProfiledata] = useState();
+
+  const listBlogs = async () => {
+    const apiUrl = `https://makanmitra.dthree.in/api/blog/get-blogs`;
+    const result = await axios.get(apiUrl);
+    setProfiledata(result.data.blogs.docs);
+    console.log(result.data.blogs.docs);
+    // setTotalPages(result.data.properties.totalPages);
+  };
+
+  useEffect(() => {
+    listBlogs();
+  }, []);
+  if (!profiledata) {
+    return <h1>Load..</h1>;
+  }
+
   return (
     <>
       {/* <!-- Main Header Nav --> */}
@@ -24,8 +43,11 @@ const index = () => {
       <section className="blog_post_container bgc-f7">
         <div className="container">
           <div className="row">
-            <div className="col-xl-6">
+            {/* <div className="col-xl-6">
               <BreadCrumbBlog />
+            </div> */}
+            <div className="breadcrumb_content style2">
+              <h2 className="breadcrumb_title">Blogs</h2>
             </div>
           </div>
           {/* End .row */}
@@ -33,20 +55,20 @@ const index = () => {
           <div className="row">
             <div className="col-lg-8">
               <div className="main_blog_post_content">
-                <Blog />
+                <Blog profiledata={profiledata} />
                 {/* End blog item */}
 
-                <div className="mbp_pagination mt20">
+                {/* <div className="mbp_pagination mt20">
                   <Pagination />
-                </div>
+                </div> */}
                 {/* End .mbp_pagination */}
               </div>
             </div>
             {/* End .col */}
 
-            <div className="col-lg-4 col-xl-4">
+            {/* <div className="col-lg-4 col-xl-4">
               <BlogSidebar />
-            </div>
+            </div> */}
             {/* End Sidebar column */}
           </div>
           {/* End .row */}

@@ -66,25 +66,7 @@ const index = () => {
     setProfiledata(result.data.properties.docs);
     setTotalPages(result.data.properties.totalPages);
 
-    // Object.keys(params).forEach(key => params[key] === undefined && delete params[key]);
-    // const apiUrl = `https://makanmitra.dthree.in/api/property/get-properties?${queryString.stringify(params)}`;
-    // console.log(apiUrl);
-    // const result = await axios.get(apiUrl);
-    // const result = await axios.get(
-    //   `https://makanmitra.dthree.in/api/property/get-properties?keyword=${getKeyword}`
-    // );
-    // const result = await axios.get(
-    //   `https://makanmitra.dthree.in/api/property/get-properties?keyword=${getKeyword}&bedrooms=${getBedroom}&bathroom=${getBathroom}&furnishing=${getGarages}&availableFromYear=${getBuiltYear}&buyOrRent=${getStatus}&locality=${getLocation}&propertyType=${getPropertiesType}&minarea=${getAreaMin}&price=${price}&page=${page}&perPage=${perPage}`
-    // );
-    // if (!result.data.details) {
-    //   setProfiledata(result.data.properties.docs);
-    //   setTotalPages(result.data.properties.totalPages);
-    //   // console.log("Pages Krish : ", totalPages);
-    // } else {
-    //   setProfiledata(result.data.details);
-    //   // setTotalPages(result.data.properties.totalPages);
-    //   // console.log("Pages Krish : ", totalPages);
-    // }
+    
   };
 
   useEffect(() => {

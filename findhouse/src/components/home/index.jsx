@@ -80,7 +80,7 @@ const Index = () => {
       </section>
 
       {/* <!-- Our Blog --> */}
-      {/* <section className="our-blog bgc-f7 pb30">
+      <section className="our-blog bgc-f7 pb30">
         <div className="container">
           <div className="row">
             <div className="col-lg-6 offset-lg-3">
@@ -94,7 +94,7 @@ const Index = () => {
             <Blogs />
           </div>
         </div>
-      </section> */}
+      </section>
 
       {/* <!-- Our Partners --> */}
       <section id="our-partners" className="our-partners">
