@@ -12,18 +12,21 @@ import { useEffect, useState } from "react";
 
 const index = () => {
   const [profiledata, setProfiledata] = useState();
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(3);
+  const [totalPages, setTotalPages] = useState();
 
   const listBlogs = async () => {
-    const apiUrl = `https://makanmitra.dthree.in/api/blog/get-blogs`;
+    const apiUrl = `https://makanmitra.dthree.in/api/blog/get-blogs?page=${page}&perPage=${perPage}`;
     const result = await axios.get(apiUrl);
     setProfiledata(result.data.blogs.docs);
     console.log(result.data.blogs.docs);
-    // setTotalPages(result.data.properties.totalPages);
+    setTotalPages(result.data.blogs.totalPages);
   };
 
   useEffect(() => {
     listBlogs();
-  }, []);
+  }, [page, perPage]);
   if (!profiledata) {
     return <h1>Load..</h1>;
   }
@@ -58,9 +61,17 @@ const index = () => {
                 <Blog profiledata={profiledata} />
                 {/* End blog item */}
 
-                {/* <div className="mbp_pagination mt20">
-                  <Pagination />
-                </div> */}
+                <div className="mbp_pagination mt20">
+                  <Pagination
+                    page={page}
+                    setPage={setPage}
+                    perPage={perPage}
+                    setPerPage={setPerPage}
+                    totalPages={totalPages}
+                    setTotalPages={setTotalPages}
+                    />
+
+                </div>
                 {/* End .mbp_pagination */}
               </div>
             </div>

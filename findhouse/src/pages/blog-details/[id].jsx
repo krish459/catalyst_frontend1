@@ -1,3 +1,4 @@
+import axios from "axios";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -19,15 +20,26 @@ import blogs from "../../data/blogs";
 
 const BlogDetailsDynamic = () => {
   const router = useRouter();
-  const [blog, setBlogItem] = useState({});
+  const [blog, setBlogItem] = useState();
   const id = router.query.id;
 
-  useEffect(() => {
-    if (!id) <h1>Loading...</h1>;
-    else setBlogItem(blogs.find((item) => item.id == id));
+  const blogbyid = async (id) => {
+    const result = await axios.get(
+      `https://makanmitra.dthree.in/api/blog/get-blog/${id}`
+    );
+    console.log(result.data.blog);
+    setBlogItem(result.data.blog);
+  };
 
-    return () => {};
+  useEffect(() => {
+    {
+      id && blogbyid(id);
+    }
   }, [id]);
+
+  if (!blog) {
+    return <h1>Loading...</h1>;
+  }
 
   return (
     <>
@@ -45,8 +57,11 @@ const BlogDetailsDynamic = () => {
       <section className="blog_post_container bgc-f7">
         <div className="container">
           <div className="row">
-            <div className="col-xl-6">
+            {/* <div className="col-xl-6">
               <BreadCrumb2 />
+            </div> */}
+            <div className="breadcrumb_content style2">
+              <h2 className="breadcrumb_title">Blog Details</h2>
             </div>
           </div>
           {/* End .row */}
@@ -56,19 +71,20 @@ const BlogDetailsDynamic = () => {
               <div className="main_blog_post_content">
                 <div className="mbp_thumb_post">
                   <div className="blog_sp_tag">
-                    <a href="#">{blog?.postMeta}</a>
+                    <a href="#">{blog.postMeta}</a>
                   </div>
-                  <h3 className="blog_sp_title">{blog?.title}</h3>
+
+                  <h3 className="blog_sp_title">{blog.title}</h3>
                   <ul className="blog_sp_post_meta">
-                    <li className="list-inline-item">
+                    {/* <li className="list-inline-item">
                       <a href="#">
                         <img
                           src="/assets/images/property/pposter1.png"
                           alt="pposter1.png"
                         />
                       </a>
-                    </li>
-                    <li className="list-inline-item">
+                    </li> */}
+                    {/* <li className="list-inline-item">
                       <a href="#">Ali Tufan</a>
                     </li>
                     <li className="list-inline-item">
@@ -88,27 +104,21 @@ const BlogDetailsDynamic = () => {
                     </li>
                     <li className="list-inline-item">
                       <a href="#">15</a>
-                    </li>
+                    </li> */}
                   </ul>
                   <div className="thumb">
                     <img
                       className="img-fluid w-100"
-                      src={blog?.img}
+                      src={`https://makanmitra.dthree.in/api/property/images/${blog.img}`}
                       alt={blog?.img}
                     />
                   </div>
 
                   <div className="details">
                     <p className="mb30">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Duis mollis et sem sed sollicitudin. Donec non odio neque.
-                      Aliquam hendrerit sollicitudin purus, quis rutrum mi
-                      accumsan nec. Quisque bibendum orci ac nibh facilisis, at
-                      malesuada orci congue. Nullam tempus sollicitudin cursus.
-                      Ut et adipiscing erat. Curabitur this is a text link
-                      libero tempus congue.
+                      {blog.postDescriptions}
                     </p>
-                    <p className="mb30">
+                    {/* <p className="mb30">
                       Duis mattis laoreet neque, et ornare neque sollicitudin
                       at. Proin sagittis dolor sed mi elementum pretium. Donec
                       et justo ante. Vivamus egestas sodales est, eu rhoncus
@@ -119,8 +129,8 @@ const BlogDetailsDynamic = () => {
                       Curabitur massa magna, tempor in blandit id, porta in
                       ligula. Aliquam laoreet nisl massa, at interdum mauris
                       sollicitudin et.
-                    </p>
-                    <h4 className="mb15">
+                    </p> */}
+                    {/* <h4 className="mb15">
                       Housing Markets That Changed the Most This Decade
                     </h4>
                     <p>
@@ -131,8 +141,8 @@ const BlogDetailsDynamic = () => {
                       gravida mi non aliquet porttitor. Praesent dapibus, nisi a
                       faucibus tincidunt, quam dolor condimentum metus, in
                       convallis libero ligula ut eros.
-                    </p>
-                    <div className="mbp_blockquote">
+                    </p> */}
+                    {/* <div className="mbp_blockquote">
                       <div className="blockquote">
                         <span className="font-italic">
                           <i className="fa fa-quote-left"></i>
@@ -144,8 +154,8 @@ const BlogDetailsDynamic = () => {
                           rutrum mi accumsan nec.
                         </em>
                       </div>
-                    </div>
-                    <p className="mb25">
+                    </div> */}
+                    {/* <p className="mb25">
                       Curabitur massa magna, tempor in blandit id, porta in
                       ligula. Aliquam laoreet nisl massa, at interdum mauris
                       sollicitudin et. Mauris risus lectus, tristique at nisl
@@ -160,24 +170,24 @@ const BlogDetailsDynamic = () => {
                       Aenean gravida mi non aliquet porttitor. Praesent dapibus,
                       nisi a faucibus tincidunt, quam dolor condimentum metus,
                       in convallis libero ligula ut eros.
-                    </p>
+                    </p> */}
                   </div>
                   <ul className="blog_post_share">
-                    <li>
+                    {/* <li>
                       <p>Share</p>
                     </li>
-                    <Social />
+                    <Social /> */}
                   </ul>
                   {/* End .blog_post_share */}
                 </div>
                 {/* End .mbp_thumb_post */}
 
-                <div className="mbp_pagination_tab">
+                {/* <div className="mbp_pagination_tab">
                   <Pagination />
-                </div>
+                </div> */}
                 {/* End mbp_pagination_tab */}
 
-                <div className="product_single_content mb30">
+                {/* <div className="product_single_content mb30">
                   <div className="mbp_pagination_comments">
                     <div className="total_review">
                       <h4>896 Reviews</h4>
@@ -191,15 +201,15 @@ const BlogDetailsDynamic = () => {
                         Write a Review
                       </a>
                     </div>
-                    {/* End .total_review */}
+                    End .total_review
 
                     <Comments />
                     <div className="custom_hr"></div>
                   </div>
-                </div>
+                </div> */}
                 {/* End .product_single_content  */}
 
-                <div className="bsp_reveiw_wrt">
+                {/* <div className="bsp_reveiw_wrt">
                   <h4>Write a Review</h4>
 
                   <ul className="review_star">
@@ -215,23 +225,23 @@ const BlogDetailsDynamic = () => {
                     </li>
                   </ul>
                   <ReviewBox />
-                </div>
+                </div> */}
                 {/* End .bsp_reveiw_wrt */}
               </div>
               {/* End .main_blog_post_content */}
 
-              <div className="row">
+              {/* <div className="row">
                 <div className="col-lg-12 mb20">
                   <h4>Related Posts</h4>
                 </div>
                 <RelatedPost />
-              </div>
+              </div> */}
             </div>
             {/* End .col */}
 
-            <div className="col-lg-4">
+            {/* <div className="col-lg-4">
               <BlogSidebar />
-            </div>
+            </div> */}
             {/* End Sidebar column */}
           </div>
           {/* End .row */}
