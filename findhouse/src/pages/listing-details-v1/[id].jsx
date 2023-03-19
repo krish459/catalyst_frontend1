@@ -143,7 +143,7 @@ const ListingDynamicDetailsV1 = () => {
   useEffect(() => {
     if (showLoginModal) {
       const triggerEl = document.querySelector(".flaticon-heart");
-      console.log(triggerEl);
+      // console.log(triggerEl);
       if (triggerEl) {
         triggerEl.click();
       } 
@@ -166,7 +166,7 @@ const ListingDynamicDetailsV1 = () => {
             data-bs-toggle="modal"
             data-bs-target=".bd-example-modal-lg"
           >
-            <span className="flaticon-heart"></span>
+            <span className="flaticon-heart" style={{display:"none"}}></span>
           </a>
         </li>
       </>

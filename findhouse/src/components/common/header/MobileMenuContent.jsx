@@ -16,42 +16,42 @@ const home = [
     name: "Home 1",
     routerPath: "/",
   },
-  {
-    name: "Home 2",
-    routerPath: "/home-2",
-  },
-  {
-    name: "Home 3",
-    routerPath: "/home-3",
-  },
-  {
-    name: "Home 4",
-    routerPath: "/home-4",
-  },
-  {
-    name: "Home 5",
-    routerPath: "/home-5",
-  },
-  {
-    name: "Home 6",
-    routerPath: "/home-6",
-  },
-  {
-    name: "Home 7",
-    routerPath: "/home-7",
-  },
-  {
-    name: "Home 8",
-    routerPath: "/home-8",
-  },
-  {
-    name: "Home 9",
-    routerPath: "/home-9",
-  },
-  {
-    name: "Home 10",
-    routerPath: "/home-10",
-  },
+  // {
+  //   name: "Home 2",
+  //   routerPath: "/home-2",
+  // },
+  // {
+  //   name: "Home 3",
+  //   routerPath: "/home-3",
+  // },
+  // {
+  //   name: "Home 4",
+  //   routerPath: "/home-4",
+  // },
+  // {
+  //   name: "Home 5",
+  //   routerPath: "/home-5",
+  // },
+  // {
+  //   name: "Home 6",
+  //   routerPath: "/home-6",
+  // },
+  // {
+  //   name: "Home 7",
+  //   routerPath: "/home-7",
+  // },
+  // {
+  //   name: "Home 8",
+  //   routerPath: "/home-8",
+  // },
+  // {
+  //   name: "Home 9",
+  //   routerPath: "/home-9",
+  // },
+  // {
+  //   name: "Home 10",
+  //   routerPath: "/home-10",
+  // },
 ];
 
 const listing = [
@@ -63,124 +63,124 @@ const listing = [
         name: "Grid v1",
         routerPath: "/listing-grid-v1",
       },
-      {
-        name: "Grid v2",
-        routerPath: "/listing-grid-v2",
-      },
-      {
-        name: "Grid v3",
-        routerPath: "/listing-grid-v3",
-      },
-      {
-        name: "Grid v4",
-        routerPath: "/listing-grid-v4",
-      },
-      {
-        name: "Grid v5",
-        routerPath: "/listing-grid-v5",
-      },
-      {
-        name: "Grid v6",
-        routerPath: "/listing-grid-v6",
-      },
+      // {
+      //   name: "Grid v2",
+      //   routerPath: "/listing-grid-v2",
+      // },
+      // {
+      //   name: "Grid v3",
+      //   routerPath: "/listing-grid-v3",
+      // },
+      // {
+      //   name: "Grid v4",
+      //   routerPath: "/listing-grid-v4",
+      // },
+      // {
+      //   name: "Grid v5",
+      //   routerPath: "/listing-grid-v5",
+      // },
+      // {
+      //   name: "Grid v6",
+      //   routerPath: "/listing-grid-v6",
+      // },
     ],
   },
-  {
-    id: 2,
-    title: "Listing List",
-    items: [
-      {
-        name: "List V1",
-        routerPath: "/listing-list-v1",
-      },
-    ],
-  },
-  {
-    id: 3,
-    title: "Listing Style",
-    items: [
-      {
-        name: "Parallax Style",
-        routerPath: "/parallax-style",
-      },
-      {
-        name: "Slider Style",
-        routerPath: "/slider-style",
-      },
-      {
-        name: "Map Header",
-        routerPath: "/map-header",
-      },
-    ],
-  },
-  {
-    id: 4,
-    title: "Listing Half",
-    items: [
-      {
-        name: "Map V1",
-        routerPath: "/listing-map-v1",
-      },
-      {
-        name: "Map V2",
-        routerPath: "/listing-map-v2",
-      },
-      {
-        name: "Map V3",
-        routerPath: "/listing-map-v3",
-      },
-      {
-        name: "Map V4",
-        routerPath: "/listing-map-v4",
-      },
-    ],
-  },
-  {
-    id: 5,
-    title: "Agent View",
-    items: [
-      {
-        name: "Agent V1",
-        routerPath: "/agent-v1",
-      },
-      {
-        name: "Agent V2",
-        routerPath: "/agent-v2",
-      },
-      {
-        name: "Agent Details",
-        routerPath: "/agent-details",
-      },
-    ],
-  },
-  {
-    id: 6,
-    title: "Agencies View",
-    items: [
-      {
-        name: "Agencies V1",
-        routerPath: "/agency-v1",
-      },
-      {
-        name: "Agencies V2",
-        routerPath: "/agency-v2",
-      },
-      {
-        name: "Agencies Details",
-        routerPath: "/agency-details",
-      },
-    ],
-  },
-  {
-    id: 7,
-    title: "Create Listing",
-    items: [
-      {
-        name: "Create Listing",
-        routerPath: "/create-listing",
-      },
-    ],
-  },
+  // {
+  //   id: 2,
+  //   title: "Listing List",
+  //   items: [
+  //     {
+  //       name: "List V1",
+  //       routerPath: "/listing-list-v1",
+  //     },
+  //   ],
+  // },
+  // {
+  //   id: 3,
+  //   title: "Listing Style",
+  //   items: [
+  //     {
+  //       name: "Parallax Style",
+  //       routerPath: "/parallax-style",
+  //     },
+  //     {
+  //       name: "Slider Style",
+  //       routerPath: "/slider-style",
+  //     },
+  //     {
+  //       name: "Map Header",
+  //       routerPath: "/map-header",
+  //     },
+  //   ],
+  // },
+  // {
+  //   id: 4,
+  //   title: "Listing Half",
+  //   items: [
+  //     {
+  //       name: "Map V1",
+  //       routerPath: "/listing-map-v1",
+  //     },
+  //     {
+  //       name: "Map V2",
+  //       routerPath: "/listing-map-v2",
+  //     },
+  //     {
+  //       name: "Map V3",
+  //       routerPath: "/listing-map-v3",
+  //     },
+  //     {
+  //       name: "Map V4",
+  //       routerPath: "/listing-map-v4",
+  //     },
+  //   ],
+  // },
+  // {
+  //   id: 5,
+  //   title: "Agent View",
+  //   items: [
+  //     {
+  //       name: "Agent V1",
+  //       routerPath: "/agent-v1",
+  //     },
+  //     {
+  //       name: "Agent V2",
+  //       routerPath: "/agent-v2",
+  //     },
+  //     {
+  //       name: "Agent Details",
+  //       routerPath: "/agent-details",
+  //     },
+  //   ],
+  // },
+  // {
+  //   id: 6,
+  //   title: "Agencies View",
+  //   items: [
+  //     {
+  //       name: "Agencies V1",
+  //       routerPath: "/agency-v1",
+  //     },
+  //     {
+  //       name: "Agencies V2",
+  //       routerPath: "/agency-v2",
+  //     },
+  //     {
+  //       name: "Agencies Details",
+  //       routerPath: "/agency-details",
+  //     },
+  //   ],
+  // },
+  // {
+  //   id: 7,
+  //   title: "Create Listing",
+  //   items: [
+  //     {
+  //       name: "Create Listing",
+  //       routerPath: "/create-listing",
+  //     },
+  //   ],
+  // },
 ];
 
 const property = [
@@ -188,22 +188,22 @@ const property = [
     id: 1,
     title: "User Admin",
     items: [
-      {
-        name: "Dashboard",
-        routerPath: "/my-dashboard",
-      },
+      // {
+      //   name: "Dashboard",
+      //   routerPath: "/my-dashboard",
+      // },
       {
         name: "My Properties",
         routerPath: "/my-properties",
       },
-      {
-        name: "My Message",
-        routerPath: "/my-message",
-      },
-      {
-        name: "My Review",
-        routerPath: "/my-review",
-      },
+      // {
+      //   name: "My Message",
+      //   routerPath: "/my-message",
+      // },
+      // {
+      //   name: "My Review",
+      //   routerPath: "/my-review",
+      // },
       {
         name: "My Favourites",
         routerPath: "/my-favourites",
@@ -212,95 +212,101 @@ const property = [
         name: "My Profile",
         routerPath: "/my-profile",
       },
-      {
-        name: "My Package",
-        routerPath: "/my-package",
-      },
-      {
-        name: "My Saved Search",
-        routerPath: "/my-saved-search",
-      },
-      {
-        name: "Add Property",
-        routerPath: "/create-listing",
-      },
+      // {
+      //   name: "My Package",
+      //   routerPath: "/my-package",
+      // },
+      // {
+      //   name: "My Saved Search",
+      //   routerPath: "/my-saved-search",
+      // },
+      // {
+      //   name: "Add Property",
+      //   routerPath: "/create-listing",
+      // },
     ],
   },
-  {
-    id: 2,
-    title: "Listing Single",
-    items: [
-      {
-        name: "Single V1",
-        routerPath: "/listing-details-v1",
-      },
-      {
-        name: "Single V2",
-        routerPath: "/listing-details-v2",
-      },
-      {
-        name: "Single V3",
-        routerPath: "/listing-details-v3",
-      },
-      {
-        name: "Single V4",
-        routerPath: "/listing-details-v4",
-      },
-    ],
-  },
+  // {
+  //   id: 2,
+  //   title: "Listing Single",
+  //   items: [
+  //     {
+  //       name: "Single V1",
+  //       routerPath: "/listing-details-v1",
+  //     },
+  //     {
+  //       name: "Single V2",
+  //       routerPath: "/listing-details-v2",
+  //     },
+  //     {
+  //       name: "Single V3",
+  //       routerPath: "/listing-details-v3",
+  //     },
+  //     {
+  //       name: "Single V4",
+  //       routerPath: "/listing-details-v4",
+  //     },
+  //   ],
+  // },
 ];
 
 const blog = [
   { id: 1, name: "Blog List 1", routerPath: "/blog-list-1" },
-  { id: 2, name: "Blog List 2", routerPath: "/blog-list-2" },
-  { id: 3, name: "Blog List 3", routerPath: "/blog-list-3" },
-  {
-    id: 4,
-    name: "Blog Details",
-    routerPath: "/blog-details",
-  },
+  // { id: 2, name: "Blog List 2", routerPath: "/blog-list-2" },
+  // { id: 3, name: "Blog List 3", routerPath: "/blog-list-3" },
+  // {
+  //   id: 4,
+  //   name: "Blog Details",
+  //   routerPath: "/blog-details",
+  // },
 ];
 
-const pages = [
-  {
-    name: "About Us",
-    routerPath: "/about-us",
-  },
-  {
-    name: "Gallery",
-    routerPath: "/gallery",
-  },
-  {
-    name: "Faq",
-    routerPath: "/faq",
-  },
-  {
-    name: "LogIn",
-    routerPath: "/login",
-  },
-  { name: "Compare", routerPath: "/compare" },
-  { name: "Membership", routerPath: "/membership" },
+// const pages = [
+//   {
+//     name: "About Us",
+//     routerPath: "/about-us",
+//   },
+//   {
+//     name: "Gallery",
+//     routerPath: "/gallery",
+//   },
+//   {
+//     name: "Faq",
+//     routerPath: "/faq",
+//   },
+//   {
+//     name: "LogIn",
+//     routerPath: "/login",
+//   },
+//   { name: "Compare", routerPath: "/compare" },
+//   { name: "Membership", routerPath: "/membership" },
 
-  {
-    name: "Register",
-    routerPath: "/register",
-  },
-  {
-    name: "Service",
-    routerPath: "/service",
-  },
-  {
-    name: "404 Page",
-    routerPath: "/404",
-  },
-  {
-    name: "Terms & Conditions",
-    routerPath: "/terms",
-  },
-];
+//   {
+//     name: "Register",
+//     routerPath: "/register",
+//   },
+//   {
+//     name: "Service",
+//     routerPath: "/service",
+//   },
+//   {
+//     name: "404 Page",
+//     routerPath: "/404",
+//   },
+//   {
+//     name: "Terms & Conditions",
+//     routerPath: "/terms",
+//   },
+// ];
 
 const MobileMenuContent = () => {
   const route = useRouter();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    console.log("herre!!");
+    window.location.reload(false);
+  };
   return (
     <ProSidebar>
       <SidebarHeader>
@@ -480,7 +486,7 @@ const MobileMenuContent = () => {
           </SubMenu>
           {/* End pages Blog */}
 
-          <SubMenu
+          {/* <SubMenu
             title="Pages"
             className={
               pages.some((page) => page.routerPath === route.pathname)
@@ -503,10 +509,10 @@ const MobileMenuContent = () => {
                 </Link>
               </MenuItem>
             ))}
-          </SubMenu>
+          </SubMenu> */}
           {/* End pages Pages */}
 
-          <MenuItem>
+          {/* <MenuItem>
             <Link href="/contact">
               <a
                 className={
@@ -516,21 +522,43 @@ const MobileMenuContent = () => {
                 Contact
               </a>
             </Link>
-          </MenuItem>
+          </MenuItem> */}
 
           <MenuItem>
-            <Link href="/login">
-              <a
+              {typeof window !== "undefined" ? (
+                !localStorage.getItem("token") ? (
+                  <a
+              href="#"
+              className="btn flaticon-user"
+              data-bs-toggle="modal"
+              data-bs-target=".bd-example-modal-lg"
+            >
+                  <span className="">Login/Register</span>
+                  </a>
+                ) : (
+                  <span className="" onClick={(e) => e.preventDefault()}>
+                    <button className="" onClick={handleLogout}>
+                      Logout
+                    </button>
+                  </span>
+                )
+              ) : null}
+            
+          </MenuItem>
+
+          {/* <MenuItem> */}
+          {/* <Link> */}
+          {/* <a
                 className={
                   route.pathname === "/login" ? "ui-active" : undefined
                 }
               >
                 <span className="flaticon-user"></span> Login
-              </a>
-            </Link>
-          </MenuItem>
+              </a> */}
+          {/* </Link> */}
+          {/* </MenuItem> */}
 
-          <MenuItem>
+          {/* <MenuItem>
             <Link href="/register">
               <a
                 className={
@@ -540,7 +568,7 @@ const MobileMenuContent = () => {
                 <span className="flaticon-edit"></span> Register
               </a>
             </Link>
-          </MenuItem>
+          </MenuItem> */}
         </Menu>
       </SidebarContent>
 
