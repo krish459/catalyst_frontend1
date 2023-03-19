@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import jwt from "jsonwebtoken";
 
 const HeaderMenuContent = ({ float = "" }) => {
   const route = useRouter();
@@ -158,6 +159,7 @@ const HeaderMenuContent = ({ float = "" }) => {
         //   name: "Dashboard",
         //   routerPath: "/my-dashboard",
         // },
+
         {
           name: "My Properties",
           routerPath: "/my-properties",
@@ -241,6 +243,9 @@ const HeaderMenuContent = ({ float = "" }) => {
   //   { id: 10, name: "Terms & Conditions", routerPath: "/terms" },
   // ];
 
+
+  // console.log(jwt.decode(localStorage.getItem("token")));
+  // console.log(jwt.decode(localStorage.getItem("token")).role);
   return (
     <ul
       id="respMenu"
@@ -354,7 +359,7 @@ const HeaderMenuContent = ({ float = "" }) => {
         <ul className="sub-menu ">
           {property.map((item) => (
             <li className="dropitem arrow" key={item.id}>
-               <a
+              <a
                 href="#"
                 className={
                   item.items.some(
@@ -368,36 +373,51 @@ const HeaderMenuContent = ({ float = "" }) => {
               >
                 {item.title}
               </a>
-              
+
               {/* <!-- Level Three--> */}
               <ul className="sub-menu ">
                 {item.items.map((val, i) => (
                   <li key={i}>
-                    
                     {typeof window !== "undefined" ? (
-                !localStorage.getItem("token") ? (
-                  <a
-                  href="#"
-                  data-bs-toggle="modal"
-                  data-bs-target=".bd-example-modal-lg"
-                >
-                  {val.name}
-                </a>
-                ) : (
-                  <Link href={val.routerPath}>
-                      <a
-                        className={
-                          route.pathname === val.routerPath ||
-                          val.routerPath + "/[id]" === route.pathname
-                            ? "ui-active"
-                            : undefined
-                        }
-                      >
-                        {val.name}
-                      </a>
-                    </Link>
-                )
-              ) : null}
+                      !localStorage.getItem("token") ? (
+                        <a
+                          href="#"
+                          data-bs-toggle="modal"
+                          data-bs-target=".bd-example-modal-lg"
+                        >
+                          {val.name}
+                        </a>
+                      ) : // Check if the user is an admin before rendering the Dashboard item
+                      val.name === "Dashboard" &&
+                        localStorage.getItem("token") &&
+                        jwt.decode(localStorage.getItem("token")).role === "admin" ? (
+                        <Link href={val.routerPath}>
+                          <a
+                            className={
+                              route.pathname === val.routerPath ||
+                              val.routerPath + "/[id]" === route.pathname
+                                ? "ui-active"
+                                : undefined
+                            }
+                          >
+                            {val.name}
+                          </a>
+                        </Link>
+                      ) : (
+                        <Link href={val.routerPath}>
+                          <a
+                            className={
+                              route.pathname === val.routerPath ||
+                              val.routerPath + "/[id]" === route.pathname
+                                ? "ui-active"
+                                : undefined
+                            }
+                          >
+                            {val.name}
+                          </a>
+                        </Link>
+                      )
+                    ) : null}
                   </li>
                 ))}
               </ul>
