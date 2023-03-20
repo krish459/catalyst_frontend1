@@ -9,6 +9,7 @@ import jwt from "jsonwebtoken";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Router from "next/router";
 
 const index = () => {
   const [myProperty, setMyProperty] = useState();
@@ -22,8 +23,21 @@ const index = () => {
       const result = await axios.get(
         `https://makanmitra.dthree.in/api/property/broker-properties/${flatOwner}`
       );
-      console.log(result.data);
-      setMyProperty(result.data);
+      console.log(result.data.product);
+      setMyProperty(result.data.product);
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  };
+
+
+  const propertyAll = async () => {
+    try {
+      const result = await axios.get(
+        `https://makanmitra.dthree.in/api/property/get-properties?perPage=100`
+      );
+      console.log(result.data.properties.docs);
+      setMyProperty(result.data.properties.docs);
     } catch (error) {
       console.log("error: ", error);
     }
@@ -38,15 +52,25 @@ const index = () => {
     setMyMessage(result.data.message)
   };
 
-  // useEffect(() => {
-  //   {id && deletepropertybyid(id);}
-  // }, [id]);
+
+
+  const editpropertybyid = async (itemId) => {
+    Router.push({
+      pathname: "/create-listing",
+      query: { id: itemId },
+    });
+  };
+
+  
 
   useEffect(() => {
-    {
+    if (decodedToken.user_id && decodedToken.role === 'admin'){
+      propertyAll()
+    }
+    else {
       decodedToken.user_id && propertybyid(decodedToken.user_id);
     }
-  }, [decodedToken.user_id]);
+  }, [decodedToken.user_id,decodedToken.role]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -147,6 +171,7 @@ const index = () => {
                         <TableData
                           myProperty={myProperty}
                           deletepropertybyid={deletepropertybyid}
+                          editpropertybyid={editpropertybyid}
                         />
                       </div>
                       {/* End .table-responsive */}

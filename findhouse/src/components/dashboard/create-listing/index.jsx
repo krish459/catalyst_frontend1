@@ -8,6 +8,7 @@ import LocationField from "./LocationField";
 import PropertyMediaUploader from "./PropertyMediaUploader";
 import { useEffect, useState } from "react";
 import jwt from "jsonwebtoken";
+import Router from "next/router";
 import axios from "axios";
 
 const index = () => {
@@ -19,8 +20,8 @@ const index = () => {
   const [locality, setLocality] = useState("");
   const [state, setState] = useState("");
   const [area, setArea] = useState();
-  const [bedrooms, setBedrooms] = useState();
-  const [bathroom, setBathroom] = useState();
+  const [bedrooms, setBedrooms] = useState(1);
+  const [bathroom, setBathroom] = useState(1);
   const [propertyAge, setPropertyAge] = useState();
 
   const [furnishing, setFurnishing] = useState("");
@@ -41,6 +42,64 @@ const index = () => {
   const [getImgKeys, setImgKeys] = useState();
   const [imgDone, setImgDone] = useState(true);
   const [message, setMessage] = useState();
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const paramValue = urlParams.get("id");
+  const paramId = paramValue ? true : false;
+  const [updateButton, setUpdateButton] = useState(paramId);
+
+  const ClearFliters = () => {
+    setTimeout(() => {
+      Router.push({
+        pathname: "/"
+      });
+    }, 2000); 
+  };
+  
+  const propertyPreFill = async (propertyId) => {
+    if (updateButton) {
+      try {
+        const token = localStorage.getItem("token");
+        const preFill = await axios.get(
+          `https://makanmitra.dthree.in/api/property/get-properties/${propertyId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const propertyData = preFill.data;
+        // console.log(propertyData.product.amenities);
+        setTitle(propertyData.product.title);
+        setDesc(propertyData.product.description);
+        setImgKeys(propertyData.product.images);
+        setArea(propertyData.product.area);
+        setLocality(propertyData.product.locality);
+        setState(propertyData.product.state);
+        setPrice(propertyData.product.rent);
+        setStatus(propertyData.product.buyOrRent);
+        setBedrooms(propertyData.product.details[0].bedrooms);
+        setBathroom(propertyData.product.details[0].bathroom);
+        setPropertyAge(propertyData.product.details[0].propertyAge);
+        setFurnishing(propertyData.product.details[0].furnishing);
+        setTenants(propertyData.product.details[0].tenants);
+        setDeposit(propertyData.product.details[0].deposit);
+        setFoodPreference(propertyData.product.details[0].foodPreference);
+        setBalcony(propertyData.product.details[0].balcony);
+        setFlatFloor(propertyData.product.details[0].flatFloor);
+        setTotalFloors(propertyData.product.details[0].totalFloors);
+        setAvailableFrom(propertyData.product.details[0].availableFrom);
+        setMonthlyMaintenance(
+          propertyData.product.details[0].monthlyMaintenance
+        );
+        setWaterSupply(propertyData.product.details[0].waterSupply);
+        setAmenities(propertyData.product.amenities);
+        setFacing(propertyData.product.details[0].facing);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
 
   const handlePropertyImages = async (e) => {
     e.preventDefault();
@@ -118,17 +177,94 @@ const index = () => {
       console.log("Dtaa: ", data);
       console.log(propertyResult.data);
       setMessage("Property posted successfully");
+      ClearFliters();
     } catch (error) {
+      setMessage(
+        "Property Not Posted successfully. Please Fill Correct Values."
+      );
       console.log("error: ", error);
     }
   };
+  const handlePropertyUpdate = async (e) => {
+    e.preventDefault();
+    try {
+      const token = localStorage.getItem("token");
+      // const decodedToken = jwt.decode(token);
+      // console.log("decodedToken: ", decodedToken);
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const propertyId = urlParams.get("id");
+
+      if (!propertyId) {
+        throw new Error("Property ID not found in URL");
+      }
+
+      const data = {
+        title: title,
+        description: desc,
+        images: getImgKeys,
+        area: parseInt(area),
+        locality: locality,
+        state: state,
+        rent: parseInt(price),
+        buyOrRent: status,
+        details: [
+          {
+            bedrooms: parseInt(bedrooms),
+            bathroom: parseInt(bathroom),
+            propertyType: type,
+            propertyAge: parseInt(propertyAge),
+            furnishing: furnishing,
+            tenants: parseInt(tenants),
+            deposit: parseInt(deposit),
+            foodPreference: foodPreference,
+            balcony: parseInt(balcony),
+            flatFloor: parseInt(flatFloor),
+            totalFloors: parseInt(totalFloors),
+            availableFrom: availableFrom,
+            facing: facing,
+            monthlyMaintenance: parseInt(monthlyMaintenance),
+            waterSupply: parseInt(waterSupply),
+          },
+        ],
+        amenities: amenities,
+        // flatOwner: decodedToken.user_id,
+      };
+
+      const propertyResult = await axios.put(
+        `https://makanmitra.dthree.in/api/property/update-property/${propertyId}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("Dtaa: ", data);
+      console.log(propertyResult.data);
+      setMessage("Property updated successfully");
+      ClearFliters();
+    } catch (error) {
+      setMessage(
+        "Property Not Updated successfully. Please Fill correct values"
+      );
+      console.log("error: ", error);
+    }
+  };
+
   useEffect(() => {
+    window.scrollTo(0, 0);
     const timeout = setTimeout(() => {
       setMessage("");
-    }, 500);
+    }, 5000);
 
     return () => clearTimeout(timeout);
   }, [message]);
+
+  useEffect(() => {
+    propertyPreFill(paramValue);
+  }, []);
+
   return (
     <>
       {/* <!-- Main Header Nav --> */}
@@ -179,6 +315,15 @@ const index = () => {
                   </div>
                 </div>
                 {/* End .col */}
+
+                {message && (
+                  <div
+                    className="alert alert-success text-center margin-auto"
+                    role="alert"
+                  >
+                    {message}
+                  </div>
+                )}
 
                 <div className="col-lg-12">
                   <div className="my_dashboard_review">
@@ -288,16 +433,25 @@ const index = () => {
                       marginBottom: "2rem",
                     }}
                   >
-                    <button
-                      className="btn btn1 float-start"
-                      onClick={handlePropertySubmit}
-                    >
-                      Post Property
-                    </button>
+                    {updateButton ? (
+                      <button
+                        className="btn btn1 float-start"
+                        onClick={handlePropertyUpdate}
+                      >
+                        Update Property
+                      </button>
+                    ) : (
+                      <button
+                        className="btn btn1 float-start"
+                        onClick={handlePropertySubmit}
+                      >
+                        Post Property
+                      </button>
+                    )}
                   </div>
                 </div>
               )}
-              {message && (
+              {/* {message && (
                 <div className="form-group">
                   <div
                     className="alert alert-success text-center margin-auto"
@@ -309,7 +463,7 @@ const index = () => {
                     {message}
                   </div>
                 </div>
-              )}
+              )} */}
 
               <div className="row mt50">
                 <div className="col-lg-12">

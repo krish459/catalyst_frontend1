@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 const CheckBoxFilter = ({amenities, setAmenities}) => {
   const selectAmenities = (icon) => {
     if (amenities.includes(icon)) {
@@ -7,8 +9,33 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
       // If the amenity doesn't exist in the array, add it
       setAmenities([...amenities, icon]);
     }
-    console.log(amenities);
+    // console.log(amenities);
   }
+  
+  useEffect(() => {
+    const checkboxes = document.querySelectorAll('[id^="customCheck"]');
+    checkboxes.forEach((checkbox) => {
+      const amenity = checkbox.id.replace('customCheck', '');
+      if (amenities.includes(amenity)) {
+        checkbox.checked = true;
+      }
+    });
+  }, [amenities]);
+
+  // useEffect(() => {
+  //   if (amenities.length !== 0) {
+  //     for (let i = 0; i < amenities.length; i++) {
+  //       const checkbox = document.getElementById(`customCheck${amenities[i]}`);
+  //       if (checkbox) {
+  //         checkbox.checked = true;
+  //         selectAmenities(amenities[i]);
+  //       }
+  //     }
+  //   }
+  // }, []);
+  
+  
+  
   return (
     <>
       <div className="col-xxs-6 col-sm col-lg col-xl">
@@ -18,11 +45,11 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
               <input
                 type="checkbox"
                 className="form-check-input"
-                id="customCheck1"
-                onClick={() => selectAmenities("Air Conditioning")}
+                id="customCheckAir_Conditioning"
+                onClick={() => selectAmenities("Air_Conditioning")}
               />
               <label className="form-check-label" htmlFor="customCheck1">
-                Air Conditioning
+                Air_Conditioning
               </label>
             </div>
           </li>
@@ -33,7 +60,7 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
               <input
                 type="checkbox"
                 className="form-check-input"
-                id="customCheck2"
+                id="customCheckLawn"
                 onClick={() => selectAmenities("Lawn")}
               />
               <label className="form-check-label" htmlFor="customCheck2">
@@ -48,11 +75,11 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
               <input
                 type="checkbox"
                 className="form-check-input"
-                id="customCheck3"
-                onClick={() => selectAmenities("Swimming Pool")}
+                id="customCheckSwimming_Pool"
+                onClick={() => selectAmenities("Swimming_Pool")}
               />
               <label className="form-check-label" htmlFor="customCheck3">
-                Swimming Pool
+                Swimming_Pool
               </label>
             </div>
           </li>
@@ -68,7 +95,7 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
               <input
                 type="checkbox"
                 className="form-check-input"
-                id="customCheck4"
+                id="customCheckBarbeque"
                 onClick={() => selectAmenities("Barbeque")}
               />
               <label className="form-check-label" htmlFor="customCheck4">
@@ -83,7 +110,7 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
               <input
                 type="checkbox"
                 className="form-check-input"
-                id="customCheck5"
+                id="customCheckMicrowave"
                 onClick={() => selectAmenities("Microwave")}
               />
               <label className="form-check-label" htmlFor="customCheck5">
@@ -98,11 +125,11 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
               <input
                 type="checkbox"
                 className="form-check-input"
-                id="customCheck6"
-                onClick={() => selectAmenities("TV Cable")}
+                id="customCheckTV_Cable"
+                onClick={() => selectAmenities("TV_Cable")}
               />
               <label className="form-check-label" htmlFor="customCheck6">
-                TV Cable
+                TV_Cable
               </label>
             </div>
           </li>
@@ -121,7 +148,7 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
               <input
                 type="checkbox"
                 className="form-check-input"
-                id="customCheck10"
+                id="customCheckGym"
                 onClick={() => selectAmenities("Gym")}
               />
               <label className="form-check-label" htmlFor="customCheck10">
@@ -131,18 +158,19 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
           </li>
           {/* End li */}
 
-          {/* <li>
+          <li>
             <div className="form-check custom-checkbox">
               <input
                 type="checkbox"
                 className="form-check-input"
-                id="customCheck11"
+                id="customCheckRefrigerator"
+                onClick={() => selectAmenities("Refrigerator")}
               />
               <label className="form-check-label" htmlFor="customCheck11">
                 Refrigerator
               </label>
             </div>
-          </li> */}
+          </li>
           {/* End li */}
 
           <li>
@@ -150,7 +178,7 @@ const CheckBoxFilter = ({amenities, setAmenities}) => {
               <input
                 type="checkbox"
                 className="form-check-input"
-                id="customCheck12"
+                id="customCheckWiFi"
                 onClick={() => selectAmenities("WiFi")}
               />
               <label className="form-check-label" htmlFor="customCheck12">

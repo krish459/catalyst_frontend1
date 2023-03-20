@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-const TableData = ({ myProperty,deletepropertybyid }) => {
+const TableData = ({ myProperty,deletepropertybyid,editpropertybyid }) => {
   // let theadConent = [
   //   "Listing Title",
   //   "Date published",
@@ -84,7 +84,7 @@ const TableData = ({ myProperty,deletepropertybyid }) => {
 
   let content =
   myProperty &&
-  myProperty.product.map((item) => (
+  myProperty.map((item) => (
       <div className="feat_property list favorite_page" key={item._id}>
         <div className="thumb">
           <img
@@ -122,6 +122,19 @@ const TableData = ({ myProperty,deletepropertybyid }) => {
         {/* End details */}
 
         <ul className="view_edit_delete_list mb0 mt35">
+          <li
+            className="list-inline-item"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Edit"
+          >
+            <a href="#">
+              <span
+                className="flaticon-edit"
+                onClick={()=>{editpropertybyid(item._id)}}
+              ></span>
+            </a>
+          </li>
           <li
             className="list-inline-item"
             data-toggle="tooltip"

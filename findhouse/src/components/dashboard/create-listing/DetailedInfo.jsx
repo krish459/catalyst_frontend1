@@ -60,7 +60,7 @@ const DetailedInfo = ({
             <option data-tokens="Status3">3</option>
             <option data-tokens="Status4">4</option>
             <option data-tokens="Status5">5</option>
-            <option data-tokens="Status6">Other</option>
+            {/* <option data-tokens="Status6">Other</option> */}
           </select>
         </div>
       </div>

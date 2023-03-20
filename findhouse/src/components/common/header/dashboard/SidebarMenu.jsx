@@ -52,7 +52,7 @@ const SidebarMenu = () => {
         <li className="title">
           <span>Main</span>
           <ul>
-            <li
+            {/* <li
               className={`treeview ${
                 isSinglePageActive("/my-dashboard", route.pathname)
                   ? "active"
@@ -65,7 +65,7 @@ const SidebarMenu = () => {
                   <span> Dashboard</span>
                 </a>
               </Link>
-            </li>
+            </li> */}
             <li
               className={`treeview ${
                 isSinglePageActive("/create-listing", route.pathname)

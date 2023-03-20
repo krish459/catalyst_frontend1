@@ -59,8 +59,8 @@ const CreateList = ({
             <option data-tokens="type1">flat</option>
             <option data-tokens="Type2">mansion</option>
             <option data-tokens="Type3">bunglow</option>
-            <option data-tokens="Type4">Type4</option>
-            <option data-tokens="Type5">Type5</option>
+            {/* <option data-tokens="Type4">Type4</option>
+            <option data-tokens="Type5">Type5</option> */}
           </select>
         </div>
       </div>
@@ -123,12 +123,13 @@ const CreateList = ({
             value={bedrooms}
             onChange={(e) => setBedrooms(Number(e.target.value))}
           >
+            <option data-tokens="Status1">0</option>
             <option data-tokens="Status1">1</option>
             <option data-tokens="Status2">2</option>
             <option data-tokens="Status3">3</option>
             <option data-tokens="Status4">4</option>
             <option data-tokens="Status5">5</option>
-            <option data-tokens="Status6">Other</option>
+            {/* <option data-tokens="Status6">Other</option> */}
           </select>
         </div>
       </div>
